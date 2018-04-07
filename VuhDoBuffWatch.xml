@@ -1,0 +1,384 @@
+<Ui xmlns="http://www.blizzard.com/wow/ui/"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.blizzard.com/wow/ui/ ..\FrameXML\UI.xsd">
+
+  <Script file="VuhDoBuffConst.lua" />
+  <Script file="VuhDoBuffWatch.lua" />
+
+	<Frame name="VuhDoBuffSelectDropdown" inherits="UIDropDownMenuTemplate" clampedToScreen="true" id="1" hidden="true">
+		<Scripts>
+			<OnLoad>
+				VUHDO_buffSelectDropdownOnLoad();
+		 </OnLoad>
+		</Scripts>
+	</Frame>
+
+
+  <Frame name="VuhDoBuffSwatchPanelTemplate" virtual="true">
+            <Size>
+              <AbsDimension x="75" y="24" />
+            </Size>
+            <Backdrop bgFile="Interface\Tooltips\UI-Tooltip-Background" edgeFile="Interface\Tooltips\UI-Tooltip-Border" tile="true">
+              <Color r="0" g="0" b="0" />
+
+              <BackgroundInsets>
+                <AbsInset left="0" right="0" top="0" bottom="0" />
+              </BackgroundInsets>
+              <TileSize>
+                <AbsValue val="8" />
+              </TileSize>
+              <EdgeSize>
+                <AbsValue val="8" />
+              </EdgeSize>
+            </Backdrop>
+            <Frames>
+
+				   		<Button name="$parentGlassButton" setAllPoints="true" inherits="SecureUnitButtonTemplate">
+						    <Scripts>
+      						<OnLoad>this:RegisterForClicks("LeftButtonDown", "MiddleButtonDown", "RightButtonDown", "Button4Down", "Button5Down");
+	          				this:SetScript("PreClick", VuhDoBuffPreClick);
+			  						this:SetScript("PostClick", VuhDoBuffPostClick)
+									</OnLoad>
+						    </Scripts>
+				  		</Button>
+
+              <Frame name="$parentGroupLabel">
+                <Size>
+                  <AbsDimension x="45" y="16" />
+                </Size>
+                <Anchors>
+                  <Anchor point="TOPLEFT">
+                    <Offset>
+                      <AbsDimension x="3" y="1" />
+                    </Offset>
+                  </Anchor>
+                </Anchors>
+                <Layers>
+                  <Layer>
+                    <FontString name="$parentLabel" font="Fonts\FRIZQT__.TTF" text="b00nz">
+                      <Anchors>
+                        <Anchor point="TOPLEFT" />
+                        <Anchor point="BOTTOMRIGHT" />
+                      </Anchors>
+                      <FontHeight>
+                        <AbsValue val="8" />
+                      </FontHeight>
+                      <Color r="1" g="0.898" b="0.4" />
+                      <Shadow>
+                        <Color r="0" g="0" b="0" />
+                        <Offset>
+                          <AbsDimension x="1" y="-1" />
+                        </Offset>
+                      </Shadow>
+                    </FontString>
+                  </Layer>
+                </Layers>
+              </Frame>
+
+              <Frame name="$parentBuffIconTexture" hidden="true">
+                <Size>
+                  <AbsDimension x="16" y="16" />
+                </Size>
+                <Anchors>
+                  <Anchor point="BOTTOMLEFT" relativePoint="BOTTOMLEFT">
+                    <Offset>
+                      <AbsDimension x="40" y="0" />
+                    </Offset>
+                  </Anchor>
+                </Anchors>
+                <Layers>
+                  <Layer>
+                    <Texture name="$parentTexture" setAllPoints="true" file="interface\icons\spell_holy_prayerofspirit">
+                      <TexCoords left="0" right="1" top="0" bottom="1" />
+                    </Texture>
+                  </Layer>
+                </Layers>
+              </Frame>
+
+              <Frame name="$parentMessageLabel">
+                <Size>
+                  <AbsDimension x="28" y="15" />
+                </Size>
+                <Anchors>
+                  <Anchor point="TOPLEFT">
+                    <Offset>
+                      <AbsDimension x="43" y="0" />
+                    </Offset>
+                  </Anchor>
+                </Anchors>
+                <Layers>
+                  <Layer>
+                    <FontString name="$parentLabel" font="Fonts\FRIZQT__.TTF" text="lol" justifyH="RIGHT">
+                      <Anchors>
+                        <Anchor point="TOPLEFT" />
+                        <Anchor point="BOTTOMRIGHT" />
+                      </Anchors>
+                      <FontHeight>
+                        <AbsValue val="8" />
+                      </FontHeight>
+                      <Color r="1" g="0.7" b="0.2" />
+                      <Shadow>
+                        <Color r="0" g="0" b="0" />
+                        <Offset>
+                          <AbsDimension x="1" y="-1" />
+                        </Offset>
+                      </Shadow>
+                    </FontString>
+                  </Layer>
+                </Layers>
+              </Frame>
+
+              <Frame name="$parentTimerLabel">
+                <Size>
+                  <AbsDimension x="45" y="10" />
+                </Size>
+                <Anchors>
+                  <Anchor point="TOPLEFT">
+                    <Offset>
+                      <AbsDimension x="3" y="-12" />
+                    </Offset>
+                  </Anchor>
+                </Anchors>
+                <Layers>
+                  <Layer>
+                    <FontString name="$parentLabel" font="Fonts\FRIZQT__.TTF" text="0:07">
+                      <Anchors>
+                        <Anchor point="TOPLEFT" />
+                        <Anchor point="BOTTOMRIGHT" />
+                      </Anchors>
+                      <FontHeight>
+                        <AbsValue val="8" />
+                      </FontHeight>
+                      <Color r="1" g="0.7" b="0.2" />
+                      <Shadow>
+                        <Color r="0" g="0" b="0" />
+                        <Offset>
+                          <AbsDimension x="1" y="-1" />
+                        </Offset>
+                      </Shadow>
+                    </FontString>
+                  </Layer>
+                </Layers>
+              </Frame>
+
+              <Frame name="$parentCounterLabel">
+                <Size>
+                  <AbsDimension x="28" y="10" />
+                </Size>
+                <Anchors>
+                  <Anchor point="TOPLEFT">
+                    <Offset>
+                      <AbsDimension x="43" y="-12" />
+                    </Offset>
+                  </Anchor>
+                </Anchors>
+                <Layers>
+                  <Layer>
+                    <FontString name="$parentLabel" font="Fonts\FRIZQT__.TTF" text="" justifyH="RIGHT">
+                      <Anchors>
+                        <Anchor point="TOPLEFT" />
+                        <Anchor point="BOTTOMRIGHT" />
+                      </Anchors>
+                      <FontHeight>
+                        <AbsValue val="8" />
+                      </FontHeight>
+                      <Color r="1" g="0.7" b="0.2" />
+                      <Shadow>
+                        <Color r="0" g="0" b="0" />
+                        <Offset>
+                          <AbsDimension x="1" y="-1" />
+                        </Offset>
+                      </Shadow>
+                    </FontString>
+                  </Layer>
+                </Layers>
+              </Frame>
+            </Frames>
+  </Frame>
+
+  <Frame name="VuhDoBuffWatchBuffTemplate" virtual="true">
+        <Size>
+          <AbsDimension x="140" y="30" />
+        </Size>
+        <Frames>
+          <Frame name="$parentBuffNameLabel">
+            <Size>
+              <AbsDimension x="120" y="24" />
+            </Size>
+            <Anchors>
+              <Anchor point="TOPLEFT">
+                <Offset>
+                  <AbsDimension x="30" y="-3" />
+                </Offset>
+              </Anchor>
+            </Anchors>
+            <Layers>
+              <Layer>
+                <FontString name="$parentLabel" font="Fonts\FRIZQT__.TTF" text="Whining of Sissies" justifyH="LEFT">
+                  <Anchors>
+                    <Anchor point="TOPLEFT" />
+                    <Anchor point="BOTTOMRIGHT" />
+                  </Anchors>
+                  <FontHeight>
+                    <AbsValue val="9" />
+                  </FontHeight>
+                  <Color r="1" g="0.82" b="0" />
+                  <Shadow>
+                    <Color r="0" g="0" b="0" />
+                    <Offset>
+                      <AbsDimension x="1" y="-1" />
+                    </Offset>
+                  </Shadow>
+                </FontString>
+              </Layer>
+            </Layers>
+          </Frame>
+          <Frame name="$parentIconTexture">
+            <Size>
+              <AbsDimension x="24" y="24" />
+            </Size>
+            <Anchors>
+              <Anchor point="TOPLEFT">
+                <Offset>
+                  <AbsDimension x="3" y="-3" />
+                </Offset>
+              </Anchor>
+            </Anchors>
+            <Layers>
+              <Layer>
+                <Texture name="$parentTexture" setAllPoints="true" file="interface\icons\spell_holy_prayerofspirit">
+                  <TexCoords left="0" right="1" top="0" bottom="1" />
+                </Texture>
+              </Layer>
+            </Layers>
+          </Frame>
+        </Frames>
+  </Frame>
+
+  <Frame name="VuhDoBuffWatchMainFrameTemplate" virtual="true" toplevel="true" frameStrata="MEDIUM"
+      movable="true" parent="UIParent" enableMouse="true">
+    <Backdrop bgFile="Interface\Tooltips\UI-Tooltip-Background" edgeFile="Interface\Tooltips\UI-Tooltip-Border" tile="true">
+        <BackgroundInsets>
+          <AbsInset left="5" right="5" top="5" bottom="5" />
+        </BackgroundInsets>
+        <TileSize>
+          <AbsValue val="16" />
+        </TileSize>
+        <EdgeSize>
+          <AbsValue val="16" />
+        </EdgeSize>
+    </Backdrop>
+    <Frames>
+
+      <Frame name="$parentTitleLabel">
+            <Size>
+              <AbsDimension x="120" y="16" />
+            </Size>
+            <Anchors>
+              <Anchor point="TOPLEFT">
+                <Offset>
+                  <AbsDimension x="10" y="13" />
+                </Offset>
+              </Anchor>
+            </Anchors>
+            <Layers>
+              <Layer>
+                <FontString name="$parentLabel" font="Fonts\FRIZQT__.TTF" text="VUHDO_I18N_BUFF_WATCH" justifyH="LEFT">
+                  <Anchors>
+                    <Anchor point="TOPLEFT" />
+                    <Anchor point="BOTTOMRIGHT" />
+                  </Anchors>
+                  <FontHeight>
+                    <AbsValue val="8" />
+                  </FontHeight>
+                  <Color r="1" g="0.82" b="0" />
+                  <Shadow>
+                    <Color r="0" g="0" b="0" />
+                    <Offset>
+                      <AbsDimension x="1" y="-1" />
+                    </Offset>
+                  </Shadow>
+                </FontString>
+              </Layer>
+            </Layers>
+      </Frame>
+
+      <Button name="$parentConfigButton" text="Config">
+            <Size>
+              <AbsDimension x="45" y="20" />
+            </Size>
+            <Anchors>
+              <Anchor point="TOPRIGHT">
+                <Offset>
+                  <AbsDimension x="2" y="18" />
+                </Offset>
+              </Anchor>
+            </Anchors>
+            <Scripts>
+              <OnClick>VUHDO_slashCmd("buff")</OnClick>
+            </Scripts>
+            <NormalTexture file="Interface\Buttons\UI-Panel-Button-Up">
+              <TexCoords left="0" right="0.625" top="0" bottom="0.6875" />
+            </NormalTexture>
+            <PushedTexture file="Interface\Buttons\UI-Panel-Button-Down">
+              <TexCoords left="0" right="0.625" top="0" bottom="0.6875" />
+            </PushedTexture>
+            <DisabledTexture file="Interface\Buttons\UI-Panel-Button-Disabled">
+              <TexCoords left="0" right="0.625" top="0" bottom="0.6875" />
+            </DisabledTexture>
+            <HighlightTexture file="Interface\Buttons\UI-Panel-Button-Highlight" alphaMode="ADD">
+              <TexCoords left="0" right="0.625" top="0" bottom="0.6875" />
+            </HighlightTexture>
+            <ButtonText name="$parentText">
+              <FontHeight>
+                <AbsValue val="10" />
+              </FontHeight>
+            </ButtonText>
+            <NormalFont inherits="GameFontNormal" font="Fonts\FRIZQT__.TTF">
+              <FontHeight>
+                <AbsValue val="12" />
+              </FontHeight>
+              <Color r="1" g="0.82" b="0" />
+              <Shadow>
+                <Color r="0" g="0" b="0" />
+                <Offset>
+                  <AbsDimension x="1" y="-1" />
+                </Offset>
+              </Shadow>
+            </NormalFont>
+            <HighlightFont inherits="GameFontHighlight" font="Fonts\FRIZQT__.TTF">
+              <FontHeight>
+                <AbsValue val="12" />
+              </FontHeight>
+              <Color r="1" g="1" b="1" />
+              <Shadow>
+                <Color r="0" g="0" b="0" />
+                <Offset>
+                  <AbsDimension x="1" y="-1" />
+                </Offset>
+              </Shadow>
+            </HighlightFont>
+            <DisabledFont inherits="GameFontDisable" font="Fonts\FRIZQT__.TTF">
+              <FontHeight>
+                <AbsValue val="12" />
+              </FontHeight>
+              <Color r="0.5" g="0.5" b="0.5" />
+              <Shadow>
+                <Color r="0" g="0" b="0" />
+                <Offset>
+                  <AbsDimension x="1" y="-1" />
+                </Offset>
+              </Shadow>
+            </DisabledFont>
+      </Button>
+
+    </Frames>
+
+    <Scripts>
+      <OnMouseDown>VUHDO_buffWatchOnMouseDown(this)</OnMouseDown>
+      <OnMouseUp>VUHDO_buffWatchOnMouseUp(this)</OnMouseUp>
+    </Scripts>
+
+  </Frame>
+
+</Ui>

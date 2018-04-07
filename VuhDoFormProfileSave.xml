@@ -1,0 +1,687 @@
+<Ui xmlns="http://www.blizzard.com/wow/ui" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <Script file="VuhDoFormProfileSave.lua" />
+
+  <Frame name="VuhDoFormProfileSave" hidden="true" toplevel="true" frameStrata="FULLSCREEN_DIALOG"
+      movable="true" parent="UIParent" enableMouse="true">
+    <Size>
+      <AbsDimension x="246" y="317" />
+    </Size>
+    <Anchors>
+      <Anchor point="CENTER" relativeTo="UIParent">
+        <Offset>
+          <AbsDimension x="0" y="0" />
+        </Offset>
+      </Anchor>
+    </Anchors>
+    <Backdrop bgFile="Interface\DialogFrame\UI-DialogBox-Background" edgeFile="Interface\DialogFrame\UI-DialogBox-Border" tile="true">
+      <BackgroundInsets>
+        <AbsInset left="11" right="12" top="12" bottom="11" />
+      </BackgroundInsets>
+      <TileSize>
+        <AbsValue val="32" />
+      </TileSize>
+      <EdgeSize>
+        <AbsValue val="32" />
+      </EdgeSize>
+    </Backdrop>
+    <Layers>
+      <Layer>
+        <Texture name="$parentTitleBorder" file="Interface\DialogFrame\UI-DialogBox-Header">
+          <Size>
+            <AbsDimension x="160" y="32" />
+          </Size>
+          <Anchors>
+            <Anchor point="TOP">
+              <Offset>
+                <AbsDimension x="0" y="5" />
+              </Offset>
+            </Anchor>
+          </Anchors>
+          <TexCoords left="0.2" right="0.8" top="0" bottom="0.6" />
+        </Texture>
+        <FontString name="$parentTitleString" font="Fonts\FRIZQT__.TTF" text="VUHDO_I18N_SAVE_PROFILE_TITLE">
+          <Size>
+            <AbsDimension x="140" y="0" />
+          </Size>
+          <Anchors>
+            <Anchor point="TOP">
+              <Offset>
+                <AbsDimension x="0" y="-4" />
+              </Offset>
+            </Anchor>
+          </Anchors>
+          <FontHeight>
+            <AbsValue val="12" />
+          </FontHeight>
+          <Color r="1" g="0.82" b="0" />
+          <Shadow>
+            <Color r="0" g="0" b="0" />
+            <Offset>
+              <AbsDimension x="1" y="-1" />
+            </Offset>
+          </Shadow>
+        </FontString>
+      </Layer>
+    </Layers>
+    <Frames>
+
+      <Button name="$parentCancelButton" text="VUHDO_I18N_CANCEL">
+        <Size>
+          <AbsDimension x="100" y="22" />
+        </Size>
+        <Anchors>
+          <Anchor point="TOPLEFT">
+            <Offset>
+              <AbsDimension x="20" y="-275" />
+            </Offset>
+          </Anchor>
+        </Anchors>
+        <Scripts>
+          <OnClick>VUHDO_saveProfileCancelOnClick(this);</OnClick>
+        </Scripts>
+        <NormalTexture file="Interface\Buttons\UI-Panel-Button-Up">
+          <TexCoords left="0" right="0.625" top="0" bottom="0.6875" />
+        </NormalTexture>
+        <PushedTexture file="Interface\Buttons\UI-Panel-Button-Down">
+          <TexCoords left="0" right="0.625" top="0" bottom="0.6875" />
+        </PushedTexture>
+        <DisabledTexture file="Interface\Buttons\UI-Panel-Button-Disabled">
+          <TexCoords left="0" right="0.625" top="0" bottom="0.6875" />
+        </DisabledTexture>
+        <HighlightTexture file="Interface\Buttons\UI-Panel-Button-Highlight" alphaMode="ADD">
+          <TexCoords left="0" right="0.625" top="0" bottom="0.6875" />
+        </HighlightTexture>
+        <ButtonText name="$parentText">
+          <FontHeight>
+            <AbsValue val="10" />
+          </FontHeight>
+        </ButtonText>
+        <NormalFont inherits="GameFontNormal" font="Fonts\FRIZQT__.TTF">
+          <FontHeight>
+            <AbsValue val="12" />
+          </FontHeight>
+          <Color r="1" g="0.82" b="0" />
+          <Shadow>
+            <Color r="0" g="0" b="0" />
+            <Offset>
+              <AbsDimension x="1" y="-1" />
+            </Offset>
+          </Shadow>
+        </NormalFont>
+        <HighlightFont inherits="GameFontHighlight" font="Fonts\FRIZQT__.TTF">
+          <FontHeight>
+            <AbsValue val="12" />
+          </FontHeight>
+          <Color r="1" g="1" b="1" />
+          <Shadow>
+            <Color r="0" g="0" b="0" />
+            <Offset>
+              <AbsDimension x="1" y="-1" />
+            </Offset>
+          </Shadow>
+        </HighlightFont>
+        <DisabledFont inherits="GameFontDisable" font="Fonts\FRIZQT__.TTF">
+          <FontHeight>
+            <AbsValue val="12" />
+          </FontHeight>
+          <Color r="0.5" g="0.5" b="0.5" />
+          <Shadow>
+            <Color r="0" g="0" b="0" />
+            <Offset>
+              <AbsDimension x="1" y="-1" />
+            </Offset>
+          </Shadow>
+        </DisabledFont>
+      </Button>
+
+      <Button name="$parentSaveButton" text="VUHDO_I18N_SAVE">
+        <Size>
+          <AbsDimension x="100" y="22" />
+        </Size>
+        <Anchors>
+          <Anchor point="TOPLEFT">
+            <Offset>
+              <AbsDimension x="128" y="-275" />
+            </Offset>
+          </Anchor>
+        </Anchors>
+        <Scripts>
+          <OnClick>VUHDO_saveProfileSaveOnClick(this);</OnClick>
+        </Scripts>
+        <NormalTexture file="Interface\Buttons\UI-Panel-Button-Up">
+          <TexCoords left="0" right="0.625" top="0" bottom="0.6875" />
+        </NormalTexture>
+        <PushedTexture file="Interface\Buttons\UI-Panel-Button-Down">
+          <TexCoords left="0" right="0.625" top="0" bottom="0.6875" />
+        </PushedTexture>
+        <DisabledTexture file="Interface\Buttons\UI-Panel-Button-Disabled">
+          <TexCoords left="0" right="0.625" top="0" bottom="0.6875" />
+        </DisabledTexture>
+        <HighlightTexture file="Interface\Buttons\UI-Panel-Button-Highlight" alphaMode="ADD">
+          <TexCoords left="0" right="0.625" top="0" bottom="0.6875" />
+        </HighlightTexture>
+        <ButtonText name="$parentText">
+          <FontHeight>
+            <AbsValue val="10" />
+          </FontHeight>
+        </ButtonText>
+        <NormalFont inherits="GameFontNormal" font="Fonts\FRIZQT__.TTF">
+          <FontHeight>
+            <AbsValue val="12" />
+          </FontHeight>
+          <Color r="1" g="0.82" b="0" />
+          <Shadow>
+            <Color r="0" g="0" b="0" />
+            <Offset>
+              <AbsDimension x="1" y="-1" />
+            </Offset>
+          </Shadow>
+        </NormalFont>
+        <HighlightFont inherits="GameFontHighlight" font="Fonts\FRIZQT__.TTF">
+          <FontHeight>
+            <AbsValue val="12" />
+          </FontHeight>
+          <Color r="1" g="1" b="1" />
+          <Shadow>
+            <Color r="0" g="0" b="0" />
+            <Offset>
+              <AbsDimension x="1" y="-1" />
+            </Offset>
+          </Shadow>
+        </HighlightFont>
+        <DisabledFont inherits="GameFontDisable" font="Fonts\FRIZQT__.TTF">
+          <FontHeight>
+            <AbsValue val="12" />
+          </FontHeight>
+          <Color r="0.5" g="0.5" b="0.5" />
+          <Shadow>
+            <Color r="0" g="0" b="0" />
+            <Offset>
+              <AbsDimension x="1" y="-1" />
+            </Offset>
+          </Shadow>
+        </DisabledFont>
+      </Button>
+
+      <Button name="$parentOverwriteComboBox">
+        <Size>
+          <AbsDimension x="240" y="32" />
+        </Size>
+        <Anchors>
+          <Anchor point="TOPLEFT">
+            <Offset>
+              <AbsDimension x="3" y="-223" />
+            </Offset>
+          </Anchor>
+        </Anchors>
+        <Layers>
+          <Layer>
+            <Texture name="$parentLeft" file="Interface\Glues\CharacterCreate\CharacterCreate-LabelFrame">
+              <Size>
+                <AbsDimension x="25" y="64" />
+              </Size>
+              <Anchors>
+                <Anchor point="TOPLEFT">
+                  <Offset>
+                    <AbsDimension x="0" y="17" />
+                  </Offset>
+                </Anchor>
+              </Anchors>
+              <TexCoords left="0" right="0.1953125" top="0" bottom="1" />
+            </Texture>
+            <Texture name="$parentMiddle" file="Interface\Glues\CharacterCreate\CharacterCreate-LabelFrame">
+              <Size>
+                <AbsDimension x="190" y="64" />
+              </Size>
+              <Anchors>
+                <Anchor point="LEFT" relativeTo="$parentLeft" relativePoint="RIGHT" />
+              </Anchors>
+              <TexCoords left="0.1953125" right="0.8046875" top="0" bottom="1" />
+            </Texture>
+            <Texture name="$parentRight" file="Interface\Glues\CharacterCreate\CharacterCreate-LabelFrame">
+              <Size>
+                <AbsDimension x="25" y="64" />
+              </Size>
+              <Anchors>
+                <Anchor point="LEFT" relativeTo="$parentMiddle" relativePoint="RIGHT" />
+              </Anchors>
+              <TexCoords left="0.8046875" right="1" top="0" bottom="1" />
+            </Texture>
+            <FontString name="$parentText" font="Fonts\FRIZQT__.TTF" text="" justifyH="RIGHT">
+              <Size>
+                <AbsDimension x="215" y="10" />
+              </Size>
+              <Anchors>
+                <Anchor point="RIGHT" relativeTo="$parentRight">
+                  <Offset>
+                    <AbsDimension x="-43" y="2" />
+                  </Offset>
+                </Anchor>
+              </Anchors>
+              <FontHeight>
+                <AbsValue val="10" />
+              </FontHeight>
+              <Color r="1" g="1" b="1" />
+              <Shadow>
+                <Color r="0" g="0" b="0" />
+                <Offset>
+                  <AbsDimension x="1" y="-1" />
+                </Offset>
+              </Shadow>
+            </FontString>
+          </Layer>
+        </Layers>
+        <Frames>
+          <Button name="$parentButton">
+            <Size>
+              <AbsDimension x="24" y="24" />
+            </Size>
+            <Anchors>
+              <Anchor point="TOPRIGHT" relativeTo="$parentRight">
+                <Offset>
+                  <AbsDimension x="-16" y="-18" />
+                </Offset>
+              </Anchor>
+            </Anchors>
+            <Scripts>
+              <OnClick>
+						ToggleDropDownMenu();
+						PlaySound("igMainMenuOptionCheckBoxOn");
+					</OnClick>
+            </Scripts>
+            <NormalTexture name="$parentNormalTexture" file="Interface\ChatFrame\UI-ChatIcon-ScrollDown-Up">
+              <Size>
+                <AbsDimension x="24" y="24" />
+              </Size>
+              <Anchors>
+                <Anchor point="RIGHT" />
+              </Anchors>
+            </NormalTexture>
+            <PushedTexture name="$parentPushedTexture" file="Interface\ChatFrame\UI-ChatIcon-ScrollDown-Down">
+              <Size>
+                <AbsDimension x="24" y="24" />
+              </Size>
+              <Anchors>
+                <Anchor point="RIGHT" />
+              </Anchors>
+            </PushedTexture>
+            <DisabledTexture name="$parentDisabledTexture" file="Interface\ChatFrame\UI-ChatIcon-ScrollDown-Disabled">
+              <Size>
+                <AbsDimension x="24" y="24" />
+              </Size>
+              <Anchors>
+                <Anchor point="RIGHT" />
+              </Anchors>
+            </DisabledTexture>
+            <HighlightTexture name="$parentHighlightTexture" file="Interface\Buttons\UI-Common-MouseHilight" alphaMode="ADD">
+              <Size>
+                <AbsDimension x="24" y="24" />
+              </Size>
+              <Anchors>
+                <Anchor point="RIGHT" />
+              </Anchors>
+            </HighlightTexture>
+          </Button>
+        </Frames>
+        <Scripts>
+          <OnShow>VUHDO_formSaveProfileComboOnLoad(this)</OnShow>
+          <OnHide>CloseDropDownMenus();</OnHide>
+        </Scripts>
+      </Button>
+      <Frame name="$parentOverwriteLabel">
+        <Size>
+          <AbsDimension x="193" y="18" />
+        </Size>
+        <Anchors>
+          <Anchor point="TOPLEFT">
+            <Offset>
+              <AbsDimension x="26" y="-199" />
+            </Offset>
+          </Anchor>
+        </Anchors>
+        <Layers>
+          <Layer>
+            <FontString name="$parentLabel" font="Fonts\FRIZQT__.TTF" text="VUHDO_I18N_OR_OVERWRITE_EXISTING" justifyH="LEFT">
+              <Anchors>
+                <Anchor point="TOPLEFT" />
+                <Anchor point="BOTTOMRIGHT" />
+              </Anchors>
+              <FontHeight>
+                <AbsValue val="12" />
+              </FontHeight>
+              <Color r="1" g="0.82" b="0" />
+              <Shadow>
+                <Color r="0" g="0" b="0" />
+                <Offset>
+                  <AbsDimension x="1" y="-1" />
+                </Offset>
+              </Shadow>
+            </FontString>
+          </Layer>
+        </Layers>
+      </Frame>
+      <EditBox name="$parentNewProfileEditBox" autoFocus="false" historyLines="32" justifyH="LEFT" enableMouse="true">
+        <Size>
+          <AbsDimension x="193" y="22" />
+        </Size>
+        <Anchors>
+          <Anchor point="TOPLEFT">
+            <Offset>
+              <AbsDimension x="26" y="-171" />
+            </Offset>
+          </Anchor>
+        </Anchors>
+        <Layers>
+          <Layer level="BACKGROUND">
+            <Texture name="$parentLeft" file="Interface\Common\Common-Input-Border">
+              <Size>
+                <AbsDimension x="8" y="20" />
+              </Size>
+              <Anchors>
+                <Anchor point="LEFT" />
+              </Anchors>
+              <TexCoords left="0" right="0.0625" top="0" bottom="0.625" />
+            </Texture>
+            <Texture name="$parentRight" file="Interface\Common\Common-Input-Border">
+              <Size>
+                <AbsDimension x="8" y="20" />
+              </Size>
+              <Anchors>
+                <Anchor point="RIGHT" />
+              </Anchors>
+              <TexCoords left="0.9375" right="1" top="0" bottom="0.625" />
+            </Texture>
+            <Texture name="$parentMiddle" file="Interface\Common\Common-Input-Border">
+              <Size>
+                <AbsDimension x="10" y="20" />
+              </Size>
+              <Anchors>
+                <Anchor point="LEFT" relativeTo="$parentLeft" relativePoint="RIGHT" />
+                <Anchor point="RIGHT" relativeTo="$parentRight" relativePoint="LEFT" />
+              </Anchors>
+              <TexCoords left="0.0625" right="0.9375" top="0" bottom="0.625" />
+            </Texture>
+          </Layer>
+        </Layers>
+        <Scripts>
+          <OnTextChanged>VUHDO_saveProfileNewProfileOnTextChange(this)</OnTextChanged>
+		      <OnEscapePressed>
+    		    this:ClearFocus();
+		      </OnEscapePressed>
+    		  <OnEditFocusLost>
+		        this:HighlightText(0, 0);
+      		</OnEditFocusLost>
+      		<OnEditFocusGained>
+        		this:HighlightText();
+      		</OnEditFocusGained>
+        </Scripts>
+        <FontString font="Fonts\ARIALN.TTF">
+          <FontHeight>
+            <AbsValue val="14" />
+          </FontHeight>
+          <Color r="1" g="1" b="1" />
+          <Shadow>
+            <Color r="0" g="0" b="0" />
+            <Offset>
+              <AbsDimension x="1" y="-1" />
+            </Offset>
+          </Shadow>
+        </FontString>
+      </EditBox>
+      <Frame name="$parentNewProfileLabel">
+        <Size>
+          <AbsDimension x="193" y="18" />
+        </Size>
+        <Anchors>
+          <Anchor point="TOPLEFT">
+            <Offset>
+              <AbsDimension x="26" y="-147" />
+            </Offset>
+          </Anchor>
+        </Anchors>
+        <Layers>
+          <Layer>
+            <FontString name="$parentLabel" font="Fonts\FRIZQT__.TTF" text="VUHDO_I18N_NEW_PROFILE_NAME" justifyH="LEFT">
+              <Anchors>
+                <Anchor point="TOPLEFT" />
+                <Anchor point="BOTTOMRIGHT" />
+              </Anchors>
+              <FontHeight>
+                <AbsValue val="12" />
+              </FontHeight>
+              <Color r="1" g="0.82" b="0" />
+              <Shadow>
+                <Color r="0" g="0" b="0" />
+                <Offset>
+                  <AbsDimension x="1" y="-1" />
+                </Offset>
+              </Shadow>
+            </FontString>
+          </Layer>
+        </Layers>
+      </Frame>
+      <Frame name="$parentAutoEnablePanel" inherits="OptionFrameBoxTemplate">
+        <Size>
+          <AbsDimension x="218" y="112" />
+        </Size>
+        <Anchors>
+          <Anchor point="TOPLEFT">
+            <Offset>
+              <AbsDimension x="14" y="-29" />
+            </Offset>
+          </Anchor>
+        </Anchors>
+        <Backdrop bgFile="Interface\Tooltips\UI-Tooltip-Background" edgeFile="Interface\Tooltips\UI-Tooltip-Border" tile="true">
+          <BackgroundInsets>
+            <AbsInset left="5" right="5" top="5" bottom="5" />
+          </BackgroundInsets>
+          <TileSize>
+            <AbsValue val="16" />
+          </TileSize>
+          <EdgeSize>
+            <AbsValue val="16" />
+          </EdgeSize>
+        </Backdrop>
+        <Frames>
+          <CheckButton name="$parentRaidCheckButton">
+            <Size>
+              <AbsDimension x="32" y="32" />
+            </Size>
+            <Anchors>
+              <Anchor point="TOPLEFT">
+                <Offset>
+                  <AbsDimension x="12" y="-32" />
+                </Offset>
+              </Anchor>
+            </Anchors>
+            <Layers>
+              <Layer>
+                <FontString name="$parentText" font="Fonts\FRIZQT__.TTF" text="VUHDO_I18N_RAID">
+                  <Anchors>
+                    <Anchor point="LEFT" relativePoint="RIGHT">
+                      <Offset>
+                        <AbsDimension x="-2" y="0" />
+                      </Offset>
+                    </Anchor>
+                  </Anchors>
+                  <FontHeight>
+                    <AbsValue val="10" />
+                  </FontHeight>
+                  <Color r="1" g="0.82" b="0" />
+                  <Shadow>
+                    <Color r="0" g="0" b="0" />
+                    <Offset>
+                      <AbsDimension x="1" y="-1" />
+                    </Offset>
+                  </Shadow>
+                </FontString>
+              </Layer>
+            </Layers>
+            <NormalTexture file="Interface\Buttons\UI-CheckBox-Up" />
+            <PushedTexture file="Interface\Buttons\UI-CheckBox-Down" />
+            <HighlightTexture file="Interface\Buttons\UI-CheckBox-Highlight" alphaMode="ADD" />
+            <CheckedTexture file="Interface\Buttons\UI-CheckBox-Check" />
+            <DisabledCheckedTexture file="Interface\Buttons\UI-CheckBox-Check-Disabled" />
+          </CheckButton>
+          <Frame name="$parentAutoEnableLabel">
+            <Size>
+              <AbsDimension x="300" y="18" />
+            </Size>
+            <Anchors>
+              <Anchor point="TOPLEFT">
+                <Offset>
+                  <AbsDimension x="12" y="-8" />
+                </Offset>
+              </Anchor>
+            </Anchors>
+            <Layers>
+              <Layer>
+                <FontString name="$parentLabel" font="Fonts\FRIZQT__.TTF" text="VUHDO_I18N_AUTO_ENABLE_IN" justifyH="LEFT">
+                  <Anchors>
+                    <Anchor point="TOPLEFT" />
+                    <Anchor point="BOTTOMRIGHT" />
+                  </Anchors>
+                  <FontHeight>
+                    <AbsValue val="12" />
+                  </FontHeight>
+                  <Color r="1" g="0.82" b="0" />
+                  <Shadow>
+                    <Color r="0" g="0" b="0" />
+                    <Offset>
+                      <AbsDimension x="1" y="-1" />
+                    </Offset>
+                  </Shadow>
+                </FontString>
+              </Layer>
+            </Layers>
+          </Frame>
+          <CheckButton name="$parentBgCheckButton">
+            <Size>
+              <AbsDimension x="32" y="32" />
+            </Size>
+            <Anchors>
+              <Anchor point="TOPLEFT">
+                <Offset>
+                  <AbsDimension x="108" y="-32" />
+                </Offset>
+              </Anchor>
+            </Anchors>
+            <Layers>
+              <Layer>
+                <FontString name="$parentText" font="Fonts\FRIZQT__.TTF" text="VUHDO_I18N_BATTLEGROUND">
+                  <Anchors>
+                    <Anchor point="LEFT" relativePoint="RIGHT">
+                      <Offset>
+                        <AbsDimension x="-2" y="0" />
+                      </Offset>
+                    </Anchor>
+                  </Anchors>
+                  <FontHeight>
+                    <AbsValue val="10" />
+                  </FontHeight>
+                  <Color r="1" g="0.82" b="0" />
+                  <Shadow>
+                    <Color r="0" g="0" b="0" />
+                    <Offset>
+                      <AbsDimension x="1" y="-1" />
+                    </Offset>
+                  </Shadow>
+                </FontString>
+              </Layer>
+            </Layers>
+            <NormalTexture file="Interface\Buttons\UI-CheckBox-Up" />
+            <PushedTexture file="Interface\Buttons\UI-CheckBox-Down" />
+            <HighlightTexture file="Interface\Buttons\UI-CheckBox-Highlight" alphaMode="ADD" />
+            <CheckedTexture file="Interface\Buttons\UI-CheckBox-Check" />
+            <DisabledCheckedTexture file="Interface\Buttons\UI-CheckBox-Check-Disabled" />
+          </CheckButton>
+          <CheckButton name="$parentPartyCheckButton">
+            <Size>
+              <AbsDimension x="32" y="32" />
+            </Size>
+            <Anchors>
+              <Anchor point="TOPLEFT">
+                <Offset>
+                  <AbsDimension x="12" y="-70" />
+                </Offset>
+              </Anchor>
+            </Anchors>
+            <Layers>
+              <Layer>
+                <FontString name="$parentText" font="Fonts\FRIZQT__.TTF" text="VUHDO_I18N_PARTY">
+                  <Anchors>
+                    <Anchor point="LEFT" relativePoint="RIGHT">
+                      <Offset>
+                        <AbsDimension x="-2" y="0" />
+                      </Offset>
+                    </Anchor>
+                  </Anchors>
+                  <FontHeight>
+                    <AbsValue val="10" />
+                  </FontHeight>
+                  <Color r="1" g="0.82" b="0" />
+                  <Shadow>
+                    <Color r="0" g="0" b="0" />
+                    <Offset>
+                      <AbsDimension x="1" y="-1" />
+                    </Offset>
+                  </Shadow>
+                </FontString>
+              </Layer>
+            </Layers>
+            <NormalTexture file="Interface\Buttons\UI-CheckBox-Up" />
+            <PushedTexture file="Interface\Buttons\UI-CheckBox-Down" />
+            <HighlightTexture file="Interface\Buttons\UI-CheckBox-Highlight" alphaMode="ADD" />
+            <CheckedTexture file="Interface\Buttons\UI-CheckBox-Check" />
+            <DisabledCheckedTexture file="Interface\Buttons\UI-CheckBox-Check-Disabled" />
+          </CheckButton>
+          <CheckButton name="$parentSoloCheckButton">
+            <Size>
+              <AbsDimension x="32" y="32" />
+            </Size>
+            <Anchors>
+              <Anchor point="TOPLEFT">
+                <Offset>
+                  <AbsDimension x="108" y="-70" />
+                </Offset>
+              </Anchor>
+            </Anchors>
+            <Layers>
+              <Layer>
+                <FontString name="$parentText" font="Fonts\FRIZQT__.TTF" text="VUHDO_I18N_SOLO">
+                  <Anchors>
+                    <Anchor point="LEFT" relativePoint="RIGHT">
+                      <Offset>
+                        <AbsDimension x="-2" y="0" />
+                      </Offset>
+                    </Anchor>
+                  </Anchors>
+                  <FontHeight>
+                    <AbsValue val="10" />
+                  </FontHeight>
+                  <Color r="1" g="0.82" b="0" />
+                  <Shadow>
+                    <Color r="0" g="0" b="0" />
+                    <Offset>
+                      <AbsDimension x="1" y="-1" />
+                    </Offset>
+                  </Shadow>
+                </FontString>
+              </Layer>
+            </Layers>
+            <NormalTexture file="Interface\Buttons\UI-CheckBox-Up" />
+            <PushedTexture file="Interface\Buttons\UI-CheckBox-Down" />
+            <HighlightTexture file="Interface\Buttons\UI-CheckBox-Highlight" alphaMode="ADD" />
+            <CheckedTexture file="Interface\Buttons\UI-CheckBox-Check" />
+            <DisabledCheckedTexture file="Interface\Buttons\UI-CheckBox-Check-Disabled" />
+          </CheckButton>
+        </Frames>
+      </Frame>
+    </Frames>
+    <Scripts>
+      <OnShow>VUHDO_formProfileSaveOnShow(this)</OnShow>
+      <OnMouseDown>VUHDO_formProfileSaveOnMouseDown(this,arg1)</OnMouseDown>
+      <OnMouseUp>VUHDO_formProfileSaveOnMouseUp(this,arg1)</OnMouseUp>
+    </Scripts>
+  </Frame>
+</Ui>

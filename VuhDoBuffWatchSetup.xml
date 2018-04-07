@@ -1,0 +1,2962 @@
+<Ui xmlns="http://www.blizzard.com/wow/ui/"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.blizzard.com/wow/ui/ ..\FrameXML\UI.xsd">
+
+  <Script file="VuhDoBuffWatchSetup.lua" />
+
+
+  <EditBox name="VuhDoBuffEditBoxTemplate" autoFocus="false" historyLines="32" justifyH="LEFT" virtual="true">
+    <Scripts>
+      <OnTextChanged>VUHDO_playerNameOnTextChanged(this)</OnTextChanged>
+      <OnEscapePressed>
+        this:ClearFocus();
+      </OnEscapePressed>
+      <OnEditFocusLost>
+        this:HighlightText(0, 0);
+      </OnEditFocusLost>
+      <OnEditFocusGained>
+        this:HighlightText();
+      </OnEditFocusGained>
+    </Scripts>
+  </EditBox>
+
+
+
+  <Frame name="VuhDoBuffSetupMainFrameTemplate" toplevel="true" frameStrata="DIALOG"
+      movable="true" parent="UIParent" enableMouse="true" virtual="true">
+    <Size>
+      <AbsDimension x="229" y="100" />
+    </Size>
+    <Backdrop bgFile="Interface\DialogFrame\UI-DialogBox-Background" edgeFile="Interface\DialogFrame\UI-DialogBox-Border" tile="true">
+      <BackgroundInsets>
+        <AbsInset left="11" right="12" top="12" bottom="11" />
+      </BackgroundInsets>
+      <TileSize>
+        <AbsValue val="32" />
+      </TileSize>
+      <EdgeSize>
+        <AbsValue val="32" />
+      </EdgeSize>
+    </Backdrop>
+    <Layers>
+      <Layer>
+        <Texture name="$parentTitleBorder" file="Interface\DialogFrame\UI-DialogBox-Header">
+          <Size>
+            <AbsDimension x="160" y="32" />
+          </Size>
+          <Anchors>
+            <Anchor point="TOP">
+              <Offset>
+                <AbsDimension x="0" y="5" />
+              </Offset>
+            </Anchor>
+          </Anchors>
+          <TexCoords left="0.2" right="0.8" top="0" bottom="0.6" />
+        </Texture>
+        <FontString name="$parentTitleString" font="Fonts\FRIZQT__.TTF" text="VUHDO_I18N_BUFF_SETUP">
+          <Size>
+            <AbsDimension x="140" y="0" />
+          </Size>
+          <Anchors>
+            <Anchor point="TOP">
+              <Offset>
+                <AbsDimension x="0" y="-4" />
+              </Offset>
+            </Anchor>
+          </Anchors>
+          <FontHeight>
+            <AbsValue val="12" />
+          </FontHeight>
+          <Color r="1" g="0.82" b="0" />
+          <Shadow>
+            <Color r="0" g="0" b="0" />
+            <Offset>
+              <AbsDimension x="1" y="-1" />
+            </Offset>
+          </Shadow>
+        </FontString>
+      </Layer>
+    </Layers>
+		<Scripts>
+	    <OnMouseDown>VUHDO_buffSetupOnMouseDown(this)</OnMouseDown>
+  	 	<OnMouseUp>VUHDO_buffSetupOnMouseUp(this)</OnMouseUp>
+		</Scripts>
+
+  </Frame>
+
+  <Frame name="VuhDoBuffSetupPanelTemplate" virtual="true">
+        <Size>
+          <AbsDimension x="229" y="46" />
+        </Size>
+        <Anchors>
+          <Anchor point="TOPLEFT">
+            <Offset>
+              <AbsDimension x="0" y="0" />
+            </Offset>
+          </Anchor>
+        </Anchors>
+        <Backdrop bgFile="Interface\Tooltips\UI-Tooltip-Background" edgeFile="Interface\Tooltips\UI-Tooltip-Border" tile="true">
+          <BackgroundInsets>
+            <AbsInset left="5" right="5" top="5" bottom="5" />
+          </BackgroundInsets>
+          <TileSize>
+            <AbsValue val="16" />
+          </TileSize>
+          <EdgeSize>
+            <AbsValue val="16" />
+          </EdgeSize>
+        </Backdrop>
+        <Frames>
+          <Frame name="$parentBuffTexture">
+            <Size>
+              <AbsDimension x="32" y="32" />
+            </Size>
+            <Anchors>
+              <Anchor point="TOPLEFT">
+                <Offset>
+                  <AbsDimension x="42" y="-6" />
+                </Offset>
+              </Anchor>
+            </Anchors>
+            <Layers>
+              <Layer>
+                <Texture name="$parentTexture" setAllPoints="true" file="interface\icons\spell_holy_prayeroffortitude">
+                  <TexCoords left="0" right="1" top="0" bottom="1" />
+                </Texture>
+              </Layer>
+            </Layers>
+          </Frame>
+          <Frame name="$parentBuffNameLabel">
+            <Size>
+              <AbsDimension x="149" y="32" />
+            </Size>
+            <Anchors>
+              <Anchor point="TOPLEFT">
+                <Offset>
+                  <AbsDimension x="82" y="-6" />
+                </Offset>
+              </Anchor>
+            </Anchors>
+            <Layers>
+              <Layer>
+                <FontString name="$parentLabel" font="Fonts\FRIZQT__.TTF" text="VUHDO_I18N_BUFF_NAME" justifyH="LEFT">
+                  <Anchors>
+                    <Anchor point="TOPLEFT" />
+                    <Anchor point="BOTTOMRIGHT" />
+                  </Anchors>
+                  <FontHeight>
+                    <AbsValue val="12" />
+                  </FontHeight>
+                  <Color r="1" g="0.82" b="0" />
+                  <Shadow>
+                    <Color r="0" g="0" b="0" />
+                    <Offset>
+                      <AbsDimension x="1" y="-1" />
+                    </Offset>
+                  </Shadow>
+                </FontString>
+              </Layer>
+            </Layers>
+          </Frame>
+          <CheckButton name="$parentEnableCheckButton">
+            <Size>
+              <AbsDimension x="32" y="32" />
+            </Size>
+            <Anchors>
+              <Anchor point="TOPLEFT">
+                <Offset>
+                  <AbsDimension x="4" y="-8" />
+                </Offset>
+              </Anchor>
+            </Anchors>
+            <Layers>
+              <Layer>
+                <FontString name="$parentText" font="Fonts\FRIZQT__.TTF" text="">
+                  <Anchors>
+                    <Anchor point="LEFT" relativePoint="RIGHT">
+                      <Offset>
+                        <AbsDimension x="-2" y="0" />
+                      </Offset>
+                    </Anchor>
+                  </Anchors>
+                  <FontHeight>
+                    <AbsValue val="10" />
+                  </FontHeight>
+                  <Color r="1" g="0.82" b="0" />
+                  <Shadow>
+                    <Color r="0" g="0" b="0" />
+                    <Offset>
+                      <AbsDimension x="1" y="-1" />
+                    </Offset>
+                  </Shadow>
+                </FontString>
+              </Layer>
+            </Layers>
+            <NormalTexture file="Interface\Buttons\UI-CheckBox-Up" />
+            <PushedTexture file="Interface\Buttons\UI-CheckBox-Down" />
+            <HighlightTexture file="Interface\Buttons\UI-CheckBox-Highlight" alphaMode="ADD" />
+            <CheckedTexture file="Interface\Buttons\UI-CheckBox-Check" />
+            <DisabledCheckedTexture file="Interface\Buttons\UI-CheckBox-Check-Disabled" />
+            <Scripts>
+              <OnClick>VUHDO_buffEnableCheckButtonOnClick(this)</OnClick>
+            </Scripts>
+
+          </CheckButton>
+        </Frames>
+  </Frame>
+
+
+
+  <Frame name="VuhDoBuffSetupGroupPanelTemplate" virtual="true">
+        <Size>
+          <AbsDimension x="229" y="68" />
+        </Size>
+        <Frames>
+
+          <Button name="$parentAllButton" text="VUHDO_I18N_BUFF_ALL">
+            <Size>
+              <AbsDimension x="60" y="22" />
+            </Size>
+            <Anchors>
+              <Anchor point="TOPLEFT">
+                <Offset>
+                  <AbsDimension x="85" y="-42" />
+                </Offset>
+              </Anchor>
+            </Anchors>
+            <NormalTexture file="Interface\Buttons\UI-Panel-Button-Up">
+              <TexCoords left="0" right="0.625" top="0" bottom="0.6875" />
+            </NormalTexture>
+            <PushedTexture file="Interface\Buttons\UI-Panel-Button-Down">
+              <TexCoords left="0" right="0.625" top="0" bottom="0.6875" />
+            </PushedTexture>
+            <DisabledTexture file="Interface\Buttons\UI-Panel-Button-Disabled">
+              <TexCoords left="0" right="0.625" top="0" bottom="0.6875" />
+            </DisabledTexture>
+            <HighlightTexture file="Interface\Buttons\UI-Panel-Button-Highlight" alphaMode="ADD">
+              <TexCoords left="0" right="0.625" top="0" bottom="0.6875" />
+            </HighlightTexture>
+            <ButtonText name="$parentText">
+              <FontHeight>
+                <AbsValue val="10" />
+              </FontHeight>
+            </ButtonText>
+            <NormalFont inherits="GameFontNormal" font="Fonts\FRIZQT__.TTF">
+              <FontHeight>
+                <AbsValue val="12" />
+              </FontHeight>
+              <Color r="1" g="0.82" b="0" />
+              <Shadow>
+                <Color r="0" g="0" b="0" />
+                <Offset>
+                  <AbsDimension x="1" y="-1" />
+                </Offset>
+              </Shadow>
+            </NormalFont>
+            <HighlightFont inherits="GameFontHighlight" font="Fonts\FRIZQT__.TTF">
+              <FontHeight>
+                <AbsValue val="12" />
+              </FontHeight>
+              <Color r="1" g="1" b="1" />
+              <Shadow>
+                <Color r="0" g="0" b="0" />
+                <Offset>
+                  <AbsDimension x="1" y="-1" />
+                </Offset>
+              </Shadow>
+            </HighlightFont>
+            <DisabledFont inherits="GameFontDisable" font="Fonts\FRIZQT__.TTF">
+              <FontHeight>
+                <AbsValue val="12" />
+              </FontHeight>
+              <Color r="0.5" g="0.5" b="0.5" />
+              <Shadow>
+                <Color r="0" g="0" b="0" />
+                <Offset>
+                  <AbsDimension x="1" y="-1" />
+                </Offset>
+              </Shadow>
+            </DisabledFont>
+						<Scripts>
+  	           <OnClick>VUHDO_buffGroupAllOnClick(this)</OnClick>
+    	      </Scripts>
+          </Button>
+
+          <Frame name="$parentLabel1">
+            <Size>
+              <AbsDimension x="26" y="18" />
+            </Size>
+            <Anchors>
+              <Anchor point="TOPLEFT">
+                <Offset>
+                  <AbsDimension x="10" y="-27" />
+                </Offset>
+              </Anchor>
+            </Anchors>
+            <Layers>
+              <Layer>
+                <FontString name="$parentLabel" font="Fonts\FRIZQT__.TTF" text=" 1">
+                  <Anchors>
+                    <Anchor point="TOPLEFT" />
+                    <Anchor point="BOTTOMRIGHT" />
+                  </Anchors>
+                  <FontHeight>
+                    <AbsValue val="10" />
+                  </FontHeight>
+                  <Color r="1" g="0.82" b="0" />
+                  <Shadow>
+                    <Color r="0" g="0" b="0" />
+                    <Offset>
+                      <AbsDimension x="1" y="-1" />
+                    </Offset>
+                  </Shadow>
+                </FontString>
+              </Layer>
+            </Layers>
+          </Frame>
+          <CheckButton name="$parentGroupCheckButton1">
+            <Size>
+              <AbsDimension x="32" y="32" />
+            </Size>
+            <Anchors>
+              <Anchor point="TOPLEFT">
+                <Offset>
+                  <AbsDimension x="10" y="0" />
+                </Offset>
+              </Anchor>
+            </Anchors>
+            <Layers>
+              <Layer>
+                <FontString name="$parentText" font="Fonts\FRIZQT__.TTF" text=" ">
+                  <Anchors>
+                    <Anchor point="LEFT" relativePoint="RIGHT">
+                      <Offset>
+                        <AbsDimension x="-2" y="0" />
+                      </Offset>
+                    </Anchor>
+                  </Anchors>
+                  <FontHeight>
+                    <AbsValue val="10" />
+                  </FontHeight>
+                  <Color r="1" g="0.82" b="0" />
+                  <Shadow>
+                    <Color r="0" g="0" b="0" />
+                    <Offset>
+                      <AbsDimension x="1" y="-1" />
+                    </Offset>
+                  </Shadow>
+                </FontString>
+              </Layer>
+            </Layers>
+            <NormalTexture file="Interface\Buttons\UI-CheckBox-Up" />
+            <PushedTexture file="Interface\Buttons\UI-CheckBox-Down" />
+            <HighlightTexture file="Interface\Buttons\UI-CheckBox-Highlight" alphaMode="ADD" />
+            <CheckedTexture file="Interface\Buttons\UI-CheckBox-Check" />
+            <DisabledCheckedTexture file="Interface\Buttons\UI-CheckBox-Check-Disabled" />
+          </CheckButton>
+          <CheckButton name="$parentGroupCheckButton2">
+            <Size>
+              <AbsDimension x="32" y="32" />
+            </Size>
+            <Anchors>
+              <Anchor point="TOPLEFT">
+                <Offset>
+                  <AbsDimension x="35" y="0" />
+                </Offset>
+              </Anchor>
+            </Anchors>
+            <Layers>
+              <Layer>
+                <FontString name="$parentText" font="Fonts\FRIZQT__.TTF" text=" ">
+                  <Anchors>
+                    <Anchor point="LEFT" relativePoint="RIGHT">
+                      <Offset>
+                        <AbsDimension x="-2" y="0" />
+                      </Offset>
+                    </Anchor>
+                  </Anchors>
+                  <FontHeight>
+                    <AbsValue val="10" />
+                  </FontHeight>
+                  <Color r="1" g="0.82" b="0" />
+                  <Shadow>
+                    <Color r="0" g="0" b="0" />
+                    <Offset>
+                      <AbsDimension x="1" y="-1" />
+                    </Offset>
+                  </Shadow>
+                </FontString>
+              </Layer>
+            </Layers>
+            <NormalTexture file="Interface\Buttons\UI-CheckBox-Up" />
+            <PushedTexture file="Interface\Buttons\UI-CheckBox-Down" />
+            <HighlightTexture file="Interface\Buttons\UI-CheckBox-Highlight" alphaMode="ADD" />
+            <CheckedTexture file="Interface\Buttons\UI-CheckBox-Check" />
+            <DisabledCheckedTexture file="Interface\Buttons\UI-CheckBox-Check-Disabled" />
+          </CheckButton>
+          <CheckButton name="$parentGroupCheckButton3">
+            <Size>
+              <AbsDimension x="32" y="32" />
+            </Size>
+            <Anchors>
+              <Anchor point="TOPLEFT">
+                <Offset>
+                  <AbsDimension x="60" y="0" />
+                </Offset>
+              </Anchor>
+            </Anchors>
+            <Layers>
+              <Layer>
+                <FontString name="$parentText" font="Fonts\FRIZQT__.TTF" text=" ">
+                  <Anchors>
+                    <Anchor point="LEFT" relativePoint="RIGHT">
+                      <Offset>
+                        <AbsDimension x="-2" y="0" />
+                      </Offset>
+                    </Anchor>
+                  </Anchors>
+                  <FontHeight>
+                    <AbsValue val="10" />
+                  </FontHeight>
+                  <Color r="1" g="0.82" b="0" />
+                  <Shadow>
+                    <Color r="0" g="0" b="0" />
+                    <Offset>
+                      <AbsDimension x="1" y="-1" />
+                    </Offset>
+                  </Shadow>
+                </FontString>
+              </Layer>
+            </Layers>
+            <NormalTexture file="Interface\Buttons\UI-CheckBox-Up" />
+            <PushedTexture file="Interface\Buttons\UI-CheckBox-Down" />
+            <HighlightTexture file="Interface\Buttons\UI-CheckBox-Highlight" alphaMode="ADD" />
+            <CheckedTexture file="Interface\Buttons\UI-CheckBox-Check" />
+            <DisabledCheckedTexture file="Interface\Buttons\UI-CheckBox-Check-Disabled" />
+          </CheckButton>
+          <CheckButton name="$parentGroupCheckButton4">
+            <Size>
+              <AbsDimension x="32" y="32" />
+            </Size>
+            <Anchors>
+              <Anchor point="TOPLEFT">
+                <Offset>
+                  <AbsDimension x="85" y="0" />
+                </Offset>
+              </Anchor>
+            </Anchors>
+            <Layers>
+              <Layer>
+                <FontString name="$parentText" font="Fonts\FRIZQT__.TTF" text=" ">
+                  <Anchors>
+                    <Anchor point="LEFT" relativePoint="RIGHT">
+                      <Offset>
+                        <AbsDimension x="-2" y="0" />
+                      </Offset>
+                    </Anchor>
+                  </Anchors>
+                  <FontHeight>
+                    <AbsValue val="10" />
+                  </FontHeight>
+                  <Color r="1" g="0.82" b="0" />
+                  <Shadow>
+                    <Color r="0" g="0" b="0" />
+                    <Offset>
+                      <AbsDimension x="1" y="-1" />
+                    </Offset>
+                  </Shadow>
+                </FontString>
+              </Layer>
+            </Layers>
+            <NormalTexture file="Interface\Buttons\UI-CheckBox-Up" />
+            <PushedTexture file="Interface\Buttons\UI-CheckBox-Down" />
+            <HighlightTexture file="Interface\Buttons\UI-CheckBox-Highlight" alphaMode="ADD" />
+            <CheckedTexture file="Interface\Buttons\UI-CheckBox-Check" />
+            <DisabledCheckedTexture file="Interface\Buttons\UI-CheckBox-Check-Disabled" />
+          </CheckButton>
+          <CheckButton name="$parentGroupCheckButton5">
+            <Size>
+              <AbsDimension x="32" y="32" />
+            </Size>
+            <Anchors>
+              <Anchor point="TOPLEFT">
+                <Offset>
+                  <AbsDimension x="110" y="0" />
+                </Offset>
+              </Anchor>
+            </Anchors>
+            <Layers>
+              <Layer>
+                <FontString name="$parentText" font="Fonts\FRIZQT__.TTF" text=" ">
+                  <Anchors>
+                    <Anchor point="LEFT" relativePoint="RIGHT">
+                      <Offset>
+                        <AbsDimension x="-2" y="0" />
+                      </Offset>
+                    </Anchor>
+                  </Anchors>
+                  <FontHeight>
+                    <AbsValue val="10" />
+                  </FontHeight>
+                  <Color r="1" g="0.82" b="0" />
+                  <Shadow>
+                    <Color r="0" g="0" b="0" />
+                    <Offset>
+                      <AbsDimension x="1" y="-1" />
+                    </Offset>
+                  </Shadow>
+                </FontString>
+              </Layer>
+            </Layers>
+            <NormalTexture file="Interface\Buttons\UI-CheckBox-Up" />
+            <PushedTexture file="Interface\Buttons\UI-CheckBox-Down" />
+            <HighlightTexture file="Interface\Buttons\UI-CheckBox-Highlight" alphaMode="ADD" />
+            <CheckedTexture file="Interface\Buttons\UI-CheckBox-Check" />
+            <DisabledCheckedTexture file="Interface\Buttons\UI-CheckBox-Check-Disabled" />
+          </CheckButton>
+          <CheckButton name="$parentGroupCheckButton6">
+            <Size>
+              <AbsDimension x="32" y="32" />
+            </Size>
+            <Anchors>
+              <Anchor point="TOPLEFT">
+                <Offset>
+                  <AbsDimension x="135" y="0" />
+                </Offset>
+              </Anchor>
+            </Anchors>
+            <Layers>
+              <Layer>
+                <FontString name="$parentText" font="Fonts\FRIZQT__.TTF" text=" ">
+                  <Anchors>
+                    <Anchor point="LEFT" relativePoint="RIGHT">
+                      <Offset>
+                        <AbsDimension x="-2" y="0" />
+                      </Offset>
+                    </Anchor>
+                  </Anchors>
+                  <FontHeight>
+                    <AbsValue val="10" />
+                  </FontHeight>
+                  <Color r="1" g="0.82" b="0" />
+                  <Shadow>
+                    <Color r="0" g="0" b="0" />
+                    <Offset>
+                      <AbsDimension x="1" y="-1" />
+                    </Offset>
+                  </Shadow>
+                </FontString>
+              </Layer>
+            </Layers>
+            <NormalTexture file="Interface\Buttons\UI-CheckBox-Up" />
+            <PushedTexture file="Interface\Buttons\UI-CheckBox-Down" />
+            <HighlightTexture file="Interface\Buttons\UI-CheckBox-Highlight" alphaMode="ADD" />
+            <CheckedTexture file="Interface\Buttons\UI-CheckBox-Check" />
+            <DisabledCheckedTexture file="Interface\Buttons\UI-CheckBox-Check-Disabled" />
+          </CheckButton>
+          <CheckButton name="$parentGroupCheckButton7">
+            <Size>
+              <AbsDimension x="32" y="32" />
+            </Size>
+            <Anchors>
+              <Anchor point="TOPLEFT">
+                <Offset>
+                  <AbsDimension x="160" y="0" />
+                </Offset>
+              </Anchor>
+            </Anchors>
+            <Layers>
+              <Layer>
+                <FontString name="$parentText" font="Fonts\FRIZQT__.TTF" text=" ">
+                  <Anchors>
+                    <Anchor point="LEFT" relativePoint="RIGHT">
+                      <Offset>
+                        <AbsDimension x="-2" y="0" />
+                      </Offset>
+                    </Anchor>
+                  </Anchors>
+                  <FontHeight>
+                    <AbsValue val="10" />
+                  </FontHeight>
+                  <Color r="1" g="0.82" b="0" />
+                  <Shadow>
+                    <Color r="0" g="0" b="0" />
+                    <Offset>
+                      <AbsDimension x="1" y="-1" />
+                    </Offset>
+                  </Shadow>
+                </FontString>
+              </Layer>
+            </Layers>
+            <NormalTexture file="Interface\Buttons\UI-CheckBox-Up" />
+            <PushedTexture file="Interface\Buttons\UI-CheckBox-Down" />
+            <HighlightTexture file="Interface\Buttons\UI-CheckBox-Highlight" alphaMode="ADD" />
+            <CheckedTexture file="Interface\Buttons\UI-CheckBox-Check" />
+            <DisabledCheckedTexture file="Interface\Buttons\UI-CheckBox-Check-Disabled" />
+          </CheckButton>
+          <Frame name="$parentComponent7">
+            <Size>
+              <AbsDimension x="26" y="18" />
+            </Size>
+            <Anchors>
+              <Anchor point="TOPLEFT">
+                <Offset>
+                  <AbsDimension x="35" y="-27" />
+                </Offset>
+              </Anchor>
+            </Anchors>
+            <Layers>
+              <Layer>
+                <FontString name="$parentLabel" font="Fonts\FRIZQT__.TTF" text=" 2">
+                  <Anchors>
+                    <Anchor point="TOPLEFT" />
+                    <Anchor point="BOTTOMRIGHT" />
+                  </Anchors>
+                  <FontHeight>
+                    <AbsValue val="10" />
+                  </FontHeight>
+                  <Color r="1" g="0.82" b="0" />
+                  <Shadow>
+                    <Color r="0" g="0" b="0" />
+                    <Offset>
+                      <AbsDimension x="1" y="-1" />
+                    </Offset>
+                  </Shadow>
+                </FontString>
+              </Layer>
+            </Layers>
+          </Frame>
+          <Frame name="$parentComponent8">
+            <Size>
+              <AbsDimension x="26" y="18" />
+            </Size>
+            <Anchors>
+              <Anchor point="TOPLEFT">
+                <Offset>
+                  <AbsDimension x="60" y="-27" />
+                </Offset>
+              </Anchor>
+            </Anchors>
+            <Layers>
+              <Layer>
+                <FontString name="$parentLabel" font="Fonts\FRIZQT__.TTF" text=" 3">
+                  <Anchors>
+                    <Anchor point="TOPLEFT" />
+                    <Anchor point="BOTTOMRIGHT" />
+                  </Anchors>
+                  <FontHeight>
+                    <AbsValue val="10" />
+                  </FontHeight>
+                  <Color r="1" g="0.82" b="0" />
+                  <Shadow>
+                    <Color r="0" g="0" b="0" />
+                    <Offset>
+                      <AbsDimension x="1" y="-1" />
+                    </Offset>
+                  </Shadow>
+                </FontString>
+              </Layer>
+            </Layers>
+          </Frame>
+          <Frame name="$parentComponent9">
+            <Size>
+              <AbsDimension x="26" y="18" />
+            </Size>
+            <Anchors>
+              <Anchor point="TOPLEFT">
+                <Offset>
+                  <AbsDimension x="85" y="-27" />
+                </Offset>
+              </Anchor>
+            </Anchors>
+            <Layers>
+              <Layer>
+                <FontString name="$parentLabel" font="Fonts\FRIZQT__.TTF" text=" 4">
+                  <Anchors>
+                    <Anchor point="TOPLEFT" />
+                    <Anchor point="BOTTOMRIGHT" />
+                  </Anchors>
+                  <FontHeight>
+                    <AbsValue val="10" />
+                  </FontHeight>
+                  <Color r="1" g="0.82" b="0" />
+                  <Shadow>
+                    <Color r="0" g="0" b="0" />
+                    <Offset>
+                      <AbsDimension x="1" y="-1" />
+                    </Offset>
+                  </Shadow>
+                </FontString>
+              </Layer>
+            </Layers>
+          </Frame>
+          <Frame name="$parentComponent10">
+            <Size>
+              <AbsDimension x="26" y="18" />
+            </Size>
+            <Anchors>
+              <Anchor point="TOPLEFT">
+                <Offset>
+                  <AbsDimension x="110" y="-27" />
+                </Offset>
+              </Anchor>
+            </Anchors>
+            <Layers>
+              <Layer>
+                <FontString name="$parentLabel" font="Fonts\FRIZQT__.TTF" text=" 5">
+                  <Anchors>
+                    <Anchor point="TOPLEFT" />
+                    <Anchor point="BOTTOMRIGHT" />
+                  </Anchors>
+                  <FontHeight>
+                    <AbsValue val="10" />
+                  </FontHeight>
+                  <Color r="1" g="0.82" b="0" />
+                  <Shadow>
+                    <Color r="0" g="0" b="0" />
+                    <Offset>
+                      <AbsDimension x="1" y="-1" />
+                    </Offset>
+                  </Shadow>
+                </FontString>
+              </Layer>
+            </Layers>
+          </Frame>
+          <Frame name="$parentComponent11">
+            <Size>
+              <AbsDimension x="26" y="18" />
+            </Size>
+            <Anchors>
+              <Anchor point="TOPLEFT">
+                <Offset>
+                  <AbsDimension x="135" y="-27" />
+                </Offset>
+              </Anchor>
+            </Anchors>
+            <Layers>
+              <Layer>
+                <FontString name="$parentLabel" font="Fonts\FRIZQT__.TTF" text=" 6">
+                  <Anchors>
+                    <Anchor point="TOPLEFT" />
+                    <Anchor point="BOTTOMRIGHT" />
+                  </Anchors>
+                  <FontHeight>
+                    <AbsValue val="10" />
+                  </FontHeight>
+                  <Color r="1" g="0.82" b="0" />
+                  <Shadow>
+                    <Color r="0" g="0" b="0" />
+                    <Offset>
+                      <AbsDimension x="1" y="-1" />
+                    </Offset>
+                  </Shadow>
+                </FontString>
+              </Layer>
+            </Layers>
+          </Frame>
+          <Frame name="$parentComponent12">
+            <Size>
+              <AbsDimension x="26" y="18" />
+            </Size>
+            <Anchors>
+              <Anchor point="TOPLEFT">
+                <Offset>
+                  <AbsDimension x="160" y="-27" />
+                </Offset>
+              </Anchor>
+            </Anchors>
+            <Layers>
+              <Layer>
+                <FontString name="$parentLabel" font="Fonts\FRIZQT__.TTF" text=" 7">
+                  <Anchors>
+                    <Anchor point="TOPLEFT" />
+                    <Anchor point="BOTTOMRIGHT" />
+                  </Anchors>
+                  <FontHeight>
+                    <AbsValue val="10" />
+                  </FontHeight>
+                  <Color r="1" g="0.82" b="0" />
+                  <Shadow>
+                    <Color r="0" g="0" b="0" />
+                    <Offset>
+                      <AbsDimension x="1" y="-1" />
+                    </Offset>
+                  </Shadow>
+                </FontString>
+              </Layer>
+            </Layers>
+          </Frame>
+          <Frame name="$parentComponent13">
+            <Size>
+              <AbsDimension x="26" y="18" />
+            </Size>
+            <Anchors>
+              <Anchor point="TOPLEFT">
+                <Offset>
+                  <AbsDimension x="185" y="-27" />
+                </Offset>
+              </Anchor>
+            </Anchors>
+            <Layers>
+              <Layer>
+                <FontString name="$parentLabel" font="Fonts\FRIZQT__.TTF" text=" 8">
+                  <Anchors>
+                    <Anchor point="TOPLEFT" />
+                    <Anchor point="BOTTOMRIGHT" />
+                  </Anchors>
+                  <FontHeight>
+                    <AbsValue val="10" />
+                  </FontHeight>
+                  <Color r="1" g="0.82" b="0" />
+                  <Shadow>
+                    <Color r="0" g="0" b="0" />
+                    <Offset>
+                      <AbsDimension x="1" y="-1" />
+                    </Offset>
+                  </Shadow>
+                </FontString>
+              </Layer>
+            </Layers>
+          </Frame>
+          <CheckButton name="$parentGroupCheckButton8">
+            <Size>
+              <AbsDimension x="32" y="32" />
+            </Size>
+            <Anchors>
+              <Anchor point="TOPLEFT">
+                <Offset>
+                  <AbsDimension x="185" y="0" />
+                </Offset>
+              </Anchor>
+            </Anchors>
+            <Layers>
+              <Layer>
+                <FontString name="$parentText" font="Fonts\FRIZQT__.TTF" text=" ">
+                  <Anchors>
+                    <Anchor point="LEFT" relativePoint="RIGHT">
+                      <Offset>
+                        <AbsDimension x="-2" y="0" />
+                      </Offset>
+                    </Anchor>
+                  </Anchors>
+                  <FontHeight>
+                    <AbsValue val="10" />
+                  </FontHeight>
+                  <Color r="1" g="0.82" b="0" />
+                  <Shadow>
+                    <Color r="0" g="0" b="0" />
+                    <Offset>
+                      <AbsDimension x="1" y="-1" />
+                    </Offset>
+                  </Shadow>
+                </FontString>
+              </Layer>
+            </Layers>
+            <NormalTexture file="Interface\Buttons\UI-CheckBox-Up" />
+            <PushedTexture file="Interface\Buttons\UI-CheckBox-Down" />
+            <HighlightTexture file="Interface\Buttons\UI-CheckBox-Highlight" alphaMode="ADD" />
+            <CheckedTexture file="Interface\Buttons\UI-CheckBox-Check" />
+            <DisabledCheckedTexture file="Interface\Buttons\UI-CheckBox-Check-Disabled" />
+          </CheckButton>
+
+          <Button name="$parentNoneButton" text="VUHDO_I18N_KEY_NONE">
+            <Size>
+              <AbsDimension x="60" y="22" />
+            </Size>
+            <Anchors>
+              <Anchor point="TOPLEFT">
+                <Offset>
+                  <AbsDimension x="151" y="-42" />
+                </Offset>
+              </Anchor>
+            </Anchors>
+            <NormalTexture file="Interface\Buttons\UI-Panel-Button-Up">
+              <TexCoords left="0" right="0.625" top="0" bottom="0.6875" />
+            </NormalTexture>
+            <PushedTexture file="Interface\Buttons\UI-Panel-Button-Down">
+              <TexCoords left="0" right="0.625" top="0" bottom="0.6875" />
+            </PushedTexture>
+            <DisabledTexture file="Interface\Buttons\UI-Panel-Button-Disabled">
+              <TexCoords left="0" right="0.625" top="0" bottom="0.6875" />
+            </DisabledTexture>
+            <HighlightTexture file="Interface\Buttons\UI-Panel-Button-Highlight" alphaMode="ADD">
+              <TexCoords left="0" right="0.625" top="0" bottom="0.6875" />
+            </HighlightTexture>
+            <ButtonText name="$parentText">
+              <FontHeight>
+                <AbsValue val="10" />
+              </FontHeight>
+            </ButtonText>
+            <NormalFont inherits="GameFontNormal" font="Fonts\FRIZQT__.TTF">
+              <FontHeight>
+                <AbsValue val="12" />
+              </FontHeight>
+              <Color r="1" g="0.82" b="0" />
+              <Shadow>
+                <Color r="0" g="0" b="0" />
+                <Offset>
+                  <AbsDimension x="1" y="-1" />
+                </Offset>
+              </Shadow>
+            </NormalFont>
+            <HighlightFont inherits="GameFontHighlight" font="Fonts\FRIZQT__.TTF">
+              <FontHeight>
+                <AbsValue val="12" />
+              </FontHeight>
+              <Color r="1" g="1" b="1" />
+              <Shadow>
+                <Color r="0" g="0" b="0" />
+                <Offset>
+                  <AbsDimension x="1" y="-1" />
+                </Offset>
+              </Shadow>
+            </HighlightFont>
+            <DisabledFont inherits="GameFontDisable" font="Fonts\FRIZQT__.TTF">
+              <FontHeight>
+                <AbsValue val="12" />
+              </FontHeight>
+              <Color r="0.5" g="0.5" b="0.5" />
+              <Shadow>
+                <Color r="0" g="0" b="0" />
+                <Offset>
+                  <AbsDimension x="1" y="-1" />
+                </Offset>
+              </Shadow>
+            </DisabledFont>
+						<Scripts>
+            	 <OnClick>VUHDO_buffGroupNoneOnClick(this)</OnClick>
+          	</Scripts>
+          </Button>
+        </Frames>
+  </Frame>
+
+  <Frame name="VuhDoBuffSetupDedicatedPanelTemplate" virtual="true">
+        <Size>
+          <AbsDimension x="229" y="33" />
+        </Size>
+        <Anchors>
+          <Anchor point="TOPLEFT">
+            <Offset>
+              <AbsDimension x="16" y="-83" />
+            </Offset>
+          </Anchor>
+        </Anchors>
+        <Frames>
+          <Button name="$parentDedicatedComboBox">
+            <Size>
+              <AbsDimension x="232" y="32" />
+            </Size>
+            <Anchors>
+              <Anchor point="TOPLEFT">
+                <Offset>
+                  <AbsDimension x="-3" y="-3" />
+                </Offset>
+              </Anchor>
+            </Anchors>
+            <Layers>
+              <Layer>
+                <Texture name="$parentLeft" file="Interface\Glues\CharacterCreate\CharacterCreate-LabelFrame">
+                  <Size>
+                    <AbsDimension x="25" y="64" />
+                  </Size>
+                  <Anchors>
+                    <Anchor point="TOPLEFT">
+                      <Offset>
+                        <AbsDimension x="0" y="17" />
+                      </Offset>
+                    </Anchor>
+                  </Anchors>
+                  <TexCoords left="0" right="0.1953125" top="0" bottom="1" />
+                </Texture>
+                <Texture name="$parentMiddle" file="Interface\Glues\CharacterCreate\CharacterCreate-LabelFrame">
+                  <Size>
+                    <AbsDimension x="182" y="64" />
+                  </Size>
+                  <Anchors>
+                    <Anchor point="LEFT" relativeTo="$parentLeft" relativePoint="RIGHT" />
+                  </Anchors>
+                  <TexCoords left="0.1953125" right="0.8046875" top="0" bottom="1" />
+                </Texture>
+                <Texture name="$parentRight" file="Interface\Glues\CharacterCreate\CharacterCreate-LabelFrame">
+                  <Size>
+                    <AbsDimension x="25" y="64" />
+                  </Size>
+                  <Anchors>
+                    <Anchor point="LEFT" relativeTo="$parentMiddle" relativePoint="RIGHT" />
+                  </Anchors>
+                  <TexCoords left="0.8046875" right="1" top="0" bottom="1" />
+                </Texture>
+                <FontString name="$parentText" font="Fonts\FRIZQT__.TTF" text="" justifyH="RIGHT">
+                  <Size>
+                    <AbsDimension x="207" y="10" />
+                  </Size>
+                  <Anchors>
+                    <Anchor point="RIGHT" relativeTo="$parentRight">
+                      <Offset>
+                        <AbsDimension x="-43" y="2" />
+                      </Offset>
+                    </Anchor>
+                  </Anchors>
+                  <FontHeight>
+                    <AbsValue val="10" />
+                  </FontHeight>
+                  <Color r="1" g="1" b="1" />
+                  <Shadow>
+                    <Color r="0" g="0" b="0" />
+                    <Offset>
+                      <AbsDimension x="1" y="-1" />
+                    </Offset>
+                  </Shadow>
+                </FontString>
+              </Layer>
+            </Layers>
+            <Frames>
+              <Button name="$parentButton">
+                <Size>
+                  <AbsDimension x="24" y="24" />
+                </Size>
+                <Anchors>
+                  <Anchor point="TOPRIGHT" relativeTo="$parentRight">
+                    <Offset>
+                      <AbsDimension x="-16" y="-18" />
+                    </Offset>
+                  </Anchor>
+                </Anchors>
+                <Scripts>
+                  <OnClick>
+										ToggleDropDownMenu();
+										PlaySound("igMainMenuOptionCheckBoxOn");
+									</OnClick>
+                </Scripts>
+                <NormalTexture name="$parentNormalTexture" file="Interface\ChatFrame\UI-ChatIcon-ScrollDown-Up">
+                  <Size>
+                    <AbsDimension x="24" y="24" />
+                  </Size>
+                  <Anchors>
+                    <Anchor point="RIGHT" />
+                  </Anchors>
+                </NormalTexture>
+                <PushedTexture name="$parentPushedTexture" file="Interface\ChatFrame\UI-ChatIcon-ScrollDown-Down">
+                  <Size>
+                    <AbsDimension x="24" y="24" />
+                  </Size>
+                  <Anchors>
+                    <Anchor point="RIGHT" />
+                  </Anchors>
+                </PushedTexture>
+                <DisabledTexture name="$parentDisabledTexture" file="Interface\ChatFrame\UI-ChatIcon-ScrollDown-Disabled">
+                  <Size>
+                    <AbsDimension x="24" y="24" />
+                  </Size>
+                  <Anchors>
+                    <Anchor point="RIGHT" />
+                  </Anchors>
+                </DisabledTexture>
+                <HighlightTexture name="$parentHighlightTexture" file="Interface\Buttons\UI-Common-MouseHilight" alphaMode="ADD">
+                  <Size>
+                    <AbsDimension x="24" y="24" />
+                  </Size>
+                  <Anchors>
+                    <Anchor point="RIGHT" />
+                  </Anchors>
+                </HighlightTexture>
+              </Button>
+            </Frames>
+            <Scripts>
+              <OnHide>CloseDropDownMenus();</OnHide>
+            </Scripts>
+          </Button>
+        </Frames>
+  </Frame>
+
+  <Frame name="VuhDoBuffSetupClassTargetPanelTemplate" virtual="true">
+        <Size>
+          <AbsDimension x="229" y="308" />
+        </Size>
+        <Anchors>
+          <Anchor point="TOPLEFT">
+            <Offset>
+              <AbsDimension x="251" y="-13" />
+            </Offset>
+          </Anchor>
+        </Anchors>
+        <Frames>
+          <Frame name="$parentWarriorsLabel">
+            <Size>
+              <AbsDimension x="75" y="32" />
+            </Size>
+            <Anchors>
+              <Anchor point="TOPLEFT">
+                <Offset>
+                  <AbsDimension x="12" y="-3" />
+                </Offset>
+              </Anchor>
+            </Anchors>
+            <Layers>
+              <Layer>
+                <FontString name="$parentLabel" font="Fonts\FRIZQT__.TTF" text="VUHDO_I18N_WARRIORS">
+                  <Anchors>
+                    <Anchor point="TOPLEFT" />
+                    <Anchor point="BOTTOMRIGHT" />
+                  </Anchors>
+                  <FontHeight>
+                    <AbsValue val="10" />
+                  </FontHeight>
+                  <Color r="1" g="0.82" b="0" />
+                  <Shadow>
+                    <Color r="0" g="0" b="0" />
+                    <Offset>
+                      <AbsDimension x="1" y="-1" />
+                    </Offset>
+                  </Shadow>
+                </FontString>
+              </Layer>
+            </Layers>
+          </Frame>
+          <Frame name="$parentRoguesLabel">
+            <Size>
+              <AbsDimension x="75" y="30" />
+            </Size>
+            <Anchors>
+              <Anchor point="TOPLEFT">
+                <Offset>
+                  <AbsDimension x="12" y="-35" />
+                </Offset>
+              </Anchor>
+            </Anchors>
+            <Layers>
+              <Layer>
+                <FontString name="$parentLabel" font="Fonts\FRIZQT__.TTF" text="VUHDO_I18N_ROGUES">
+                  <Anchors>
+                    <Anchor point="TOPLEFT" />
+                    <Anchor point="BOTTOMRIGHT" />
+                  </Anchors>
+                  <FontHeight>
+                    <AbsValue val="10" />
+                  </FontHeight>
+                  <Color r="1" g="0.82" b="0" />
+                  <Shadow>
+                    <Color r="0" g="0" b="0" />
+                    <Offset>
+                      <AbsDimension x="1" y="-1" />
+                    </Offset>
+                  </Shadow>
+                </FontString>
+              </Layer>
+            </Layers>
+          </Frame>
+          <Frame name="$parentHuntersLabel">
+            <Size>
+              <AbsDimension x="75" y="28" />
+            </Size>
+            <Anchors>
+              <Anchor point="TOPLEFT">
+                <Offset>
+                  <AbsDimension x="12" y="-67" />
+                </Offset>
+              </Anchor>
+            </Anchors>
+            <Layers>
+              <Layer>
+                <FontString name="$parentLabel" font="Fonts\FRIZQT__.TTF" text="VUHDO_I18N_HUNTERS">
+                  <Anchors>
+                    <Anchor point="TOPLEFT" />
+                    <Anchor point="BOTTOMRIGHT" />
+                  </Anchors>
+                  <FontHeight>
+                    <AbsValue val="10" />
+                  </FontHeight>
+                  <Color r="1" g="0.82" b="0" />
+                  <Shadow>
+                    <Color r="0" g="0" b="0" />
+                    <Offset>
+                      <AbsDimension x="1" y="-1" />
+                    </Offset>
+                  </Shadow>
+                </FontString>
+              </Layer>
+            </Layers>
+          </Frame>
+          <Frame name="$parentMagesLabel">
+            <Size>
+              <AbsDimension x="75" y="30" />
+            </Size>
+            <Anchors>
+              <Anchor point="TOPLEFT">
+                <Offset>
+                  <AbsDimension x="12" y="-95" />
+                </Offset>
+              </Anchor>
+            </Anchors>
+            <Layers>
+              <Layer>
+                <FontString name="$parentLabel" font="Fonts\FRIZQT__.TTF" text="VUHDO_I18N_MAGES">
+                  <Anchors>
+                    <Anchor point="TOPLEFT" />
+                    <Anchor point="BOTTOMRIGHT" />
+                  </Anchors>
+                  <FontHeight>
+                    <AbsValue val="10" />
+                  </FontHeight>
+                  <Color r="1" g="0.82" b="0" />
+                  <Shadow>
+                    <Color r="0" g="0" b="0" />
+                    <Offset>
+                      <AbsDimension x="1" y="-1" />
+                    </Offset>
+                  </Shadow>
+                </FontString>
+              </Layer>
+            </Layers>
+          </Frame>
+          <Frame name="$parentWarlocksLabel">
+            <Size>
+              <AbsDimension x="75" y="32" />
+            </Size>
+            <Anchors>
+              <Anchor point="TOPLEFT">
+                <Offset>
+                  <AbsDimension x="12" y="-123" />
+                </Offset>
+              </Anchor>
+            </Anchors>
+            <Layers>
+              <Layer>
+                <FontString name="$parentLabel" font="Fonts\FRIZQT__.TTF" text="VUHDO_I18N_WARLOCKS">
+                  <Anchors>
+                    <Anchor point="TOPLEFT" />
+                    <Anchor point="BOTTOMRIGHT" />
+                  </Anchors>
+                  <FontHeight>
+                    <AbsValue val="10" />
+                  </FontHeight>
+                  <Color r="1" g="0.82" b="0" />
+                  <Shadow>
+                    <Color r="0" g="0" b="0" />
+                    <Offset>
+                      <AbsDimension x="1" y="-1" />
+                    </Offset>
+                  </Shadow>
+                </FontString>
+              </Layer>
+            </Layers>
+          </Frame>
+          <Frame name="$parentPaladinsLabel">
+            <Size>
+              <AbsDimension x="75" y="32" />
+            </Size>
+            <Anchors>
+              <Anchor point="TOPLEFT">
+                <Offset>
+                  <AbsDimension x="12" y="-153" />
+                </Offset>
+              </Anchor>
+            </Anchors>
+            <Layers>
+              <Layer>
+                <FontString name="$parentLabel" font="Fonts\FRIZQT__.TTF" text="VUHDO_I18N_PALADINS">
+                  <Anchors>
+                    <Anchor point="TOPLEFT" />
+                    <Anchor point="BOTTOMRIGHT" />
+                  </Anchors>
+                  <FontHeight>
+                    <AbsValue val="10" />
+                  </FontHeight>
+                  <Color r="1" g="0.82" b="0" />
+                  <Shadow>
+                    <Color r="0" g="0" b="0" />
+                    <Offset>
+                      <AbsDimension x="1" y="-1" />
+                    </Offset>
+                  </Shadow>
+                </FontString>
+              </Layer>
+            </Layers>
+          </Frame>
+          <Frame name="$parentShamansLabel">
+            <Size>
+              <AbsDimension x="75" y="32" />
+            </Size>
+            <Anchors>
+              <Anchor point="TOPLEFT">
+                <Offset>
+                  <AbsDimension x="12" y="-183" />
+                </Offset>
+              </Anchor>
+            </Anchors>
+            <Layers>
+              <Layer>
+                <FontString name="$parentLabel" font="Fonts\FRIZQT__.TTF" text="VUHDO_I18N_SHAMANS">
+                  <Anchors>
+                    <Anchor point="TOPLEFT" />
+                    <Anchor point="BOTTOMRIGHT" />
+                  </Anchors>
+                  <FontHeight>
+                    <AbsValue val="10" />
+                  </FontHeight>
+                  <Color r="1" g="0.82" b="0" />
+                  <Shadow>
+                    <Color r="0" g="0" b="0" />
+                    <Offset>
+                      <AbsDimension x="1" y="-1" />
+                    </Offset>
+                  </Shadow>
+                </FontString>
+              </Layer>
+            </Layers>
+          </Frame>
+          <Frame name="$parentPriestsLabel">
+            <Size>
+              <AbsDimension x="75" y="32" />
+            </Size>
+            <Anchors>
+              <Anchor point="TOPLEFT">
+                <Offset>
+                  <AbsDimension x="12" y="-213" />
+                </Offset>
+              </Anchor>
+            </Anchors>
+            <Layers>
+              <Layer>
+                <FontString name="$parentLabel" font="Fonts\FRIZQT__.TTF" text="VUHDO_I18N_PRIESTS">
+                  <Anchors>
+                    <Anchor point="TOPLEFT" />
+                    <Anchor point="BOTTOMRIGHT" />
+                  </Anchors>
+                  <FontHeight>
+                    <AbsValue val="10" />
+                  </FontHeight>
+                  <Color r="1" g="0.82" b="0" />
+                  <Shadow>
+                    <Color r="0" g="0" b="0" />
+                    <Offset>
+                      <AbsDimension x="1" y="-1" />
+                    </Offset>
+                  </Shadow>
+                </FontString>
+              </Layer>
+            </Layers>
+          </Frame>
+          <Frame name="$parentDruidsLabel">
+            <Size>
+              <AbsDimension x="75" y="32" />
+            </Size>
+            <Anchors>
+              <Anchor point="TOPLEFT">
+                <Offset>
+                  <AbsDimension x="12" y="-243" />
+                </Offset>
+              </Anchor>
+            </Anchors>
+            <Layers>
+              <Layer>
+                <FontString name="$parentLabel" font="Fonts\FRIZQT__.TTF" text="VUHDO_I18N_DRUIDS">
+                  <Anchors>
+                    <Anchor point="TOPLEFT" />
+                    <Anchor point="BOTTOMRIGHT" />
+                  </Anchors>
+                  <FontHeight>
+                    <AbsValue val="10" />
+                  </FontHeight>
+                  <Color r="1" g="0.82" b="0" />
+                  <Shadow>
+                    <Color r="0" g="0" b="0" />
+                    <Offset>
+                      <AbsDimension x="1" y="-1" />
+                    </Offset>
+                  </Shadow>
+                </FontString>
+              </Layer>
+            </Layers>
+          </Frame>
+          <Frame name="$parentDeathKnightsLabel">
+            <Size>
+              <AbsDimension x="75" y="32" />
+            </Size>
+            <Anchors>
+              <Anchor point="TOPLEFT">
+                <Offset>
+                  <AbsDimension x="12" y="-273" />
+                </Offset>
+              </Anchor>
+            </Anchors>
+            <Layers>
+              <Layer>
+                <FontString name="$parentLabel" font="Fonts\FRIZQT__.TTF" text="VUHDO_I18N_DEATH_KNIGHT">
+                  <Anchors>
+                    <Anchor point="TOPLEFT" />
+                    <Anchor point="BOTTOMRIGHT" />
+                  </Anchors>
+                  <FontHeight>
+                    <AbsValue val="10" />
+                  </FontHeight>
+                  <Color r="1" g="0.82" b="0" />
+                  <Shadow>
+                    <Color r="0" g="0" b="0" />
+                    <Offset>
+                      <AbsDimension x="1" y="-1" />
+                    </Offset>
+                  </Shadow>
+                </FontString>
+              </Layer>
+            </Layers>
+          </Frame>
+          <Button name="$parentDruidsCombo">
+            <Size>
+              <AbsDimension x="166" y="32" />
+            </Size>
+            <Anchors>
+              <Anchor point="TOPLEFT">
+                <Offset>
+                  <AbsDimension x="72" y="-243" />
+                </Offset>
+              </Anchor>
+            </Anchors>
+            <Layers>
+              <Layer>
+                <Texture name="$parentLeft" file="Interface\Glues\CharacterCreate\CharacterCreate-LabelFrame">
+                  <Size>
+                    <AbsDimension x="25" y="64" />
+                  </Size>
+                  <Anchors>
+                    <Anchor point="TOPLEFT">
+                      <Offset>
+                        <AbsDimension x="0" y="17" />
+                      </Offset>
+                    </Anchor>
+                  </Anchors>
+                  <TexCoords left="0" right="0.1953125" top="0" bottom="1" />
+                </Texture>
+                <Texture name="$parentMiddle" file="Interface\Glues\CharacterCreate\CharacterCreate-LabelFrame">
+                  <Size>
+                    <AbsDimension x="116" y="64" />
+                  </Size>
+                  <Anchors>
+                    <Anchor point="LEFT" relativeTo="$parentLeft" relativePoint="RIGHT" />
+                  </Anchors>
+                  <TexCoords left="0.1953125" right="0.8046875" top="0" bottom="1" />
+                </Texture>
+                <Texture name="$parentRight" file="Interface\Glues\CharacterCreate\CharacterCreate-LabelFrame">
+                  <Size>
+                    <AbsDimension x="25" y="64" />
+                  </Size>
+                  <Anchors>
+                    <Anchor point="LEFT" relativeTo="$parentMiddle" relativePoint="RIGHT" />
+                  </Anchors>
+                  <TexCoords left="0.8046875" right="1" top="0" bottom="1" />
+                </Texture>
+                <FontString name="$parentText" font="Fonts\FRIZQT__.TTF" text="" justifyH="RIGHT">
+                  <Size>
+                    <AbsDimension x="141" y="10" />
+                  </Size>
+                  <Anchors>
+                    <Anchor point="RIGHT" relativeTo="$parentRight">
+                      <Offset>
+                        <AbsDimension x="-43" y="2" />
+                      </Offset>
+                    </Anchor>
+                  </Anchors>
+                  <FontHeight>
+                    <AbsValue val="10" />
+                  </FontHeight>
+                  <Color r="1" g="1" b="1" />
+                  <Shadow>
+                    <Color r="0" g="0" b="0" />
+                    <Offset>
+                      <AbsDimension x="1" y="-1" />
+                    </Offset>
+                  </Shadow>
+                </FontString>
+              </Layer>
+            </Layers>
+            <Frames>
+              <Button name="$parentButton">
+                <Size>
+                  <AbsDimension x="24" y="24" />
+                </Size>
+                <Anchors>
+                  <Anchor point="TOPRIGHT" relativeTo="$parentRight">
+                    <Offset>
+                      <AbsDimension x="-16" y="-18" />
+                    </Offset>
+                  </Anchor>
+                </Anchors>
+                <Scripts>
+                  <OnClick>
+						ToggleDropDownMenu();
+						PlaySound("igMainMenuOptionCheckBoxOn");
+					</OnClick>
+                </Scripts>
+                <NormalTexture name="$parentNormalTexture" file="Interface\ChatFrame\UI-ChatIcon-ScrollDown-Up">
+                  <Size>
+                    <AbsDimension x="24" y="24" />
+                  </Size>
+                  <Anchors>
+                    <Anchor point="RIGHT" />
+                  </Anchors>
+                </NormalTexture>
+                <PushedTexture name="$parentPushedTexture" file="Interface\ChatFrame\UI-ChatIcon-ScrollDown-Down">
+                  <Size>
+                    <AbsDimension x="24" y="24" />
+                  </Size>
+                  <Anchors>
+                    <Anchor point="RIGHT" />
+                  </Anchors>
+                </PushedTexture>
+                <DisabledTexture name="$parentDisabledTexture" file="Interface\ChatFrame\UI-ChatIcon-ScrollDown-Disabled">
+                  <Size>
+                    <AbsDimension x="24" y="24" />
+                  </Size>
+                  <Anchors>
+                    <Anchor point="RIGHT" />
+                  </Anchors>
+                </DisabledTexture>
+                <HighlightTexture name="$parentHighlightTexture" file="Interface\Buttons\UI-Common-MouseHilight" alphaMode="ADD">
+                  <Size>
+                    <AbsDimension x="24" y="24" />
+                  </Size>
+                  <Anchors>
+                    <Anchor point="RIGHT" />
+                  </Anchors>
+                </HighlightTexture>
+              </Button>
+            </Frames>
+            <Scripts>
+              <OnHide>CloseDropDownMenus();</OnHide>
+            </Scripts>
+          </Button>
+          <Button name="$parentPriestsCombo">
+            <Size>
+              <AbsDimension x="166" y="32" />
+            </Size>
+            <Anchors>
+              <Anchor point="TOPLEFT">
+                <Offset>
+                  <AbsDimension x="72" y="-213" />
+                </Offset>
+              </Anchor>
+            </Anchors>
+            <Layers>
+              <Layer>
+                <Texture name="$parentLeft" file="Interface\Glues\CharacterCreate\CharacterCreate-LabelFrame">
+                  <Size>
+                    <AbsDimension x="25" y="64" />
+                  </Size>
+                  <Anchors>
+                    <Anchor point="TOPLEFT">
+                      <Offset>
+                        <AbsDimension x="0" y="17" />
+                      </Offset>
+                    </Anchor>
+                  </Anchors>
+                  <TexCoords left="0" right="0.1953125" top="0" bottom="1" />
+                </Texture>
+                <Texture name="$parentMiddle" file="Interface\Glues\CharacterCreate\CharacterCreate-LabelFrame">
+                  <Size>
+                    <AbsDimension x="116" y="64" />
+                  </Size>
+                  <Anchors>
+                    <Anchor point="LEFT" relativeTo="$parentLeft" relativePoint="RIGHT" />
+                  </Anchors>
+                  <TexCoords left="0.1953125" right="0.8046875" top="0" bottom="1" />
+                </Texture>
+                <Texture name="$parentRight" file="Interface\Glues\CharacterCreate\CharacterCreate-LabelFrame">
+                  <Size>
+                    <AbsDimension x="25" y="64" />
+                  </Size>
+                  <Anchors>
+                    <Anchor point="LEFT" relativeTo="$parentMiddle" relativePoint="RIGHT" />
+                  </Anchors>
+                  <TexCoords left="0.8046875" right="1" top="0" bottom="1" />
+                </Texture>
+                <FontString name="$parentText" font="Fonts\FRIZQT__.TTF" text="" justifyH="RIGHT">
+                  <Size>
+                    <AbsDimension x="141" y="10" />
+                  </Size>
+                  <Anchors>
+                    <Anchor point="RIGHT" relativeTo="$parentRight">
+                      <Offset>
+                        <AbsDimension x="-43" y="2" />
+                      </Offset>
+                    </Anchor>
+                  </Anchors>
+                  <FontHeight>
+                    <AbsValue val="10" />
+                  </FontHeight>
+                  <Color r="1" g="1" b="1" />
+                  <Shadow>
+                    <Color r="0" g="0" b="0" />
+                    <Offset>
+                      <AbsDimension x="1" y="-1" />
+                    </Offset>
+                  </Shadow>
+                </FontString>
+              </Layer>
+            </Layers>
+            <Frames>
+              <Button name="$parentButton">
+                <Size>
+                  <AbsDimension x="24" y="24" />
+                </Size>
+                <Anchors>
+                  <Anchor point="TOPRIGHT" relativeTo="$parentRight">
+                    <Offset>
+                      <AbsDimension x="-16" y="-18" />
+                    </Offset>
+                  </Anchor>
+                </Anchors>
+                <Scripts>
+                  <OnClick>
+						ToggleDropDownMenu();
+						PlaySound("igMainMenuOptionCheckBoxOn");
+					</OnClick>
+                </Scripts>
+                <NormalTexture name="$parentNormalTexture" file="Interface\ChatFrame\UI-ChatIcon-ScrollDown-Up">
+                  <Size>
+                    <AbsDimension x="24" y="24" />
+                  </Size>
+                  <Anchors>
+                    <Anchor point="RIGHT" />
+                  </Anchors>
+                </NormalTexture>
+                <PushedTexture name="$parentPushedTexture" file="Interface\ChatFrame\UI-ChatIcon-ScrollDown-Down">
+                  <Size>
+                    <AbsDimension x="24" y="24" />
+                  </Size>
+                  <Anchors>
+                    <Anchor point="RIGHT" />
+                  </Anchors>
+                </PushedTexture>
+                <DisabledTexture name="$parentDisabledTexture" file="Interface\ChatFrame\UI-ChatIcon-ScrollDown-Disabled">
+                  <Size>
+                    <AbsDimension x="24" y="24" />
+                  </Size>
+                  <Anchors>
+                    <Anchor point="RIGHT" />
+                  </Anchors>
+                </DisabledTexture>
+                <HighlightTexture name="$parentHighlightTexture" file="Interface\Buttons\UI-Common-MouseHilight" alphaMode="ADD">
+                  <Size>
+                    <AbsDimension x="24" y="24" />
+                  </Size>
+                  <Anchors>
+                    <Anchor point="RIGHT" />
+                  </Anchors>
+                </HighlightTexture>
+              </Button>
+            </Frames>
+            <Scripts>
+              <OnHide>CloseDropDownMenus();</OnHide>
+            </Scripts>
+          </Button>
+          <Button name="$parentShamansCombo">
+            <Size>
+              <AbsDimension x="166" y="32" />
+            </Size>
+            <Anchors>
+              <Anchor point="TOPLEFT">
+                <Offset>
+                  <AbsDimension x="72" y="-183" />
+                </Offset>
+              </Anchor>
+            </Anchors>
+            <Layers>
+              <Layer>
+                <Texture name="$parentLeft" file="Interface\Glues\CharacterCreate\CharacterCreate-LabelFrame">
+                  <Size>
+                    <AbsDimension x="25" y="64" />
+                  </Size>
+                  <Anchors>
+                    <Anchor point="TOPLEFT">
+                      <Offset>
+                        <AbsDimension x="0" y="17" />
+                      </Offset>
+                    </Anchor>
+                  </Anchors>
+                  <TexCoords left="0" right="0.1953125" top="0" bottom="1" />
+                </Texture>
+                <Texture name="$parentMiddle" file="Interface\Glues\CharacterCreate\CharacterCreate-LabelFrame">
+                  <Size>
+                    <AbsDimension x="116" y="64" />
+                  </Size>
+                  <Anchors>
+                    <Anchor point="LEFT" relativeTo="$parentLeft" relativePoint="RIGHT" />
+                  </Anchors>
+                  <TexCoords left="0.1953125" right="0.8046875" top="0" bottom="1" />
+                </Texture>
+                <Texture name="$parentRight" file="Interface\Glues\CharacterCreate\CharacterCreate-LabelFrame">
+                  <Size>
+                    <AbsDimension x="25" y="64" />
+                  </Size>
+                  <Anchors>
+                    <Anchor point="LEFT" relativeTo="$parentMiddle" relativePoint="RIGHT" />
+                  </Anchors>
+                  <TexCoords left="0.8046875" right="1" top="0" bottom="1" />
+                </Texture>
+                <FontString name="$parentText" font="Fonts\FRIZQT__.TTF" text="" justifyH="RIGHT">
+                  <Size>
+                    <AbsDimension x="141" y="10" />
+                  </Size>
+                  <Anchors>
+                    <Anchor point="RIGHT" relativeTo="$parentRight">
+                      <Offset>
+                        <AbsDimension x="-43" y="2" />
+                      </Offset>
+                    </Anchor>
+                  </Anchors>
+                  <FontHeight>
+                    <AbsValue val="10" />
+                  </FontHeight>
+                  <Color r="1" g="1" b="1" />
+                  <Shadow>
+                    <Color r="0" g="0" b="0" />
+                    <Offset>
+                      <AbsDimension x="1" y="-1" />
+                    </Offset>
+                  </Shadow>
+                </FontString>
+              </Layer>
+            </Layers>
+            <Frames>
+              <Button name="$parentButton">
+                <Size>
+                  <AbsDimension x="24" y="24" />
+                </Size>
+                <Anchors>
+                  <Anchor point="TOPRIGHT" relativeTo="$parentRight">
+                    <Offset>
+                      <AbsDimension x="-16" y="-18" />
+                    </Offset>
+                  </Anchor>
+                </Anchors>
+                <Scripts>
+                  <OnClick>
+						ToggleDropDownMenu();
+						PlaySound("igMainMenuOptionCheckBoxOn");
+					</OnClick>
+                </Scripts>
+                <NormalTexture name="$parentNormalTexture" file="Interface\ChatFrame\UI-ChatIcon-ScrollDown-Up">
+                  <Size>
+                    <AbsDimension x="24" y="24" />
+                  </Size>
+                  <Anchors>
+                    <Anchor point="RIGHT" />
+                  </Anchors>
+                </NormalTexture>
+                <PushedTexture name="$parentPushedTexture" file="Interface\ChatFrame\UI-ChatIcon-ScrollDown-Down">
+                  <Size>
+                    <AbsDimension x="24" y="24" />
+                  </Size>
+                  <Anchors>
+                    <Anchor point="RIGHT" />
+                  </Anchors>
+                </PushedTexture>
+                <DisabledTexture name="$parentDisabledTexture" file="Interface\ChatFrame\UI-ChatIcon-ScrollDown-Disabled">
+                  <Size>
+                    <AbsDimension x="24" y="24" />
+                  </Size>
+                  <Anchors>
+                    <Anchor point="RIGHT" />
+                  </Anchors>
+                </DisabledTexture>
+                <HighlightTexture name="$parentHighlightTexture" file="Interface\Buttons\UI-Common-MouseHilight" alphaMode="ADD">
+                  <Size>
+                    <AbsDimension x="24" y="24" />
+                  </Size>
+                  <Anchors>
+                    <Anchor point="RIGHT" />
+                  </Anchors>
+                </HighlightTexture>
+              </Button>
+            </Frames>
+            <Scripts>
+              <OnHide>CloseDropDownMenus();</OnHide>
+            </Scripts>
+          </Button>
+          <Button name="$parentPaladinsCombo">
+            <Size>
+              <AbsDimension x="166" y="32" />
+            </Size>
+            <Anchors>
+              <Anchor point="TOPLEFT">
+                <Offset>
+                  <AbsDimension x="72" y="-153" />
+                </Offset>
+              </Anchor>
+            </Anchors>
+            <Layers>
+              <Layer>
+                <Texture name="$parentLeft" file="Interface\Glues\CharacterCreate\CharacterCreate-LabelFrame">
+                  <Size>
+                    <AbsDimension x="25" y="64" />
+                  </Size>
+                  <Anchors>
+                    <Anchor point="TOPLEFT">
+                      <Offset>
+                        <AbsDimension x="0" y="17" />
+                      </Offset>
+                    </Anchor>
+                  </Anchors>
+                  <TexCoords left="0" right="0.1953125" top="0" bottom="1" />
+                </Texture>
+                <Texture name="$parentMiddle" file="Interface\Glues\CharacterCreate\CharacterCreate-LabelFrame">
+                  <Size>
+                    <AbsDimension x="116" y="64" />
+                  </Size>
+                  <Anchors>
+                    <Anchor point="LEFT" relativeTo="$parentLeft" relativePoint="RIGHT" />
+                  </Anchors>
+                  <TexCoords left="0.1953125" right="0.8046875" top="0" bottom="1" />
+                </Texture>
+                <Texture name="$parentRight" file="Interface\Glues\CharacterCreate\CharacterCreate-LabelFrame">
+                  <Size>
+                    <AbsDimension x="25" y="64" />
+                  </Size>
+                  <Anchors>
+                    <Anchor point="LEFT" relativeTo="$parentMiddle" relativePoint="RIGHT" />
+                  </Anchors>
+                  <TexCoords left="0.8046875" right="1" top="0" bottom="1" />
+                </Texture>
+                <FontString name="$parentText" font="Fonts\FRIZQT__.TTF" text="" justifyH="RIGHT">
+                  <Size>
+                    <AbsDimension x="141" y="10" />
+                  </Size>
+                  <Anchors>
+                    <Anchor point="RIGHT" relativeTo="$parentRight">
+                      <Offset>
+                        <AbsDimension x="-43" y="2" />
+                      </Offset>
+                    </Anchor>
+                  </Anchors>
+                  <FontHeight>
+                    <AbsValue val="10" />
+                  </FontHeight>
+                  <Color r="1" g="1" b="1" />
+                  <Shadow>
+                    <Color r="0" g="0" b="0" />
+                    <Offset>
+                      <AbsDimension x="1" y="-1" />
+                    </Offset>
+                  </Shadow>
+                </FontString>
+              </Layer>
+            </Layers>
+            <Frames>
+              <Button name="$parentButton">
+                <Size>
+                  <AbsDimension x="24" y="24" />
+                </Size>
+                <Anchors>
+                  <Anchor point="TOPRIGHT" relativeTo="$parentRight">
+                    <Offset>
+                      <AbsDimension x="-16" y="-18" />
+                    </Offset>
+                  </Anchor>
+                </Anchors>
+                <Scripts>
+                  <OnClick>
+						ToggleDropDownMenu();
+						PlaySound("igMainMenuOptionCheckBoxOn");
+					</OnClick>
+                </Scripts>
+                <NormalTexture name="$parentNormalTexture" file="Interface\ChatFrame\UI-ChatIcon-ScrollDown-Up">
+                  <Size>
+                    <AbsDimension x="24" y="24" />
+                  </Size>
+                  <Anchors>
+                    <Anchor point="RIGHT" />
+                  </Anchors>
+                </NormalTexture>
+                <PushedTexture name="$parentPushedTexture" file="Interface\ChatFrame\UI-ChatIcon-ScrollDown-Down">
+                  <Size>
+                    <AbsDimension x="24" y="24" />
+                  </Size>
+                  <Anchors>
+                    <Anchor point="RIGHT" />
+                  </Anchors>
+                </PushedTexture>
+                <DisabledTexture name="$parentDisabledTexture" file="Interface\ChatFrame\UI-ChatIcon-ScrollDown-Disabled">
+                  <Size>
+                    <AbsDimension x="24" y="24" />
+                  </Size>
+                  <Anchors>
+                    <Anchor point="RIGHT" />
+                  </Anchors>
+                </DisabledTexture>
+                <HighlightTexture name="$parentHighlightTexture" file="Interface\Buttons\UI-Common-MouseHilight" alphaMode="ADD">
+                  <Size>
+                    <AbsDimension x="24" y="24" />
+                  </Size>
+                  <Anchors>
+                    <Anchor point="RIGHT" />
+                  </Anchors>
+                </HighlightTexture>
+              </Button>
+            </Frames>
+            <Scripts>
+              <OnHide>CloseDropDownMenus();</OnHide>
+            </Scripts>
+          </Button>
+          <Button name="$parentWarlocksCombo">
+            <Size>
+              <AbsDimension x="166" y="32" />
+            </Size>
+            <Anchors>
+              <Anchor point="TOPLEFT">
+                <Offset>
+                  <AbsDimension x="72" y="-123" />
+                </Offset>
+              </Anchor>
+            </Anchors>
+            <Layers>
+              <Layer>
+                <Texture name="$parentLeft" file="Interface\Glues\CharacterCreate\CharacterCreate-LabelFrame">
+                  <Size>
+                    <AbsDimension x="25" y="64" />
+                  </Size>
+                  <Anchors>
+                    <Anchor point="TOPLEFT">
+                      <Offset>
+                        <AbsDimension x="0" y="17" />
+                      </Offset>
+                    </Anchor>
+                  </Anchors>
+                  <TexCoords left="0" right="0.1953125" top="0" bottom="1" />
+                </Texture>
+                <Texture name="$parentMiddle" file="Interface\Glues\CharacterCreate\CharacterCreate-LabelFrame">
+                  <Size>
+                    <AbsDimension x="116" y="64" />
+                  </Size>
+                  <Anchors>
+                    <Anchor point="LEFT" relativeTo="$parentLeft" relativePoint="RIGHT" />
+                  </Anchors>
+                  <TexCoords left="0.1953125" right="0.8046875" top="0" bottom="1" />
+                </Texture>
+                <Texture name="$parentRight" file="Interface\Glues\CharacterCreate\CharacterCreate-LabelFrame">
+                  <Size>
+                    <AbsDimension x="25" y="64" />
+                  </Size>
+                  <Anchors>
+                    <Anchor point="LEFT" relativeTo="$parentMiddle" relativePoint="RIGHT" />
+                  </Anchors>
+                  <TexCoords left="0.8046875" right="1" top="0" bottom="1" />
+                </Texture>
+                <FontString name="$parentText" font="Fonts\FRIZQT__.TTF" text="" justifyH="RIGHT">
+                  <Size>
+                    <AbsDimension x="141" y="10" />
+                  </Size>
+                  <Anchors>
+                    <Anchor point="RIGHT" relativeTo="$parentRight">
+                      <Offset>
+                        <AbsDimension x="-43" y="2" />
+                      </Offset>
+                    </Anchor>
+                  </Anchors>
+                  <FontHeight>
+                    <AbsValue val="10" />
+                  </FontHeight>
+                  <Color r="1" g="1" b="1" />
+                  <Shadow>
+                    <Color r="0" g="0" b="0" />
+                    <Offset>
+                      <AbsDimension x="1" y="-1" />
+                    </Offset>
+                  </Shadow>
+                </FontString>
+              </Layer>
+            </Layers>
+            <Frames>
+              <Button name="$parentButton">
+                <Size>
+                  <AbsDimension x="24" y="24" />
+                </Size>
+                <Anchors>
+                  <Anchor point="TOPRIGHT" relativeTo="$parentRight">
+                    <Offset>
+                      <AbsDimension x="-16" y="-18" />
+                    </Offset>
+                  </Anchor>
+                </Anchors>
+                <Scripts>
+                  <OnClick>
+						ToggleDropDownMenu();
+						PlaySound("igMainMenuOptionCheckBoxOn");
+					</OnClick>
+                </Scripts>
+                <NormalTexture name="$parentNormalTexture" file="Interface\ChatFrame\UI-ChatIcon-ScrollDown-Up">
+                  <Size>
+                    <AbsDimension x="24" y="24" />
+                  </Size>
+                  <Anchors>
+                    <Anchor point="RIGHT" />
+                  </Anchors>
+                </NormalTexture>
+                <PushedTexture name="$parentPushedTexture" file="Interface\ChatFrame\UI-ChatIcon-ScrollDown-Down">
+                  <Size>
+                    <AbsDimension x="24" y="24" />
+                  </Size>
+                  <Anchors>
+                    <Anchor point="RIGHT" />
+                  </Anchors>
+                </PushedTexture>
+                <DisabledTexture name="$parentDisabledTexture" file="Interface\ChatFrame\UI-ChatIcon-ScrollDown-Disabled">
+                  <Size>
+                    <AbsDimension x="24" y="24" />
+                  </Size>
+                  <Anchors>
+                    <Anchor point="RIGHT" />
+                  </Anchors>
+                </DisabledTexture>
+                <HighlightTexture name="$parentHighlightTexture" file="Interface\Buttons\UI-Common-MouseHilight" alphaMode="ADD">
+                  <Size>
+                    <AbsDimension x="24" y="24" />
+                  </Size>
+                  <Anchors>
+                    <Anchor point="RIGHT" />
+                  </Anchors>
+                </HighlightTexture>
+              </Button>
+            </Frames>
+            <Scripts>
+              <OnHide>CloseDropDownMenus();</OnHide>
+            </Scripts>
+          </Button>
+          <Button name="$parentMagesCombo">
+            <Size>
+              <AbsDimension x="166" y="32" />
+            </Size>
+            <Anchors>
+              <Anchor point="TOPLEFT">
+                <Offset>
+                  <AbsDimension x="72" y="-93" />
+                </Offset>
+              </Anchor>
+            </Anchors>
+            <Layers>
+              <Layer>
+                <Texture name="$parentLeft" file="Interface\Glues\CharacterCreate\CharacterCreate-LabelFrame">
+                  <Size>
+                    <AbsDimension x="25" y="64" />
+                  </Size>
+                  <Anchors>
+                    <Anchor point="TOPLEFT">
+                      <Offset>
+                        <AbsDimension x="0" y="17" />
+                      </Offset>
+                    </Anchor>
+                  </Anchors>
+                  <TexCoords left="0" right="0.1953125" top="0" bottom="1" />
+                </Texture>
+                <Texture name="$parentMiddle" file="Interface\Glues\CharacterCreate\CharacterCreate-LabelFrame">
+                  <Size>
+                    <AbsDimension x="116" y="64" />
+                  </Size>
+                  <Anchors>
+                    <Anchor point="LEFT" relativeTo="$parentLeft" relativePoint="RIGHT" />
+                  </Anchors>
+                  <TexCoords left="0.1953125" right="0.8046875" top="0" bottom="1" />
+                </Texture>
+                <Texture name="$parentRight" file="Interface\Glues\CharacterCreate\CharacterCreate-LabelFrame">
+                  <Size>
+                    <AbsDimension x="25" y="64" />
+                  </Size>
+                  <Anchors>
+                    <Anchor point="LEFT" relativeTo="$parentMiddle" relativePoint="RIGHT" />
+                  </Anchors>
+                  <TexCoords left="0.8046875" right="1" top="0" bottom="1" />
+                </Texture>
+                <FontString name="$parentText" font="Fonts\FRIZQT__.TTF" text="" justifyH="RIGHT">
+                  <Size>
+                    <AbsDimension x="141" y="10" />
+                  </Size>
+                  <Anchors>
+                    <Anchor point="RIGHT" relativeTo="$parentRight">
+                      <Offset>
+                        <AbsDimension x="-43" y="2" />
+                      </Offset>
+                    </Anchor>
+                  </Anchors>
+                  <FontHeight>
+                    <AbsValue val="10" />
+                  </FontHeight>
+                  <Color r="1" g="1" b="1" />
+                  <Shadow>
+                    <Color r="0" g="0" b="0" />
+                    <Offset>
+                      <AbsDimension x="1" y="-1" />
+                    </Offset>
+                  </Shadow>
+                </FontString>
+              </Layer>
+            </Layers>
+            <Frames>
+              <Button name="$parentButton">
+                <Size>
+                  <AbsDimension x="24" y="24" />
+                </Size>
+                <Anchors>
+                  <Anchor point="TOPRIGHT" relativeTo="$parentRight">
+                    <Offset>
+                      <AbsDimension x="-16" y="-18" />
+                    </Offset>
+                  </Anchor>
+                </Anchors>
+                <Scripts>
+                  <OnClick>
+						ToggleDropDownMenu();
+						PlaySound("igMainMenuOptionCheckBoxOn");
+					</OnClick>
+                </Scripts>
+                <NormalTexture name="$parentNormalTexture" file="Interface\ChatFrame\UI-ChatIcon-ScrollDown-Up">
+                  <Size>
+                    <AbsDimension x="24" y="24" />
+                  </Size>
+                  <Anchors>
+                    <Anchor point="RIGHT" />
+                  </Anchors>
+                </NormalTexture>
+                <PushedTexture name="$parentPushedTexture" file="Interface\ChatFrame\UI-ChatIcon-ScrollDown-Down">
+                  <Size>
+                    <AbsDimension x="24" y="24" />
+                  </Size>
+                  <Anchors>
+                    <Anchor point="RIGHT" />
+                  </Anchors>
+                </PushedTexture>
+                <DisabledTexture name="$parentDisabledTexture" file="Interface\ChatFrame\UI-ChatIcon-ScrollDown-Disabled">
+                  <Size>
+                    <AbsDimension x="24" y="24" />
+                  </Size>
+                  <Anchors>
+                    <Anchor point="RIGHT" />
+                  </Anchors>
+                </DisabledTexture>
+                <HighlightTexture name="$parentHighlightTexture" file="Interface\Buttons\UI-Common-MouseHilight" alphaMode="ADD">
+                  <Size>
+                    <AbsDimension x="24" y="24" />
+                  </Size>
+                  <Anchors>
+                    <Anchor point="RIGHT" />
+                  </Anchors>
+                </HighlightTexture>
+              </Button>
+            </Frames>
+            <Scripts>
+              <OnHide>CloseDropDownMenus();</OnHide>
+            </Scripts>
+          </Button>
+          <Button name="$parentHuntersCombo">
+            <Size>
+              <AbsDimension x="166" y="32" />
+            </Size>
+            <Anchors>
+              <Anchor point="TOPLEFT">
+                <Offset>
+                  <AbsDimension x="72" y="-63" />
+                </Offset>
+              </Anchor>
+            </Anchors>
+            <Layers>
+              <Layer>
+                <Texture name="$parentLeft" file="Interface\Glues\CharacterCreate\CharacterCreate-LabelFrame">
+                  <Size>
+                    <AbsDimension x="25" y="64" />
+                  </Size>
+                  <Anchors>
+                    <Anchor point="TOPLEFT">
+                      <Offset>
+                        <AbsDimension x="0" y="17" />
+                      </Offset>
+                    </Anchor>
+                  </Anchors>
+                  <TexCoords left="0" right="0.1953125" top="0" bottom="1" />
+                </Texture>
+                <Texture name="$parentMiddle" file="Interface\Glues\CharacterCreate\CharacterCreate-LabelFrame">
+                  <Size>
+                    <AbsDimension x="116" y="64" />
+                  </Size>
+                  <Anchors>
+                    <Anchor point="LEFT" relativeTo="$parentLeft" relativePoint="RIGHT" />
+                  </Anchors>
+                  <TexCoords left="0.1953125" right="0.8046875" top="0" bottom="1" />
+                </Texture>
+                <Texture name="$parentRight" file="Interface\Glues\CharacterCreate\CharacterCreate-LabelFrame">
+                  <Size>
+                    <AbsDimension x="25" y="64" />
+                  </Size>
+                  <Anchors>
+                    <Anchor point="LEFT" relativeTo="$parentMiddle" relativePoint="RIGHT" />
+                  </Anchors>
+                  <TexCoords left="0.8046875" right="1" top="0" bottom="1" />
+                </Texture>
+                <FontString name="$parentText" font="Fonts\FRIZQT__.TTF" text="" justifyH="RIGHT">
+                  <Size>
+                    <AbsDimension x="141" y="10" />
+                  </Size>
+                  <Anchors>
+                    <Anchor point="RIGHT" relativeTo="$parentRight">
+                      <Offset>
+                        <AbsDimension x="-43" y="2" />
+                      </Offset>
+                    </Anchor>
+                  </Anchors>
+                  <FontHeight>
+                    <AbsValue val="10" />
+                  </FontHeight>
+                  <Color r="1" g="1" b="1" />
+                  <Shadow>
+                    <Color r="0" g="0" b="0" />
+                    <Offset>
+                      <AbsDimension x="1" y="-1" />
+                    </Offset>
+                  </Shadow>
+                </FontString>
+              </Layer>
+            </Layers>
+            <Frames>
+              <Button name="$parentButton">
+                <Size>
+                  <AbsDimension x="24" y="24" />
+                </Size>
+                <Anchors>
+                  <Anchor point="TOPRIGHT" relativeTo="$parentRight">
+                    <Offset>
+                      <AbsDimension x="-16" y="-18" />
+                    </Offset>
+                  </Anchor>
+                </Anchors>
+                <Scripts>
+                  <OnClick>
+						ToggleDropDownMenu();
+						PlaySound("igMainMenuOptionCheckBoxOn");
+					</OnClick>
+                </Scripts>
+                <NormalTexture name="$parentNormalTexture" file="Interface\ChatFrame\UI-ChatIcon-ScrollDown-Up">
+                  <Size>
+                    <AbsDimension x="24" y="24" />
+                  </Size>
+                  <Anchors>
+                    <Anchor point="RIGHT" />
+                  </Anchors>
+                </NormalTexture>
+                <PushedTexture name="$parentPushedTexture" file="Interface\ChatFrame\UI-ChatIcon-ScrollDown-Down">
+                  <Size>
+                    <AbsDimension x="24" y="24" />
+                  </Size>
+                  <Anchors>
+                    <Anchor point="RIGHT" />
+                  </Anchors>
+                </PushedTexture>
+                <DisabledTexture name="$parentDisabledTexture" file="Interface\ChatFrame\UI-ChatIcon-ScrollDown-Disabled">
+                  <Size>
+                    <AbsDimension x="24" y="24" />
+                  </Size>
+                  <Anchors>
+                    <Anchor point="RIGHT" />
+                  </Anchors>
+                </DisabledTexture>
+                <HighlightTexture name="$parentHighlightTexture" file="Interface\Buttons\UI-Common-MouseHilight" alphaMode="ADD">
+                  <Size>
+                    <AbsDimension x="24" y="24" />
+                  </Size>
+                  <Anchors>
+                    <Anchor point="RIGHT" />
+                  </Anchors>
+                </HighlightTexture>
+              </Button>
+            </Frames>
+            <Scripts>
+              <OnHide>CloseDropDownMenus();</OnHide>
+            </Scripts>
+          </Button>
+          <Button name="$parentRoguesCombo">
+            <Size>
+              <AbsDimension x="166" y="32" />
+            </Size>
+            <Anchors>
+              <Anchor point="TOPLEFT">
+                <Offset>
+                  <AbsDimension x="72" y="-33" />
+                </Offset>
+              </Anchor>
+            </Anchors>
+            <Layers>
+              <Layer>
+                <Texture name="$parentLeft" file="Interface\Glues\CharacterCreate\CharacterCreate-LabelFrame">
+                  <Size>
+                    <AbsDimension x="25" y="64" />
+                  </Size>
+                  <Anchors>
+                    <Anchor point="TOPLEFT">
+                      <Offset>
+                        <AbsDimension x="0" y="17" />
+                      </Offset>
+                    </Anchor>
+                  </Anchors>
+                  <TexCoords left="0" right="0.1953125" top="0" bottom="1" />
+                </Texture>
+                <Texture name="$parentMiddle" file="Interface\Glues\CharacterCreate\CharacterCreate-LabelFrame">
+                  <Size>
+                    <AbsDimension x="116" y="64" />
+                  </Size>
+                  <Anchors>
+                    <Anchor point="LEFT" relativeTo="$parentLeft" relativePoint="RIGHT" />
+                  </Anchors>
+                  <TexCoords left="0.1953125" right="0.8046875" top="0" bottom="1" />
+                </Texture>
+                <Texture name="$parentRight" file="Interface\Glues\CharacterCreate\CharacterCreate-LabelFrame">
+                  <Size>
+                    <AbsDimension x="25" y="64" />
+                  </Size>
+                  <Anchors>
+                    <Anchor point="LEFT" relativeTo="$parentMiddle" relativePoint="RIGHT" />
+                  </Anchors>
+                  <TexCoords left="0.8046875" right="1" top="0" bottom="1" />
+                </Texture>
+                <FontString name="$parentText" font="Fonts\FRIZQT__.TTF" text="" justifyH="RIGHT">
+                  <Size>
+                    <AbsDimension x="141" y="10" />
+                  </Size>
+                  <Anchors>
+                    <Anchor point="RIGHT" relativeTo="$parentRight">
+                      <Offset>
+                        <AbsDimension x="-43" y="2" />
+                      </Offset>
+                    </Anchor>
+                  </Anchors>
+                  <FontHeight>
+                    <AbsValue val="10" />
+                  </FontHeight>
+                  <Color r="1" g="1" b="1" />
+                  <Shadow>
+                    <Color r="0" g="0" b="0" />
+                    <Offset>
+                      <AbsDimension x="1" y="-1" />
+                    </Offset>
+                  </Shadow>
+                </FontString>
+              </Layer>
+            </Layers>
+            <Frames>
+              <Button name="$parentButton">
+                <Size>
+                  <AbsDimension x="24" y="24" />
+                </Size>
+                <Anchors>
+                  <Anchor point="TOPRIGHT" relativeTo="$parentRight">
+                    <Offset>
+                      <AbsDimension x="-16" y="-18" />
+                    </Offset>
+                  </Anchor>
+                </Anchors>
+                <Scripts>
+                  <OnClick>
+						ToggleDropDownMenu();
+						PlaySound("igMainMenuOptionCheckBoxOn");
+					</OnClick>
+                </Scripts>
+                <NormalTexture name="$parentNormalTexture" file="Interface\ChatFrame\UI-ChatIcon-ScrollDown-Up">
+                  <Size>
+                    <AbsDimension x="24" y="24" />
+                  </Size>
+                  <Anchors>
+                    <Anchor point="RIGHT" />
+                  </Anchors>
+                </NormalTexture>
+                <PushedTexture name="$parentPushedTexture" file="Interface\ChatFrame\UI-ChatIcon-ScrollDown-Down">
+                  <Size>
+                    <AbsDimension x="24" y="24" />
+                  </Size>
+                  <Anchors>
+                    <Anchor point="RIGHT" />
+                  </Anchors>
+                </PushedTexture>
+                <DisabledTexture name="$parentDisabledTexture" file="Interface\ChatFrame\UI-ChatIcon-ScrollDown-Disabled">
+                  <Size>
+                    <AbsDimension x="24" y="24" />
+                  </Size>
+                  <Anchors>
+                    <Anchor point="RIGHT" />
+                  </Anchors>
+                </DisabledTexture>
+                <HighlightTexture name="$parentHighlightTexture" file="Interface\Buttons\UI-Common-MouseHilight" alphaMode="ADD">
+                  <Size>
+                    <AbsDimension x="24" y="24" />
+                  </Size>
+                  <Anchors>
+                    <Anchor point="RIGHT" />
+                  </Anchors>
+                </HighlightTexture>
+              </Button>
+            </Frames>
+            <Scripts>
+              <OnHide>CloseDropDownMenus();</OnHide>
+            </Scripts>
+          </Button>
+          <Button name="$parentWarriorsCombo">
+            <Size>
+              <AbsDimension x="166" y="32" />
+            </Size>
+            <Anchors>
+              <Anchor point="TOPLEFT">
+                <Offset>
+                  <AbsDimension x="72" y="-3" />
+                </Offset>
+              </Anchor>
+            </Anchors>
+            <Layers>
+              <Layer>
+                <Texture name="$parentLeft" file="Interface\Glues\CharacterCreate\CharacterCreate-LabelFrame">
+                  <Size>
+                    <AbsDimension x="25" y="64" />
+                  </Size>
+                  <Anchors>
+                    <Anchor point="TOPLEFT">
+                      <Offset>
+                        <AbsDimension x="0" y="17" />
+                      </Offset>
+                    </Anchor>
+                  </Anchors>
+                  <TexCoords left="0" right="0.1953125" top="0" bottom="1" />
+                </Texture>
+                <Texture name="$parentMiddle" file="Interface\Glues\CharacterCreate\CharacterCreate-LabelFrame">
+                  <Size>
+                    <AbsDimension x="116" y="64" />
+                  </Size>
+                  <Anchors>
+                    <Anchor point="LEFT" relativeTo="$parentLeft" relativePoint="RIGHT" />
+                  </Anchors>
+                  <TexCoords left="0.1953125" right="0.8046875" top="0" bottom="1" />
+                </Texture>
+                <Texture name="$parentRight" file="Interface\Glues\CharacterCreate\CharacterCreate-LabelFrame">
+                  <Size>
+                    <AbsDimension x="25" y="64" />
+                  </Size>
+                  <Anchors>
+                    <Anchor point="LEFT" relativeTo="$parentMiddle" relativePoint="RIGHT" />
+                  </Anchors>
+                  <TexCoords left="0.8046875" right="1" top="0" bottom="1" />
+                </Texture>
+                <FontString name="$parentText" font="Fonts\FRIZQT__.TTF" text="" justifyH="RIGHT">
+                  <Size>
+                    <AbsDimension x="141" y="10" />
+                  </Size>
+                  <Anchors>
+                    <Anchor point="RIGHT" relativeTo="$parentRight">
+                      <Offset>
+                        <AbsDimension x="-43" y="2" />
+                      </Offset>
+                    </Anchor>
+                  </Anchors>
+                  <FontHeight>
+                    <AbsValue val="10" />
+                  </FontHeight>
+                  <Color r="1" g="1" b="1" />
+                  <Shadow>
+                    <Color r="0" g="0" b="0" />
+                    <Offset>
+                      <AbsDimension x="1" y="-1" />
+                    </Offset>
+                  </Shadow>
+                </FontString>
+              </Layer>
+            </Layers>
+            <Frames>
+              <Button name="$parentButton">
+                <Size>
+                  <AbsDimension x="24" y="24" />
+                </Size>
+                <Anchors>
+                  <Anchor point="TOPRIGHT" relativeTo="$parentRight">
+                    <Offset>
+                      <AbsDimension x="-16" y="-18" />
+                    </Offset>
+                  </Anchor>
+                </Anchors>
+                <Scripts>
+                  <OnClick>
+						ToggleDropDownMenu();
+						PlaySound("igMainMenuOptionCheckBoxOn");
+					</OnClick>
+                </Scripts>
+                <NormalTexture name="$parentNormalTexture" file="Interface\ChatFrame\UI-ChatIcon-ScrollDown-Up">
+                  <Size>
+                    <AbsDimension x="24" y="24" />
+                  </Size>
+                  <Anchors>
+                    <Anchor point="RIGHT" />
+                  </Anchors>
+                </NormalTexture>
+                <PushedTexture name="$parentPushedTexture" file="Interface\ChatFrame\UI-ChatIcon-ScrollDown-Down">
+                  <Size>
+                    <AbsDimension x="24" y="24" />
+                  </Size>
+                  <Anchors>
+                    <Anchor point="RIGHT" />
+                  </Anchors>
+                </PushedTexture>
+                <DisabledTexture name="$parentDisabledTexture" file="Interface\ChatFrame\UI-ChatIcon-ScrollDown-Disabled">
+                  <Size>
+                    <AbsDimension x="24" y="24" />
+                  </Size>
+                  <Anchors>
+                    <Anchor point="RIGHT" />
+                  </Anchors>
+                </DisabledTexture>
+                <HighlightTexture name="$parentHighlightTexture" file="Interface\Buttons\UI-Common-MouseHilight" alphaMode="ADD">
+                  <Size>
+                    <AbsDimension x="24" y="24" />
+                  </Size>
+                  <Anchors>
+                    <Anchor point="RIGHT" />
+                  </Anchors>
+                </HighlightTexture>
+              </Button>
+            </Frames>
+            <Scripts>
+              <OnHide>CloseDropDownMenus();</OnHide>
+            </Scripts>
+          </Button>
+          <Button name="$parentDeathKnightsCombo">
+            <Size>
+              <AbsDimension x="166" y="32" />
+            </Size>
+            <Anchors>
+              <Anchor point="TOPLEFT">
+                <Offset>
+                  <AbsDimension x="72" y="-273" />
+                </Offset>
+              </Anchor>
+            </Anchors>
+            <Layers>
+              <Layer>
+                <Texture name="$parentLeft" file="Interface\Glues\CharacterCreate\CharacterCreate-LabelFrame">
+                  <Size>
+                    <AbsDimension x="25" y="64" />
+                  </Size>
+                  <Anchors>
+                    <Anchor point="TOPLEFT">
+                      <Offset>
+                        <AbsDimension x="0" y="17" />
+                      </Offset>
+                    </Anchor>
+                  </Anchors>
+                  <TexCoords left="0" right="0.1953125" top="0" bottom="1" />
+                </Texture>
+                <Texture name="$parentMiddle" file="Interface\Glues\CharacterCreate\CharacterCreate-LabelFrame">
+                  <Size>
+                    <AbsDimension x="116" y="64" />
+                  </Size>
+                  <Anchors>
+                    <Anchor point="LEFT" relativeTo="$parentLeft" relativePoint="RIGHT" />
+                  </Anchors>
+                  <TexCoords left="0.1953125" right="0.8046875" top="0" bottom="1" />
+                </Texture>
+                <Texture name="$parentRight" file="Interface\Glues\CharacterCreate\CharacterCreate-LabelFrame">
+                  <Size>
+                    <AbsDimension x="25" y="64" />
+                  </Size>
+                  <Anchors>
+                    <Anchor point="LEFT" relativeTo="$parentMiddle" relativePoint="RIGHT" />
+                  </Anchors>
+                  <TexCoords left="0.8046875" right="1" top="0" bottom="1" />
+                </Texture>
+                <FontString name="$parentText" font="Fonts\FRIZQT__.TTF" text="" justifyH="RIGHT">
+                  <Size>
+                    <AbsDimension x="141" y="10" />
+                  </Size>
+                  <Anchors>
+                    <Anchor point="RIGHT" relativeTo="$parentRight">
+                      <Offset>
+                        <AbsDimension x="-43" y="2" />
+                      </Offset>
+                    </Anchor>
+                  </Anchors>
+                  <FontHeight>
+                    <AbsValue val="10" />
+                  </FontHeight>
+                  <Color r="1" g="1" b="1" />
+                  <Shadow>
+                    <Color r="0" g="0" b="0" />
+                    <Offset>
+                      <AbsDimension x="1" y="-1" />
+                    </Offset>
+                  </Shadow>
+                </FontString>
+              </Layer>
+            </Layers>
+            <Frames>
+              <Button name="$parentButton">
+                <Size>
+                  <AbsDimension x="24" y="24" />
+                </Size>
+                <Anchors>
+                  <Anchor point="TOPRIGHT" relativeTo="$parentRight">
+                    <Offset>
+                      <AbsDimension x="-16" y="-18" />
+                    </Offset>
+                  </Anchor>
+                </Anchors>
+                <Scripts>
+                  <OnClick>
+						ToggleDropDownMenu();
+						PlaySound("igMainMenuOptionCheckBoxOn");
+					</OnClick>
+                </Scripts>
+                <NormalTexture name="$parentNormalTexture" file="Interface\ChatFrame\UI-ChatIcon-ScrollDown-Up">
+                  <Size>
+                    <AbsDimension x="24" y="24" />
+                  </Size>
+                  <Anchors>
+                    <Anchor point="RIGHT" />
+                  </Anchors>
+                </NormalTexture>
+                <PushedTexture name="$parentPushedTexture" file="Interface\ChatFrame\UI-ChatIcon-ScrollDown-Down">
+                  <Size>
+                    <AbsDimension x="24" y="24" />
+                  </Size>
+                  <Anchors>
+                    <Anchor point="RIGHT" />
+                  </Anchors>
+                </PushedTexture>
+                <DisabledTexture name="$parentDisabledTexture" file="Interface\ChatFrame\UI-ChatIcon-ScrollDown-Disabled">
+                  <Size>
+                    <AbsDimension x="24" y="24" />
+                  </Size>
+                  <Anchors>
+                    <Anchor point="RIGHT" />
+                  </Anchors>
+                </DisabledTexture>
+                <HighlightTexture name="$parentHighlightTexture" file="Interface\Buttons\UI-Common-MouseHilight" alphaMode="ADD">
+                  <Size>
+                    <AbsDimension x="24" y="24" />
+                  </Size>
+                  <Anchors>
+                    <Anchor point="RIGHT" />
+                  </Anchors>
+                </HighlightTexture>
+              </Button>
+            </Frames>
+            <Scripts>
+              <OnHide>CloseDropDownMenus();</OnHide>
+            </Scripts>
+          </Button>
+        </Frames>
+  </Frame>
+
+  <Frame name="VuhDoBuffSetupUniqueSingleTargetPanelTemplate" virtual="true">
+        <Size>
+          <AbsDimension x="229" y="55" />
+        </Size>
+        <Frames>
+          <EditBox name="$parentPlayerNameEditBox" inherits="VuhDoBuffEditBoxTemplate">
+            <Size>
+              <AbsDimension x="201" y="32" />
+            </Size>
+            <Anchors>
+              <Anchor point="TOPLEFT">
+                <Offset>
+                  <AbsDimension x="10" y="-20" />
+                </Offset>
+              </Anchor>
+            </Anchors>
+            <Layers>
+              <Layer level="BACKGROUND">
+                <Texture name="$parentLeft" file="Interface\Common\Common-Input-Border">
+                  <Size>
+                    <AbsDimension x="8" y="20" />
+                  </Size>
+                  <Anchors>
+                    <Anchor point="LEFT" />
+                  </Anchors>
+                  <TexCoords left="0" right="0.0625" top="0" bottom="0.625" />
+                </Texture>
+                <Texture name="$parentRight" file="Interface\Common\Common-Input-Border">
+                  <Size>
+                    <AbsDimension x="8" y="20" />
+                  </Size>
+                  <Anchors>
+                    <Anchor point="RIGHT" />
+                  </Anchors>
+                  <TexCoords left="0.9375" right="1" top="0" bottom="0.625" />
+                </Texture>
+                <Texture name="$parentMiddle" file="Interface\Common\Common-Input-Border">
+                  <Size>
+                    <AbsDimension x="10" y="20" />
+                  </Size>
+                  <Anchors>
+                    <Anchor point="LEFT" relativeTo="$parentLeft" relativePoint="RIGHT" />
+                    <Anchor point="RIGHT" relativeTo="$parentRight" relativePoint="LEFT" />
+                  </Anchors>
+                  <TexCoords left="0.0625" right="0.9375" top="0" bottom="0.625" />
+                </Texture>
+              </Layer>
+            </Layers>
+            <FontString font="Fonts\ARIALN.TTF">
+              <FontHeight>
+                <AbsValue val="14" />
+              </FontHeight>
+              <Color r="1" g="1" b="1" />
+              <Shadow>
+                <Color r="0" g="0" b="0" />
+                <Offset>
+                  <AbsDimension x="1" y="-1" />
+                </Offset>
+              </Shadow>
+            </FontString>
+          </EditBox>
+          <Frame name="$parentPlayerNameLabel">
+            <Size>
+              <AbsDimension x="180" y="22" />
+            </Size>
+            <Anchors>
+              <Anchor point="TOPLEFT">
+                <Offset>
+                  <AbsDimension x="10" y="-3" />
+                </Offset>
+              </Anchor>
+            </Anchors>
+            <Layers>
+              <Layer>
+                <FontString name="$parentLabel" font="Fonts\FRIZQT__.TTF" text="VUHDO_I18N_BUFF_ON_PLAYER" justifyH="LEFT">
+                  <Anchors>
+                    <Anchor point="TOPLEFT" />
+                    <Anchor point="BOTTOMRIGHT" />
+                  </Anchors>
+                  <FontHeight>
+                    <AbsValue val="10" />
+                  </FontHeight>
+                  <Color r="1" g="0.82" b="0" />
+                  <Shadow>
+                    <Color r="0" g="0" b="0" />
+                    <Offset>
+                      <AbsDimension x="1" y="-1" />
+                    </Offset>
+                  </Shadow>
+                </FontString>
+              </Layer>
+            </Layers>
+          </Frame>
+        </Frames>
+  </Frame>
+
+  <Frame name="VuhDoBuffSetupControlPanelTemplate" virtual="true">
+        <Size>
+          <AbsDimension x="229" y="89" />
+        </Size>
+        <Anchors>
+          <Anchor point="TOPLEFT">
+            <Offset>
+              <AbsDimension x="19" y="-567" />
+            </Offset>
+          </Anchor>
+        </Anchors>
+        <Frames>
+          <Button name="$parentOptionsButton" text="VUHDO_I18N_BUFF_OPTIONS">
+            <Size>
+              <AbsDimension x="100" y="22" />
+            </Size>
+            <Anchors>
+              <Anchor point="TOPLEFT">
+                <Offset>
+                  <AbsDimension x="10" y="-13" />
+                </Offset>
+              </Anchor>
+            </Anchors>
+            <Scripts>
+              <OnClick>VUHDO_buffOptionsOnClick(this);</OnClick>
+            </Scripts>
+            <NormalTexture file="Interface\Buttons\UI-Panel-Button-Up">
+              <TexCoords left="0" right="0.625" top="0" bottom="0.6875" />
+            </NormalTexture>
+            <PushedTexture file="Interface\Buttons\UI-Panel-Button-Down">
+              <TexCoords left="0" right="0.625" top="0" bottom="0.6875" />
+            </PushedTexture>
+            <DisabledTexture file="Interface\Buttons\UI-Panel-Button-Disabled">
+              <TexCoords left="0" right="0.625" top="0" bottom="0.6875" />
+            </DisabledTexture>
+            <HighlightTexture file="Interface\Buttons\UI-Panel-Button-Highlight" alphaMode="ADD">
+              <TexCoords left="0" right="0.625" top="0" bottom="0.6875" />
+            </HighlightTexture>
+            <ButtonText name="$parentText">
+              <FontHeight>
+                <AbsValue val="10" />
+              </FontHeight>
+            </ButtonText>
+            <NormalFont inherits="GameFontNormal" font="Fonts\FRIZQT__.TTF">
+              <FontHeight>
+                <AbsValue val="12" />
+              </FontHeight>
+              <Color r="1" g="0.82" b="0" />
+              <Shadow>
+                <Color r="0" g="0" b="0" />
+                <Offset>
+                  <AbsDimension x="1" y="-1" />
+                </Offset>
+              </Shadow>
+            </NormalFont>
+            <HighlightFont inherits="GameFontHighlight" font="Fonts\FRIZQT__.TTF">
+              <FontHeight>
+                <AbsValue val="12" />
+              </FontHeight>
+              <Color r="1" g="1" b="1" />
+              <Shadow>
+                <Color r="0" g="0" b="0" />
+                <Offset>
+                  <AbsDimension x="1" y="-1" />
+                </Offset>
+              </Shadow>
+            </HighlightFont>
+            <DisabledFont inherits="GameFontDisable" font="Fonts\FRIZQT__.TTF">
+              <FontHeight>
+                <AbsValue val="12" />
+              </FontHeight>
+              <Color r="0.5" g="0.5" b="0.5" />
+              <Shadow>
+                <Color r="0" g="0" b="0" />
+                <Offset>
+                  <AbsDimension x="1" y="-1" />
+                </Offset>
+              </Shadow>
+            </DisabledFont>
+          </Button>
+          <Button name="$parentCancelButton" text="VUHDO_I18N_CANCEL">
+            <Size>
+              <AbsDimension x="100" y="22" />
+            </Size>
+            <Anchors>
+              <Anchor point="TOPLEFT">
+                <Offset>
+                  <AbsDimension x="10" y="-55" />
+                </Offset>
+              </Anchor>
+            </Anchors>
+            <Scripts>
+              <OnClick>VUHDO_buffSetupCancelOnClick(this);</OnClick>
+            </Scripts>
+            <NormalTexture file="Interface\Buttons\UI-Panel-Button-Up">
+              <TexCoords left="0" right="0.625" top="0" bottom="0.6875" />
+            </NormalTexture>
+            <PushedTexture file="Interface\Buttons\UI-Panel-Button-Down">
+              <TexCoords left="0" right="0.625" top="0" bottom="0.6875" />
+            </PushedTexture>
+            <DisabledTexture file="Interface\Buttons\UI-Panel-Button-Disabled">
+              <TexCoords left="0" right="0.625" top="0" bottom="0.6875" />
+            </DisabledTexture>
+            <HighlightTexture file="Interface\Buttons\UI-Panel-Button-Highlight" alphaMode="ADD">
+              <TexCoords left="0" right="0.625" top="0" bottom="0.6875" />
+            </HighlightTexture>
+            <ButtonText name="$parentText">
+              <FontHeight>
+                <AbsValue val="10" />
+              </FontHeight>
+            </ButtonText>
+            <NormalFont inherits="GameFontNormal" font="Fonts\FRIZQT__.TTF">
+              <FontHeight>
+                <AbsValue val="12" />
+              </FontHeight>
+              <Color r="1" g="0.82" b="0" />
+              <Shadow>
+                <Color r="0" g="0" b="0" />
+                <Offset>
+                  <AbsDimension x="1" y="-1" />
+                </Offset>
+              </Shadow>
+            </NormalFont>
+            <HighlightFont inherits="GameFontHighlight" font="Fonts\FRIZQT__.TTF">
+              <FontHeight>
+                <AbsValue val="12" />
+              </FontHeight>
+              <Color r="1" g="1" b="1" />
+              <Shadow>
+                <Color r="0" g="0" b="0" />
+                <Offset>
+                  <AbsDimension x="1" y="-1" />
+                </Offset>
+              </Shadow>
+            </HighlightFont>
+            <DisabledFont inherits="GameFontDisable" font="Fonts\FRIZQT__.TTF">
+              <FontHeight>
+                <AbsValue val="12" />
+              </FontHeight>
+              <Color r="0.5" g="0.5" b="0.5" />
+              <Shadow>
+                <Color r="0" g="0" b="0" />
+                <Offset>
+                  <AbsDimension x="1" y="-1" />
+                </Offset>
+              </Shadow>
+            </DisabledFont>
+          </Button>
+          <Button name="$parentOkayButton" text="VUHDO_I18N_OKAY">
+            <Size>
+              <AbsDimension x="100" y="22" />
+            </Size>
+            <Anchors>
+              <Anchor point="TOPLEFT">
+                <Offset>
+                  <AbsDimension x="116" y="-55" />
+                </Offset>
+              </Anchor>
+            </Anchors>
+            <Scripts>
+              <OnClick>VUHDO_buffSetupOkayOnClick(this);</OnClick>
+            </Scripts>
+            <NormalTexture file="Interface\Buttons\UI-Panel-Button-Up">
+              <TexCoords left="0" right="0.625" top="0" bottom="0.6875" />
+            </NormalTexture>
+            <PushedTexture file="Interface\Buttons\UI-Panel-Button-Down">
+              <TexCoords left="0" right="0.625" top="0" bottom="0.6875" />
+            </PushedTexture>
+            <DisabledTexture file="Interface\Buttons\UI-Panel-Button-Disabled">
+              <TexCoords left="0" right="0.625" top="0" bottom="0.6875" />
+            </DisabledTexture>
+            <HighlightTexture file="Interface\Buttons\UI-Panel-Button-Highlight" alphaMode="ADD">
+              <TexCoords left="0" right="0.625" top="0" bottom="0.6875" />
+            </HighlightTexture>
+            <ButtonText name="$parentText">
+              <FontHeight>
+                <AbsValue val="10" />
+              </FontHeight>
+            </ButtonText>
+            <NormalFont inherits="GameFontNormal" font="Fonts\FRIZQT__.TTF">
+              <FontHeight>
+                <AbsValue val="12" />
+              </FontHeight>
+              <Color r="1" g="0.82" b="0" />
+              <Shadow>
+                <Color r="0" g="0" b="0" />
+                <Offset>
+                  <AbsDimension x="1" y="-1" />
+                </Offset>
+              </Shadow>
+            </NormalFont>
+            <HighlightFont inherits="GameFontHighlight" font="Fonts\FRIZQT__.TTF">
+              <FontHeight>
+                <AbsValue val="12" />
+              </FontHeight>
+              <Color r="1" g="1" b="1" />
+              <Shadow>
+                <Color r="0" g="0" b="0" />
+                <Offset>
+                  <AbsDimension x="1" y="-1" />
+                </Offset>
+              </Shadow>
+            </HighlightFont>
+            <DisabledFont inherits="GameFontDisable" font="Fonts\FRIZQT__.TTF">
+              <FontHeight>
+                <AbsValue val="12" />
+              </FontHeight>
+              <Color r="0.5" g="0.5" b="0.5" />
+              <Shadow>
+                <Color r="0" g="0" b="0" />
+                <Offset>
+                  <AbsDimension x="1" y="-1" />
+                </Offset>
+              </Shadow>
+            </DisabledFont>
+          </Button>
+        </Frames>
+  </Frame>
+
+</Ui>

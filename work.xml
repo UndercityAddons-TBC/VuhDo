@@ -1,0 +1,50 @@
+      <FontString name="$parentTitleString" inherits="GameFontNormal" font="Interface\AddOns\VuhDo\Fonts\ariblk.ttf" justifyH="LEFT" text="VuhDo - Setup">
+        <Size>
+          <AbsDimension x="140" y="0" />
+        </Size>
+        <Anchors>
+          <Anchor point="TOPLEFT">
+            <Offset>
+              <AbsDimension x="12" y="-12" />
+            </Offset>
+          </Anchor>
+        </Anchors>
+			  <FontHeight>
+    			<AbsValue val="14" />
+  			</FontHeight>
+			  <Color r="0.4" g="0.4" b="1" />
+  			<Shadow>
+    			<Color r="0.4" g="0.4" b="1" />
+      		<Offset>
+         		<AbsDimension x="0" y="0" />
+      		</Offset>
+		 	 </Shadow>
+      </FontString>
+
+
+
+      <Frame name="VuhDoTestPanel" frameStrata="DIALOG" inherits="VuhDoPanelTemplate">
+        <Size>
+          <AbsDimension x="150" y="75" />
+        </Size>
+        <Anchors>
+          <Anchor point="CENTER">
+            <Offset>
+              <AbsDimension x="0" y="0" />
+            </Offset>
+          </Anchor>
+        </Anchors>
+      </Frame>
+
+
+
+      <CheckButton name="VuhDoTestCheckButton" inherits="VuhDoTabStopButtonTemplate">
+        <Anchors>
+          <Anchor point="TOPLEFT">
+            <Offset>
+              <AbsDimension x="180" y="-483" />
+            </Offset>
+          </Anchor>
+        </Anchors>
+      </CheckButton>
+

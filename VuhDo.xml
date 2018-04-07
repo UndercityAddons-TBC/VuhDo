@@ -1,0 +1,377 @@
+<Ui xmlns="http://www.blizzard.com/wow/ui/"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.blizzard.com/wow/ui/ ..\FrameXML\UI.xsd">
+  <Script file="VuhDoLocalization.en.lua" />
+  <Script file="VuhDoLocalization.de.lua" />
+  <Script file="VuhDoConst.lua" />
+  <Script file="VuhDoGuiConst.lua" />
+  <Script file="VuhDoToolbox.lua" />
+  <Script file="VuhDoDefaults.lua" />
+  <Script file="VuhDoDebuffConst.lua" />
+  <Script file="VuhDoGuiToolbox.lua" />
+  <Script file="VuhDoPanelConvenience.lua" />
+  <Script file="VuhDoSizeCalculator.lua" />
+  <Script file="VuhDoEventHandler.lua" />
+  <Script file="VuhDoDebuffs.lua" />
+  <Script file="VuhDoTooltip.lua" />
+  <Script file="VuhDoAddonAdapter.lua" />
+  <Script file="VuhDoCtraAdapter.lua" />
+  <Script file="VuhDoHealCommAdapter.lua" />
+  <Script file="VuhDoCombatLogParser.lua" />
+  <Script file="VuhDoSpellEstimator.lua" />
+  <Script file="VuhDo.lua" />
+  <Script file="Libs\LibQuickHealth-1.0\CallbackHandler-1.0.lua" />
+  <Script file="Libs\LibHealComm-3.0\LibHealComm-3.0.lua" />
+
+  <StatusBar name="VuhDoStatusBar" virtual="true" frameStrata="MEDIUM" hidden="false">
+	<Size>
+	  <AbsDimension y="18"/>
+	</Size>
+    <Layers>
+    <Layer level="OVERLAY">
+      <FontString name="$parentText" font="Fonts\FRIZQT__.TTF">
+        <Anchors>
+        <Anchor point="CENTER">
+          <Offset> <AbsDimension y="1"/>  </Offset>
+        </Anchor>
+        </Anchors>
+        <FontHeight>
+          <AbsValue val="9" />
+        </FontHeight>
+
+      </FontString>
+    </Layer>
+    </Layers>
+	<BarTexture file="Interface\TargetingFrame\UI-StatusBar"/>
+  </StatusBar>
+
+	<Frame name="VuhDoMinimapDropDown" inherits="UIDropDownMenuTemplate" clampedToScreen="true" id="1" hidden="true">
+		<Scripts>
+			<OnLoad>
+				VUHDO_minimapDropdownOnLoad();
+		 </OnLoad>
+		</Scripts>
+	</Frame>
+
+	<Frame name="VuhDoPlayerTargetDropDown" inherits="UIDropDownMenuTemplate" clampedToScreen="true" id="2" hidden="true">
+		<Scripts>
+			<OnLoad>
+				VUHDO_playerTargetDropdownOnLoad();
+		 </OnLoad>
+		</Scripts>
+	</Frame>
+
+	<Frame name="VuhDoYesNoFrame" toplevel="true" frameStrata="TOOLTIP" parent="UIParent" hidden="true">
+		<Size>
+			<AbsDimension x="323" y="97"/>
+		</Size>
+		<Anchors>
+			<Anchor point="CENTER">
+				<Offset>
+					<AbsDimension x="0" y="-10"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+		<Layers>
+			<Layer level="BACKGROUND">
+				<Texture name="$parentPortrait">
+					<Size>
+						<AbsDimension x="50" y="50"/>
+					</Size>
+					<Anchors>
+						<Anchor point="TOPLEFT">
+							<Offset>
+								<AbsDimension x="7" y="-6"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+			</Layer>
+			<Layer level="ARTWORK">
+				<Texture file="Interface\RaidFrame\UI-ReadyCheckFrame">
+					<Size>
+						<AbsDimension x="323" y="97"/>
+					</Size>
+					<Anchors>
+						<Anchor point="TOPLEFT"/>
+					</Anchors>
+					<TexCoords left="0" right="0.630859375" top="0" bottom="0.7578125"/>
+				</Texture>
+				<FontString name="$parentText" inherits="GameFontNormal" text="YA'REALLY?">
+					<Anchors>
+						<Anchor point="TOP">
+							<Offset>
+								<AbsDimension x="15" y="-24"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+		<Frames>
+			<Button name="$parentYesButton" inherits="UIPanelButtonTemplate" text="YES">
+				<Size>
+					<AbsDimension x="109" y="24"/>
+				</Size>
+				<Anchors>
+					<Anchor point="BOTTOMLEFT">
+						<Offset>
+							<AbsDimension x="55" y="18"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>
+						this:GetParent():GetAttribute("callback")(1);
+						VuhDoYesNoFrame:Hide();
+					</OnClick>
+				</Scripts>
+			</Button>
+			<Button name="$parentNoButton" inherits="UIPanelButtonTemplate" text="NO">
+				<Size>
+					<AbsDimension x="109" y="24"/>
+				</Size>
+				<Anchors>
+					<Anchor point="LEFT" relativeTo="ReadyCheckFrameYesButton" relativePoint="RIGHT">
+						<Offset>
+							<AbsDimension x="0" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>
+						this:GetParent():GetAttribute("callback")(2);
+						VuhDoYesNoFrame:Hide();
+					</OnClick>
+				</Scripts>
+			</Button>
+		</Frames>
+		<Scripts>
+			<OnShow>
+				VUHDO_yesNoOnShow();
+			</OnShow>
+		</Scripts>
+	</Frame>
+
+
+  <Frame name="VuhDo" parent="UIParent" frameStrata="LOW" toplevel="true" inherits="SecureFrameTemplate">
+    <Scripts>
+      <OnLoad>
+	    	VUHDO_OnLoad(this);
+      </OnLoad>
+      <OnEvent>
+      	VUHDO_OnEvent(this,event,arg1,arg2,arg3,arg4,arg5,arg6,arg7,arg8,arg9,arg10,arg11,arg12);
+      </OnEvent>
+      <OnUpdate>
+      	VUHDO_OnUpdate(this,arg1);
+      </OnUpdate>
+    </Scripts>
+  </Frame>
+
+   <Frame name="VuhDoTooltip" frameStrata="TOOLTIP" movable="true" parent="UIParent" hidden="true">
+      <Layers>
+         <Layer level="ARTWORK">
+			   <FontString name="$parentTextL1" inherits="GameFontNormalSmall" hidden="true">
+					<Anchors>
+						<Anchor point="TOPLEFT">
+							<Offset>
+								<AbsDimension x="10" y="-10"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<FontString name="$parentTextR1" inherits="GameFontNormalSmall" hidden="true">
+					<Anchors>
+						<Anchor point="TOPRIGHT">
+							<Offset>
+								<AbsDimension x="-10" y="-10"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<FontString name="$parentTextL2" inherits="GameFontNormalSmall" hidden="true">
+					<Anchors>
+						<Anchor point="TOPLEFT" relativeTo="$parentTextL1" relativePoint="BOTTOMLEFT">
+							<Offset>
+								<AbsDimension x="0" y="-2"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<FontString name="$parentTextR2" inherits="GameFontNormalSmall" hidden="true">
+					<Anchors>
+						<Anchor point="TOPRIGHT" relativeTo="$parentTextR1" relativePoint="BOTTOMRIGHT">
+							<Offset>
+								<AbsDimension x="0" y="-2"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<FontString name="$parentTextL3" inherits="GameFontNormalSmall" hidden="true">
+					<Anchors>
+						<Anchor point="TOPLEFT" relativeTo="$parentTextL2" relativePoint="BOTTOMLEFT">
+							<Offset>
+								<AbsDimension x="0" y="-2"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<FontString name="$parentTextR3" inherits="GameFontNormalSmall" hidden="true">
+					<Anchors>
+						<Anchor point="TOPRIGHT" relativeTo="$parentTextR2" relativePoint="BOTTOMRIGHT">
+							<Offset>
+								<AbsDimension x="0" y="-2"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<FontString name="$parentTextL4" inherits="GameFontNormalSmall" hidden="true">
+					<Anchors>
+						<Anchor point="TOPLEFT" relativeTo="$parentTextL3" relativePoint="BOTTOMLEFT">
+							<Offset>
+								<AbsDimension x="0" y="-2"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<FontString name="$parentTextR4" inherits="GameFontNormalSmall" hidden="true">
+					<Anchors>
+						<Anchor point="TOPRIGHT" relativeTo="$parentTextR3" relativePoint="BOTTOMRIGHT">
+							<Offset>
+								<AbsDimension x="0" y="-2"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<FontString name="$parentTextL5" inherits="GameFontNormalSmall" hidden="true">
+					<Anchors>
+						<Anchor point="TOPLEFT" relativeTo="$parentTextL4" relativePoint="BOTTOMLEFT">
+							<Offset>
+								<AbsDimension x="0" y="-2"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<FontString name="$parentTextR5" inherits="GameFontNormalSmall" hidden="true">
+					<Anchors>
+						<Anchor point="TOPRIGHT" relativeTo="$parentTextR4" relativePoint="BOTTOMRIGHT">
+							<Offset>
+								<AbsDimension x="0" y="-2"/>
+                            </Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<FontString name="$parentTextL6" inherits="GameFontNormalSmall" hidden="true">
+					<Anchors>
+						<Anchor point="TOPLEFT" relativeTo="$parentTextL5" relativePoint="BOTTOMLEFT">
+							<Offset>
+								<AbsDimension x="0" y="-2"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<FontString name="$parentTextR6" inherits="GameFontNormalSmall" hidden="true">
+					<Anchors>
+						<Anchor point="TOPRIGHT" relativeTo="$parentTextR5" relativePoint="BOTTOMRIGHT">
+							<Offset>
+								<AbsDimension x="0" y="-2"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<FontString name="$parentTextL7" inherits="GameFontNormalSmall" hidden="true">
+					<Anchors>
+						<Anchor point="TOPLEFT" relativeTo="$parentTextL6" relativePoint="BOTTOMLEFT">
+							<Offset>
+								<AbsDimension x="0" y="-2"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<FontString name="$parentTextR7" inherits="GameFontNormalSmall" hidden="true">
+					<Anchors>
+						<Anchor point="TOPRIGHT" relativeTo="$parentTextR6" relativePoint="BOTTOMRIGHT">
+							<Offset>
+								<AbsDimension x="0" y="-2"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<FontString name="$parentTextL8" inherits="GameFontNormalSmall" hidden="true">
+					<Anchors>
+						<Anchor point="TOPLEFT" relativeTo="$parentTextL7" relativePoint="BOTTOMLEFT">
+							<Offset>
+								<AbsDimension x="0" y="-2"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<FontString name="$parentTextR8" inherits="GameFontNormalSmall" hidden="true">
+					<Anchors>
+						<Anchor point="TOPRIGHT" relativeTo="$parentTextR7" relativePoint="BOTTOMRIGHT">
+							<Offset>
+								<AbsDimension x="0" y="-2"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<FontString name="$parentTextL9" inherits="GameFontNormalSmall" hidden="true">
+					<Anchors>
+						<Anchor point="TOPLEFT" relativeTo="$parentTextL8" relativePoint="BOTTOMLEFT">
+							<Offset>
+								<AbsDimension x="0" y="-2"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<FontString name="$parentTextR9" inherits="GameFontNormalSmall" hidden="true">
+					<Anchors>
+						<Anchor point="TOPRIGHT" relativeTo="$parentTextR8" relativePoint="BOTTOMRIGHT">
+							<Offset>
+								<AbsDimension x="0" y="-2"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<FontString name="$parentTextL10" inherits="GameFontNormalSmall" hidden="true">
+					<Anchors>
+						<Anchor point="TOPLEFT" relativeTo="$parentTextL9" relativePoint="BOTTOMLEFT">
+							<Offset>
+								<AbsDimension x="0" y="-2"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<FontString name="$parentTextR10" inherits="GameFontNormalSmall" hidden="true">
+					<Anchors>
+						<Anchor point="TOPRIGHT" relativeTo="$parentTextR9" relativePoint="BOTTOMRIGHT">
+							<Offset>
+								<AbsDimension x="0" y="-2"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+    	</Layer>
+      </Layers>
+    <Backdrop tile="true"
+      bgFile="Interface\Tooltips\UI-Tooltip-Background"
+      edgeFile="Interface\Tooltips\UI-Tooltip-Border">
+      <EdgeSize>
+        <AbsValue val="8"/>
+      </EdgeSize>
+      <TileSize>
+        <AbsValue val="8"/>
+      </TileSize>
+      <BackgroundInsets>
+        <AbsInset left="3" right="3" top="3" bottom="3"/>
+      </BackgroundInsets>
+    </Backdrop>
+    <Scripts>
+      <OnMouseDown>VuhDoTooltipOnMouseDown(this,arg1)</OnMouseDown>
+      <OnMouseUp>VuhDoTooltipOnMouseUp(this,arg1)</OnMouseUp>
+    </Scripts>
+   </Frame>
+
+  <GameTooltip name="VuhDoScanTooltip" frameStrata="TOOLTIP" hidden="true" parent="UIParent" inherits="GameTooltipTemplate" />
+
+</Ui>

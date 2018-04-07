@@ -1,0 +1,35 @@
+
+--------------------------------------------------------------
+since Version r20080915_01 (1.0 RC2):
+
+Bugfixes:
+-- Offensive buffs with cooldown ("Shadow Fiend") will now be cast properly
+-- Single target unique buffs will now keep their target when entering combat
+
+Features:
+-- You can enter "tell" as spell name in spell assignments to tell/whisper to the unit
+-- Target raid icon and name will be shown at the same time
+-- Moving heal panels will no longer freeze you system for a short moment
+-- In buff options you can choose how many player must at least miss a buff before using the group version of the buff instead of the single target version
+
+--------------------------------------------------------------
+since Version r20080831_01:
+
+Features:
+-- Buff control added ("/vd buf" or via minimap icon)
+-- Charmed player can be cleansed on click
+-- You can assign a mouse-key-combination for opening MTs/player targets context popup
+   (Type "Menu" as spell name in spell settings).
+-- You can easily assign unique target spells in the MTs/player targets context popup
+   (such as "Fear Ward" or "Earth Shield")
+-- Added some auto correction for mistyped spell rank descriptions in spell settings
+-- Manual updated
+
+
+Bugfixes:
+-- Texture names fully internationalized
+-- Fixed a bug that lead to an error when smart cast cleansing
+-- Fixes a bug that lead to an error in incoming heal if a priest used "prayer of healing"
+-- Removed compatibility warning on first load
+-- Removed chat spamming when error in event handling
+-- Improved reliability when someone leaves raid while in fight

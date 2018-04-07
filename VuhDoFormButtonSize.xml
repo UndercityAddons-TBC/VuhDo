@@ -1,0 +1,2159 @@
+<Ui xmlns="http://www.blizzard.com/wow/ui" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+
+  <Script file="VuhDoFormButtonSize.lua" />
+
+
+  <Frame name="VuhDoColorTextureTemplate2" virtual="true">
+            <Size>
+              <AbsDimension x="70" y="22" />
+            </Size>
+            <Layers>
+              <Layer>
+                <Texture name="$parentTexture" setAllPoints="true" file="Interface\AddOns\VuhDo\images\bar15">
+                  <TexCoords left="0" right="1" top="0" bottom="1" />
+                </Texture>
+              </Layer>
+            </Layers>
+        <Frames>
+          <Frame name="$parentNameLabel">
+            <Size>
+              <AbsDimension x="70" y="22" />
+            </Size>
+            <Anchors>
+              <Anchor point="TOPLEFT">
+                <Offset>
+                  <AbsDimension x="0" y="0" />
+                </Offset>
+              </Anchor>
+            </Anchors>
+            <Layers>
+              <Layer>
+                <FontString name="$parentLabel" font="Fonts\FRIZQT__.TTF" text="YA'RLY">
+                  <Anchors>
+                    <Anchor point="CENTER" />
+                    <Anchor point="CENTER" />
+                  </Anchors>
+                  <FontHeight>
+                    <AbsValue val="8" />
+                  </FontHeight>
+                  <Color r="1" g="0.82" b="0" />
+                  <Shadow>
+                    <Color r="0" g="0" b="0" />
+                    <Offset>
+                      <AbsDimension x="1" y="-1" />
+                    </Offset>
+                  </Shadow>
+                </FontString>
+              </Layer>
+            </Layers>
+          </Frame>
+        </Frames>
+        <Scripts>
+          <OnMouseDown>VUHDO_colorTextureSizeOnClick(this, arg1)</OnMouseDown>
+          <OnShow>VUHDO_colorTextureSizeOnShow(this)</OnShow>
+        </Scripts>
+  </Frame>
+
+
+  <Frame name="VuhDoFormButtonSize" hidden="true" toplevel="true" frameStrata="FULLSCREEN_DIALOG"
+      movable="true" parent="UIParent" enableMouse="true">
+    <Size>
+      <AbsDimension x="295" y="500" />
+    </Size>
+    <Anchors>
+      <Anchor point="CENTER" relativeTo="UIParent">
+        <Offset>
+          <AbsDimension x="0" y="0" />
+        </Offset>
+      </Anchor>
+    </Anchors>
+    <Backdrop bgFile="Interface\DialogFrame\UI-DialogBox-Background" edgeFile="Interface\DialogFrame\UI-DialogBox-Border" tile="true">
+      <BackgroundInsets>
+        <AbsInset left="11" right="12" top="12" bottom="11" />
+      </BackgroundInsets>
+      <TileSize>
+        <AbsValue val="32" />
+      </TileSize>
+      <EdgeSize>
+        <AbsValue val="32" />
+      </EdgeSize>
+    </Backdrop>
+    <Layers>
+      <Layer>
+        <Texture name="$parentTitleBorder" file="Interface\DialogFrame\UI-DialogBox-Header">
+          <Size>
+            <AbsDimension x="160" y="32" />
+          </Size>
+          <Anchors>
+            <Anchor point="TOP">
+              <Offset>
+                <AbsDimension x="0" y="5" />
+              </Offset>
+            </Anchor>
+          </Anchors>
+          <TexCoords left="0.2" right="0.8" top="0" bottom="0.6" />
+        </Texture>
+        <FontString name="$parentTitleString" font="Fonts\FRIZQT__.TTF" text="VUHDO_I18N_PANEL_NUM">
+          <Size>
+            <AbsDimension x="140" y="0" />
+          </Size>
+          <Anchors>
+            <Anchor point="TOP">
+              <Offset>
+                <AbsDimension x="0" y="-4" />
+              </Offset>
+            </Anchor>
+          </Anchors>
+          <FontHeight>
+            <AbsValue val="12" />
+          </FontHeight>
+          <Color r="1" g="0.82" b="0" />
+          <Shadow>
+            <Color r="0" g="0" b="0" />
+            <Offset>
+              <AbsDimension x="1" y="-1" />
+            </Offset>
+          </Shadow>
+        </FontString>
+      </Layer>
+    </Layers>
+    <Frames>
+      <Frame name="$parentBackgroundPanel" inherits="OptionFrameBoxTemplate">
+        <Size>
+          <AbsDimension x="115" y="65" />
+        </Size>
+        <Anchors>
+          <Anchor point="TOPLEFT">
+            <Offset>
+              <AbsDimension x="170" y="-35" />
+            </Offset>
+          </Anchor>
+        </Anchors>
+        <Backdrop bgFile="Interface\Tooltips\UI-Tooltip-Background" edgeFile="Interface\Tooltips\UI-Tooltip-Border" tile="true">
+          <BackgroundInsets>
+            <AbsInset left="5" right="5" top="5" bottom="5" />
+          </BackgroundInsets>
+          <TileSize>
+            <AbsValue val="16" />
+          </TileSize>
+          <EdgeSize>
+            <AbsValue val="16" />
+          </EdgeSize>
+        </Backdrop>
+        <Frames>
+
+          <Frame name="$parentBorderColorTexture" inherits="VuhDoColorTextureTemplate2">
+            <Size>
+              <AbsDimension x="60" y="22" />
+            </Size>
+            <Anchors>
+              <Anchor point="TOPLEFT">
+                <Offset>
+                  <AbsDimension x="45" y="-34" />
+                </Offset>
+              </Anchor>
+            </Anchors>
+          </Frame>
+
+          <Frame name="$parentBackgroundColorTexture" inherits="VuhDoColorTextureTemplate2">
+            <Size>
+              <AbsDimension x="60" y="22" />
+            </Size>
+            <Anchors>
+              <Anchor point="TOPLEFT">
+                <Offset>
+                  <AbsDimension x="45" y="-8" />
+                </Offset>
+              </Anchor>
+            </Anchors>
+          </Frame>
+
+          <Frame name="$parentBackgroundLabel">
+            <Size>
+              <AbsDimension x="78" y="18" />
+            </Size>
+            <Anchors>
+              <Anchor point="TOPLEFT">
+                <Offset>
+                  <AbsDimension x="10" y="-3" />
+                </Offset>
+              </Anchor>
+            </Anchors>
+            <Layers>
+              <Layer>
+                <FontString name="$parentLabel" font="Fonts\FRIZQT__.TTF" text="VUHDO_I18N_PANEL" justifyH="LEFT">
+                  <Anchors>
+                    <Anchor point="TOPLEFT" />
+                    <Anchor point="BOTTOMRIGHT" />
+                  </Anchors>
+                  <FontHeight>
+                    <AbsValue val="11" />
+                  </FontHeight>
+                  <Color r="1" g="0.82" b="0" />
+                  <Shadow>
+                    <Color r="0" g="0" b="0" />
+                    <Offset>
+                      <AbsDimension x="1" y="-1" />
+                    </Offset>
+                  </Shadow>
+                </FontString>
+              </Layer>
+            </Layers>
+          </Frame>
+        </Frames>
+      </Frame>
+
+      <Frame name="$parentButtonVSpacingLabel">
+        <Size>
+          <AbsDimension x="49" y="10" />
+        </Size>
+        <Anchors>
+          <Anchor point="TOPLEFT">
+            <Offset>
+              <AbsDimension x="240" y="-300" />
+            </Offset>
+          </Anchor>
+        </Anchors>
+        <Layers>
+          <Layer>
+            <FontString name="$parentLabel" font="Fonts\FRIZQT__.TTF" text="VUHDO_I18N_SPACING">
+              <Anchors>
+                <Anchor point="TOPLEFT" />
+                <Anchor point="BOTTOMRIGHT" />
+              </Anchors>
+              <FontHeight>
+                <AbsValue val="8" />
+              </FontHeight>
+              <Color r="1" g="0.82" b="0" />
+              <Shadow>
+                <Color r="0" g="0" b="0" />
+                <Offset>
+                  <AbsDimension x="1" y="-1" />
+                </Offset>
+              </Shadow>
+            </FontString>
+          </Layer>
+        </Layers>
+      </Frame>
+
+      <Frame name="$parentButtonVGapLabel">
+        <Size>
+          <AbsDimension x="41" y="10" />
+        </Size>
+        <Anchors>
+          <Anchor point="TOPLEFT">
+            <Offset>
+              <AbsDimension x="240" y="-202" />
+            </Offset>
+          </Anchor>
+        </Anchors>
+        <Layers>
+          <Layer>
+            <FontString name="$parentLabel" font="Fonts\FRIZQT__.TTF" text="VUHDO_I18N_GAP">
+              <Anchors>
+                <Anchor point="TOPLEFT" />
+                <Anchor point="BOTTOMRIGHT" />
+              </Anchors>
+              <FontHeight>
+                <AbsValue val="8" />
+              </FontHeight>
+              <Color r="1" g="0.82" b="0" />
+              <Shadow>
+                <Color r="0" g="0" b="0" />
+                <Offset>
+                  <AbsDimension x="1" y="-1" />
+                </Offset>
+              </Shadow>
+            </FontString>
+          </Layer>
+        </Layers>
+      </Frame>
+      <Frame name="$parentButtonHeightLabel">
+        <Size>
+          <AbsDimension x="59" y="18" />
+        </Size>
+        <Anchors>
+          <Anchor point="TOPLEFT">
+            <Offset>
+              <AbsDimension x="220" y="-180" />
+            </Offset>
+          </Anchor>
+        </Anchors>
+        <Layers>
+          <Layer>
+            <FontString name="$parentLabel" font="Fonts\FRIZQT__.TTF" text="VUHDO_I18N_BAR_HEIGHT" justifyH="LEFT">
+              <Anchors>
+                <Anchor point="TOPLEFT" />
+                <Anchor point="BOTTOMRIGHT" />
+              </Anchors>
+              <FontHeight>
+                <AbsValue val="8" />
+              </FontHeight>
+              <Color r="1" g="0.82" b="0" />
+              <Shadow>
+                <Color r="0" g="0" b="0" />
+                <Offset>
+                  <AbsDimension x="1" y="-1" />
+                </Offset>
+              </Shadow>
+            </FontString>
+          </Layer>
+        </Layers>
+      </Frame>
+
+      <Button name="$parentApplyAllButton" text="VUHDO_I18N_APPLY_TO_ALL_PANELS">
+        <Size>
+          <AbsDimension x="85" y="22" />
+        </Size>
+        <Anchors>
+          <Anchor point="TOPLEFT">
+            <Offset>
+              <AbsDimension x="20" y="-460" />
+            </Offset>
+          </Anchor>
+        </Anchors>
+        <NormalTexture file="Interface\Buttons\UI-Panel-Button-Up">
+          <TexCoords left="0" right="0.625" top="0" bottom="0.6875" />
+        </NormalTexture>
+        <PushedTexture file="Interface\Buttons\UI-Panel-Button-Down">
+          <TexCoords left="0" right="0.625" top="0" bottom="0.6875" />
+        </PushedTexture>
+        <DisabledTexture file="Interface\Buttons\UI-Panel-Button-Disabled">
+          <TexCoords left="0" right="0.625" top="0" bottom="0.6875" />
+        </DisabledTexture>
+        <HighlightTexture file="Interface\Buttons\UI-Panel-Button-Highlight" alphaMode="ADD">
+          <TexCoords left="0" right="0.625" top="0" bottom="0.6875" />
+        </HighlightTexture>
+        <ButtonText name="$parentText">
+          <FontHeight>
+            <AbsValue val="10" />
+          </FontHeight>
+        </ButtonText>
+        <NormalFont inherits="GameFontNormal" font="Fonts\FRIZQT__.TTF">
+          <FontHeight>
+            <AbsValue val="12" />
+          </FontHeight>
+          <Color r="1" g="0.82" b="0" />
+          <Shadow>
+            <Color r="0" g="0" b="0" />
+            <Offset>
+              <AbsDimension x="1" y="-1" />
+            </Offset>
+          </Shadow>
+        </NormalFont>
+        <HighlightFont inherits="GameFontHighlight" font="Fonts\FRIZQT__.TTF">
+          <FontHeight>
+            <AbsValue val="12" />
+          </FontHeight>
+          <Color r="1" g="1" b="1" />
+          <Shadow>
+            <Color r="0" g="0" b="0" />
+            <Offset>
+              <AbsDimension x="1" y="-1" />
+            </Offset>
+          </Shadow>
+        </HighlightFont>
+        <DisabledFont inherits="GameFontDisable" font="Fonts\FRIZQT__.TTF">
+          <FontHeight>
+            <AbsValue val="12" />
+          </FontHeight>
+          <Color r="0.4980392" g="0.4980392" b="0.4980392" />
+          <Shadow>
+            <Color r="0" g="0" b="0" />
+            <Offset>
+              <AbsDimension x="1" y="-1" />
+            </Offset>
+          </Shadow>
+        </DisabledFont>
+        <Scripts>
+          <OnClick>VUHDO_formButtonSizeApplyAllOnClick()</OnClick>
+        </Scripts>
+      </Button>
+
+      <Button name="$parentOkayButton" text="VUHDO_I18N_DONE">
+        <Size>
+          <AbsDimension x="80" y="22" />
+        </Size>
+        <Anchors>
+          <Anchor point="TOPLEFT">
+            <Offset>
+              <AbsDimension x="195" y="-460" />
+            </Offset>
+          </Anchor>
+        </Anchors>
+        <NormalTexture file="Interface\Buttons\UI-Panel-Button-Up">
+          <TexCoords left="0" right="0.625" top="0" bottom="0.6875" />
+        </NormalTexture>
+        <PushedTexture file="Interface\Buttons\UI-Panel-Button-Down">
+          <TexCoords left="0" right="0.625" top="0" bottom="0.6875" />
+        </PushedTexture>
+        <DisabledTexture file="Interface\Buttons\UI-Panel-Button-Disabled">
+          <TexCoords left="0" right="0.625" top="0" bottom="0.6875" />
+        </DisabledTexture>
+        <HighlightTexture file="Interface\Buttons\UI-Panel-Button-Highlight" alphaMode="ADD">
+          <TexCoords left="0" right="0.625" top="0" bottom="0.6875" />
+        </HighlightTexture>
+        <ButtonText name="$parentText">
+          <FontHeight>
+            <AbsValue val="10" />
+          </FontHeight>
+        </ButtonText>
+        <NormalFont inherits="GameFontNormal" font="Fonts\FRIZQT__.TTF">
+          <FontHeight>
+            <AbsValue val="12" />
+          </FontHeight>
+          <Color r="1" g="0.82" b="0" />
+          <Shadow>
+            <Color r="0" g="0" b="0" />
+            <Offset>
+              <AbsDimension x="1" y="-1" />
+            </Offset>
+          </Shadow>
+        </NormalFont>
+        <HighlightFont inherits="GameFontHighlight" font="Fonts\FRIZQT__.TTF">
+          <FontHeight>
+            <AbsValue val="12" />
+          </FontHeight>
+          <Color r="1" g="1" b="1" />
+          <Shadow>
+            <Color r="0" g="0" b="0" />
+            <Offset>
+              <AbsDimension x="1" y="-1" />
+            </Offset>
+          </Shadow>
+        </HighlightFont>
+        <DisabledFont inherits="GameFontDisable" font="Fonts\FRIZQT__.TTF">
+          <FontHeight>
+            <AbsValue val="12" />
+          </FontHeight>
+          <Color r="0.4980392" g="0.4980392" b="0.4980392" />
+          <Shadow>
+            <Color r="0" g="0" b="0" />
+            <Offset>
+              <AbsDimension x="1" y="-1" />
+            </Offset>
+          </Shadow>
+        </DisabledFont>
+        <Scripts>
+          <OnClick>VUHDO_formButtonSizeOkayOnClick(this:GetParent())</OnClick>
+        </Scripts>
+      </Button>
+
+      <Frame name="$parentButtonVSpacingSlider">
+        <Size>
+          <AbsDimension x="32" y="110" />
+        </Size>
+        <Anchors>
+          <Anchor point="TOPLEFT">
+            <Offset>
+              <AbsDimension x="243" y="-300" />
+            </Offset>
+          </Anchor>
+        </Anchors>
+        <Frames>
+          <Slider name="$parentSlider" enableMouse="true" minValue="0" maxValue="15" defaultValue="5" valueStep="1">
+            <Size>
+              <AbsDimension x="10" y="128" />
+            </Size>
+            <Anchors>
+              <Anchor point="TOP">
+                <Offset>
+                  <AbsDimension x="0" y="-12" />
+                </Offset>
+              </Anchor>
+              <Anchor point="BOTTOM">
+                <Offset>
+                  <AbsDimension x="0" y="12" />
+                </Offset>
+              </Anchor>
+            </Anchors>
+            <Backdrop bgFile="Interface\Buttons\UI-SliderBar-Background" edgeFile="Interface\Buttons\UI-SliderBar-Border" tile="true">
+              <BackgroundInsets>
+                <AbsInset left="6" right="6" top="3" bottom="3" />
+              </BackgroundInsets>
+              <TileSize>
+                <AbsValue val="8" />
+              </TileSize>
+              <EdgeSize>
+                <AbsValue val="8" />
+              </EdgeSize>
+            </Backdrop>
+            <ThumbTexture name="$parentThumb" file="Interface\Buttons\UI-SliderBar-Button-Vertical">
+              <Size>
+                <AbsDimension x="32" y="32" />
+              </Size>
+            </ThumbTexture>
+            <Scripts>
+               <OnValueChanged>VUHDO_buttonSizeVSpacingOnValueChanged(this)</OnValueChanged>
+               <OnMouseUp>VUHDO_buttonSizeVSpacingOnMouseUp(this)</OnMouseUp>
+            </Scripts>
+          </Slider>
+        </Frames>
+      </Frame>
+
+      <Frame name="$parentButtonVGapSlider">
+        <Size>
+          <AbsDimension x="32" y="110" />
+        </Size>
+        <Anchors>
+          <Anchor point="TOPLEFT">
+            <Offset>
+              <AbsDimension x="243" y="-202" />
+            </Offset>
+          </Anchor>
+        </Anchors>
+        <Frames>
+          <Slider name="$parentSlider" enableMouse="true" minValue="0" maxValue="15" defaultValue="5" valueStep="1">
+            <Size>
+              <AbsDimension x="10" y="128" />
+            </Size>
+            <Anchors>
+              <Anchor point="TOP">
+                <Offset>
+                  <AbsDimension x="0" y="-12" />
+                </Offset>
+              </Anchor>
+              <Anchor point="BOTTOM">
+                <Offset>
+                  <AbsDimension x="0" y="12" />
+                </Offset>
+              </Anchor>
+            </Anchors>
+            <Backdrop bgFile="Interface\Buttons\UI-SliderBar-Background" edgeFile="Interface\Buttons\UI-SliderBar-Border" tile="true">
+              <BackgroundInsets>
+                <AbsInset left="6" right="6" top="3" bottom="3" />
+              </BackgroundInsets>
+              <TileSize>
+                <AbsValue val="8" />
+              </TileSize>
+              <EdgeSize>
+                <AbsValue val="8" />
+              </EdgeSize>
+            </Backdrop>
+            <ThumbTexture name="$parentThumb" file="Interface\Buttons\UI-SliderBar-Button-Vertical">
+              <Size>
+                <AbsDimension x="32" y="32" />
+              </Size>
+            </ThumbTexture>
+            <Scripts>
+               <OnValueChanged>VUHDO_buttonSizeVGapOnValueChanged(this)</OnValueChanged>
+               <OnMouseUp>VUHDO_buttonSizeVGapOnMouseUp(this)</OnMouseUp>
+            </Scripts>
+
+          </Slider>
+        </Frames>
+      </Frame>
+
+      <Frame name="$parentButtonHGapSlider">
+        <Size>
+          <AbsDimension x="110" y="42" />
+        </Size>
+        <Anchors>
+          <Anchor point="TOPLEFT">
+            <Offset>
+              <AbsDimension x="23" y="-385" />
+            </Offset>
+          </Anchor>
+        </Anchors>
+        <Frames>
+          <Slider name="$parentSlider" enableMouse="true" minValue="0" maxValue="15" defaultValue="5" valueStep="1" orientation="HORIZONTAL">
+            <Size>
+              <AbsDimension x="128" y="17" />
+            </Size>
+            <Anchors>
+              <Anchor point="LEFT" />
+              <Anchor point="RIGHT" />
+            </Anchors>
+            <Backdrop bgFile="Interface\Buttons\UI-SliderBar-Background" edgeFile="Interface\Buttons\UI-SliderBar-Border" tile="true">
+              <BackgroundInsets>
+                <AbsInset left="3" right="3" top="6" bottom="6" />
+              </BackgroundInsets>
+              <TileSize>
+                <AbsValue val="8" />
+              </TileSize>
+              <EdgeSize>
+                <AbsValue val="8" />
+              </EdgeSize>
+            </Backdrop>
+            <Layers>
+              <Layer>
+                <FontString name="$parentTitle" font="Fonts\FRIZQT__.TTF" text="VUHDO_I18N_GAP">
+                  <Anchors>
+                    <Anchor point="BOTTOM" relativePoint="TOP" />
+                  </Anchors>
+                  <FontHeight>
+                    <AbsValue val="10" />
+                  </FontHeight>
+                  <Color r="1" g="0.82" b="0" />
+                  <Shadow>
+                    <Color r="0" g="0" b="0" />
+                    <Offset>
+                      <AbsDimension x="1" y="-1" />
+                    </Offset>
+                  </Shadow>
+                </FontString>
+              </Layer>
+            </Layers>
+            <ThumbTexture name="$parentThumb" file="Interface\Buttons\UI-SliderBar-Button-Horizontal">
+              <Size>
+                <AbsDimension x="32" y="32" />
+              </Size>
+            </ThumbTexture>
+            <Scripts>
+               <OnValueChanged>VUHDO_buttonSizeHGapOnValueChanged(this)</OnValueChanged>
+               <OnMouseUp>VUHDO_buttonSizeHGapOnMouseUp(this)</OnMouseUp>
+            </Scripts>
+          </Slider>
+        </Frames>
+      </Frame>
+
+      <Frame name="$parentButtonHSpacingSlider">
+        <Size>
+          <AbsDimension x="110" y="42" />
+        </Size>
+        <Anchors>
+          <Anchor point="TOPLEFT">
+            <Offset>
+              <AbsDimension x="145" y="-385" />
+            </Offset>
+          </Anchor>
+        </Anchors>
+        <Frames>
+          <Slider name="$parentSlider" enableMouse="true" minValue="0" maxValue="30" defaultValue="5" valueStep="1" orientation="HORIZONTAL">
+            <Size>
+              <AbsDimension x="128" y="17" />
+            </Size>
+            <Anchors>
+              <Anchor point="LEFT" />
+              <Anchor point="RIGHT" />
+            </Anchors>
+            <Backdrop bgFile="Interface\Buttons\UI-SliderBar-Background" edgeFile="Interface\Buttons\UI-SliderBar-Border" tile="true">
+              <BackgroundInsets>
+                <AbsInset left="3" right="3" top="6" bottom="6" />
+              </BackgroundInsets>
+              <TileSize>
+                <AbsValue val="8" />
+              </TileSize>
+              <EdgeSize>
+                <AbsValue val="8" />
+              </EdgeSize>
+            </Backdrop>
+            <Layers>
+              <Layer>
+                <FontString name="$parentTitle" font="Fonts\FRIZQT__.TTF" text="VUHDO_I18N_SPACING">
+                  <Anchors>
+                    <Anchor point="BOTTOM" relativePoint="TOP" />
+                  </Anchors>
+                  <FontHeight>
+                    <AbsValue val="10" />
+                  </FontHeight>
+                  <Color r="1" g="0.82" b="0" />
+                  <Shadow>
+                    <Color r="0" g="0" b="0" />
+                    <Offset>
+                      <AbsDimension x="1" y="-1" />
+                    </Offset>
+                  </Shadow>
+                </FontString>
+              </Layer>
+            </Layers>
+            <ThumbTexture name="$parentThumb" file="Interface\Buttons\UI-SliderBar-Button-Horizontal">
+              <Size>
+                <AbsDimension x="32" y="32" />
+              </Size>
+            </ThumbTexture>
+            <Scripts>
+               <OnValueChanged>VUHDO_buttonSizeHSpacingOnValueChanged(this)</OnValueChanged>
+               <OnMouseUp>VUHDO_buttonSizeHSpacingOnMouseUp(this)</OnMouseUp>
+            </Scripts>
+          </Slider>
+        </Frames>
+      </Frame>
+
+      <CheckButton name="$parentTargetsCheckButton">
+            <Size>
+              <AbsDimension x="32" y="32" />
+            </Size>
+            <Anchors>
+              <Anchor point="TOPLEFT">
+                <Offset>
+                  <AbsDimension x="15" y="-422" />
+                </Offset>
+              </Anchor>
+            </Anchors>
+            <Layers>
+              <Layer>
+                <FontString name="$parentText" font="Fonts\FRIZQT__.TTF" text="VUHDO_I18N_TARGETS">
+                  <Anchors>
+                    <Anchor point="LEFT" relativePoint="RIGHT">
+                      <Offset>
+                        <AbsDimension x="-2" y="0" />
+                      </Offset>
+                    </Anchor>
+                  </Anchors>
+                  <FontHeight>
+                    <AbsValue val="10" />
+                  </FontHeight>
+                  <Color r="1" g="0.82" b="0" />
+                  <Shadow>
+                    <Color r="0" g="0" b="0" />
+                    <Offset>
+                      <AbsDimension x="1" y="-1" />
+                    </Offset>
+                  </Shadow>
+                </FontString>
+              </Layer>
+            </Layers>
+            <NormalTexture file="Interface\Buttons\UI-CheckBox-Up" />
+            <PushedTexture file="Interface\Buttons\UI-CheckBox-Down" />
+            <HighlightTexture file="Interface\Buttons\UI-CheckBox-Highlight" alphaMode="ADD" />
+            <CheckedTexture file="Interface\Buttons\UI-CheckBox-Check" />
+            <DisabledCheckedTexture file="Interface\Buttons\UI-CheckBox-Check-Disabled" />
+						<Scripts>
+              <OnClick>VUHDO_formButtonSizeShowTargetsOnClick(this)</OnClick>
+            </Scripts>
+
+      </CheckButton>
+
+
+      <Frame name="$parentTargetWidthSlider">
+        <Size>
+          <AbsDimension x="110" y="42" />
+        </Size>
+        <Anchors>
+          <Anchor point="TOPLEFT">
+            <Offset>
+              <AbsDimension x="93" y="-420" />
+            </Offset>
+          </Anchor>
+        </Anchors>
+        <Frames>
+          <Slider name="$parentSlider" enableMouse="true" minValue="10" maxValue="100" defaultValue="3" valueStep="1" orientation="HORIZONTAL">
+            <Size>
+              <AbsDimension x="128" y="17" />
+            </Size>
+            <Anchors>
+              <Anchor point="LEFT" />
+              <Anchor point="RIGHT" />
+            </Anchors>
+            <Backdrop bgFile="Interface\Buttons\UI-SliderBar-Background" edgeFile="Interface\Buttons\UI-SliderBar-Border" tile="true">
+              <BackgroundInsets>
+                <AbsInset left="3" right="3" top="6" bottom="6" />
+              </BackgroundInsets>
+              <TileSize>
+                <AbsValue val="8" />
+              </TileSize>
+              <EdgeSize>
+                <AbsValue val="8" />
+              </EdgeSize>
+            </Backdrop>
+            <Layers>
+              <Layer>
+                <FontString name="$parentTitle" font="Fonts\FRIZQT__.TTF" text="VUHDO_I18N_TARGET_WIDTH">
+                  <Anchors>
+                    <Anchor point="BOTTOM" relativePoint="TOP" />
+                  </Anchors>
+                  <FontHeight>
+                    <AbsValue val="10" />
+                  </FontHeight>
+                  <Color r="1" g="0.82" b="0" />
+                  <Shadow>
+                    <Color r="0" g="0" b="0" />
+                    <Offset>
+                      <AbsDimension x="1" y="-1" />
+                    </Offset>
+                  </Shadow>
+                </FontString>
+              </Layer>
+            </Layers>
+            <ThumbTexture name="$parentThumb" file="Interface\Buttons\UI-SliderBar-Button-Horizontal">
+              <Size>
+                <AbsDimension x="32" y="32" />
+              </Size>
+            </ThumbTexture>
+            <Scripts>
+               <OnValueChanged>VUHDO_TargetWidthSliderOnValueChanged(this)</OnValueChanged>
+               <OnMouseUp>VUHDO_TargetWidthSliderOnMouseUp(this)</OnMouseUp>
+            </Scripts>
+          </Slider>
+        </Frames>
+      </Frame>
+
+      <Frame name="$parentTargetSpacingSlider">
+        <Size>
+          <AbsDimension x="60" y="42" />
+        </Size>
+        <Anchors>
+          <Anchor point="TOPLEFT">
+            <Offset>
+              <AbsDimension x="215" y="-420" />
+            </Offset>
+          </Anchor>
+        </Anchors>
+        <Frames>
+          <Slider name="$parentSlider" enableMouse="true" minValue="0" maxValue="10" defaultValue="2" valueStep="1" orientation="HORIZONTAL">
+            <Size>
+              <AbsDimension x="128" y="17" />
+            </Size>
+            <Anchors>
+              <Anchor point="LEFT" />
+              <Anchor point="RIGHT" />
+            </Anchors>
+            <Backdrop bgFile="Interface\Buttons\UI-SliderBar-Background" edgeFile="Interface\Buttons\UI-SliderBar-Border" tile="true">
+              <BackgroundInsets>
+                <AbsInset left="3" right="3" top="6" bottom="6" />
+              </BackgroundInsets>
+              <TileSize>
+                <AbsValue val="8" />
+              </TileSize>
+              <EdgeSize>
+                <AbsValue val="8" />
+              </EdgeSize>
+            </Backdrop>
+            <Layers>
+              <Layer>
+                <FontString name="$parentTitle" font="Fonts\FRIZQT__.TTF" text="VUHDO_I18N_SPACING">
+                  <Anchors>
+                    <Anchor point="BOTTOM" relativePoint="TOP" />
+                  </Anchors>
+                  <FontHeight>
+                    <AbsValue val="10" />
+                  </FontHeight>
+                  <Color r="1" g="0.82" b="0" />
+                  <Shadow>
+                    <Color r="0" g="0" b="0" />
+                    <Offset>
+                      <AbsDimension x="1" y="-1" />
+                    </Offset>
+                  </Shadow>
+                </FontString>
+              </Layer>
+            </Layers>
+            <ThumbTexture name="$parentThumb" file="Interface\Buttons\UI-SliderBar-Button-Horizontal">
+              <Size>
+                <AbsDimension x="32" y="32" />
+              </Size>
+            </ThumbTexture>
+            <Scripts>
+               <OnValueChanged>VUHDO_TargetSpacingSliderOnValueChanged(this)</OnValueChanged>
+               <OnMouseUp>VUHDO_TargetSpacingSliderOnMouseUp(this)</OnMouseUp>
+            </Scripts>
+          </Slider>
+        </Frames>
+      </Frame>
+
+      <Button name="$parentButtonTextureComboBox">
+        <Size>
+          <AbsDimension x="150" y="32" />
+        </Size>
+        <Anchors>
+          <Anchor point="TOPLEFT">
+            <Offset>
+              <AbsDimension x="0" y="-35" />
+            </Offset>
+          </Anchor>
+        </Anchors>
+        <Layers>
+          <Layer>
+            <Texture name="$parentLeft" file="Interface\Glues\CharacterCreate\CharacterCreate-LabelFrame">
+              <Size>
+                <AbsDimension x="25" y="64" />
+              </Size>
+              <Anchors>
+                <Anchor point="TOPLEFT">
+                  <Offset>
+                    <AbsDimension x="0" y="17" />
+                  </Offset>
+                </Anchor>
+              </Anchors>
+              <TexCoords left="0" right="0.1953125" top="0" bottom="1" />
+            </Texture>
+            <Texture name="$parentMiddle" file="Interface\Glues\CharacterCreate\CharacterCreate-LabelFrame">
+              <Size>
+                <AbsDimension x="135" y="64" />
+              </Size>
+              <Anchors>
+                <Anchor point="LEFT" relativeTo="$parentLeft" relativePoint="RIGHT" />
+              </Anchors>
+              <TexCoords left="0.1953125" right="0.8046875" top="0" bottom="1" />
+            </Texture>
+            <Texture name="$parentRight" file="Interface\Glues\CharacterCreate\CharacterCreate-LabelFrame">
+              <Size>
+                <AbsDimension x="25" y="64" />
+              </Size>
+              <Anchors>
+                <Anchor point="LEFT" relativeTo="$parentMiddle" relativePoint="RIGHT" />
+              </Anchors>
+              <TexCoords left="0.8046875" right="1" top="0" bottom="1" />
+            </Texture>
+            <FontString name="$parentText" font="Fonts\FRIZQT__.TTF" text="VUHDO_I18N_BAR_TEXTURE" justifyH="RIGHT">
+              <Size>
+                <AbsDimension x="125" y="10" />
+              </Size>
+              <Anchors>
+                <Anchor point="RIGHT" relativeTo="$parentRight">
+                  <Offset>
+                    <AbsDimension x="-43" y="2" />
+                  </Offset>
+                </Anchor>
+              </Anchors>
+              <FontHeight>
+                <AbsValue val="10" />
+              </FontHeight>
+              <Color r="1" g="1" b="1" />
+              <Shadow>
+                <Color r="0" g="0" b="0" />
+                <Offset>
+                  <AbsDimension x="1" y="-1" />
+                </Offset>
+              </Shadow>
+            </FontString>
+          </Layer>
+        </Layers>
+        <Frames>
+          <Button name="$parentButton">
+            <Size>
+              <AbsDimension x="24" y="24" />
+            </Size>
+            <Anchors>
+              <Anchor point="TOPRIGHT" relativeTo="$parentRight">
+                <Offset>
+                  <AbsDimension x="-16" y="-18" />
+                </Offset>
+              </Anchor>
+            </Anchors>
+            <Scripts>
+              <OnClick>
+						ToggleDropDownMenu();
+						PlaySound("igMainMenuOptionCheckBoxOn");
+					</OnClick>
+            </Scripts>
+            <NormalTexture name="$parentNormalTexture" file="Interface\ChatFrame\UI-ChatIcon-ScrollDown-Up">
+              <Size>
+                <AbsDimension x="24" y="24" />
+              </Size>
+              <Anchors>
+                <Anchor point="RIGHT" />
+              </Anchors>
+            </NormalTexture>
+            <PushedTexture name="$parentPushedTexture" file="Interface\ChatFrame\UI-ChatIcon-ScrollDown-Down">
+              <Size>
+                <AbsDimension x="24" y="24" />
+              </Size>
+              <Anchors>
+                <Anchor point="RIGHT" />
+              </Anchors>
+            </PushedTexture>
+            <DisabledTexture name="$parentDisabledTexture" file="Interface\ChatFrame\UI-ChatIcon-ScrollDown-Disabled">
+              <Size>
+                <AbsDimension x="24" y="24" />
+              </Size>
+              <Anchors>
+                <Anchor point="RIGHT" />
+              </Anchors>
+            </DisabledTexture>
+            <HighlightTexture name="$parentHighlightTexture" file="Interface\Buttons\UI-Common-MouseHilight" alphaMode="ADD">
+              <Size>
+                <AbsDimension x="24" y="24" />
+              </Size>
+              <Anchors>
+                <Anchor point="RIGHT" />
+              </Anchors>
+            </HighlightTexture>
+          </Button>
+        </Frames>
+        <Scripts>
+              <OnLoad>
+              local cb_init_fn = function()
+                local info
+                info = {}
+                info.text = "" .. VUHDO_TEXTURE_1;
+                info.value = 1;
+                info.owner = this:GetParent();
+                info.func = function() UIDropDownMenu_SetSelectedValue(VuhDoFormButtonSizeButtonTextureComboBox, 1); VUHDO_panelSizeOnSelectionChanged(this) end
+                UIDropDownMenu_AddButton(info);
+
+                info = {}
+                info.text = "" .. VUHDO_TEXTURE_2;
+                info.value = 2;
+                info.owner = this:GetParent();
+                info.func = function() UIDropDownMenu_SetSelectedValue(VuhDoFormButtonSizeButtonTextureComboBox, 2); VUHDO_panelSizeOnSelectionChanged(this) end
+                UIDropDownMenu_AddButton(info);
+
+                info = {}
+                info.text = "" .. VUHDO_TEXTURE_3;
+                info.value = 3;
+                info.owner = this:GetParent();
+                info.func = function() UIDropDownMenu_SetSelectedValue(VuhDoFormButtonSizeButtonTextureComboBox, 3); VUHDO_panelSizeOnSelectionChanged(this) end
+                UIDropDownMenu_AddButton(info);
+
+                info = {}
+                info.text = "" .. VUHDO_TEXTURE_4;
+                info.value = 4;
+                info.owner = this:GetParent();
+                info.func = function() UIDropDownMenu_SetSelectedValue(VuhDoFormButtonSizeButtonTextureComboBox, 4); VUHDO_panelSizeOnSelectionChanged(this) end
+                UIDropDownMenu_AddButton(info);
+
+                info = {}
+                info.text = "" .. VUHDO_TEXTURE_5;
+                info.value = 5;
+                info.owner = this:GetParent();
+                info.func = function() UIDropDownMenu_SetSelectedValue(VuhDoFormButtonSizeButtonTextureComboBox, 5); VUHDO_panelSizeOnSelectionChanged(this) end
+                UIDropDownMenu_AddButton(info);
+
+                info = {}
+                info.text = "" .. VUHDO_TEXTURE_6;
+                info.value = 6;
+                info.owner = this:GetParent();
+                info.func = function() UIDropDownMenu_SetSelectedValue(VuhDoFormButtonSizeButtonTextureComboBox, 6); VUHDO_panelSizeOnSelectionChanged(this) end
+                UIDropDownMenu_AddButton(info);
+
+                info = {}
+                info.text = "" .. VUHDO_TEXTURE_7;
+                info.value = 7;
+                info.owner = this:GetParent();
+                info.func = function() UIDropDownMenu_SetSelectedValue(VuhDoFormButtonSizeButtonTextureComboBox, 7); VUHDO_panelSizeOnSelectionChanged(this) end
+                UIDropDownMenu_AddButton(info);
+
+                info = {}
+                info.text = "" .. VUHDO_TEXTURE_8;
+                info.value = 8;
+                info.owner = this:GetParent();
+                info.func = function() UIDropDownMenu_SetSelectedValue(VuhDoFormButtonSizeButtonTextureComboBox, 8); VUHDO_panelSizeOnSelectionChanged(this) end
+                UIDropDownMenu_AddButton(info);
+
+                info = {}
+                info.text = "" .. VUHDO_TEXTURE_9;
+                info.value = 9;
+                info.owner = this:GetParent();
+                info.func = function() UIDropDownMenu_SetSelectedValue(VuhDoFormButtonSizeButtonTextureComboBox, 9); VUHDO_panelSizeOnSelectionChanged(this) end
+                UIDropDownMenu_AddButton(info);
+
+                info = {}
+                info.text = "" .. VUHDO_TEXTURE_10;
+                info.value = 10;
+                info.owner = this:GetParent();
+                info.func = function() UIDropDownMenu_SetSelectedValue(VuhDoFormButtonSizeButtonTextureComboBox, 10); VUHDO_panelSizeOnSelectionChanged(this) end
+                UIDropDownMenu_AddButton(info);
+
+                info = {}
+                info.text = "" .. VUHDO_TEXTURE_11;
+                info.value = 11;
+                info.owner = this:GetParent();
+                info.func = function() UIDropDownMenu_SetSelectedValue(VuhDoFormButtonSizeButtonTextureComboBox, 11); VUHDO_panelSizeOnSelectionChanged(this) end
+                UIDropDownMenu_AddButton(info);
+
+                info = {}
+                info.text = "" .. VUHDO_TEXTURE_12;
+                info.value = 12;
+                info.owner = this:GetParent();
+                info.func = function() UIDropDownMenu_SetSelectedValue(VuhDoFormButtonSizeButtonTextureComboBox, 12); VUHDO_panelSizeOnSelectionChanged(this) end
+                UIDropDownMenu_AddButton(info);
+
+                info = {}
+                info.text = "" .. VUHDO_TEXTURE_13;
+                info.value = 13;
+                info.owner = this:GetParent();
+                info.func = function() UIDropDownMenu_SetSelectedValue(VuhDoFormButtonSizeButtonTextureComboBox, 13); VUHDO_panelSizeOnSelectionChanged(this) end
+                UIDropDownMenu_AddButton(info);
+
+                info = {}
+                info.text = "" .. VUHDO_TEXTURE_14;
+                info.value = 14;
+                info.owner = this:GetParent();
+                info.func = function() UIDropDownMenu_SetSelectedValue(VuhDoFormButtonSizeButtonTextureComboBox, 14); VUHDO_panelSizeOnSelectionChanged(this) end
+                UIDropDownMenu_AddButton(info);
+
+                info = {}
+                info.text = "" .. VUHDO_TEXTURE_15;
+                info.value = 15;
+                info.owner = this:GetParent();
+                info.func = function() UIDropDownMenu_SetSelectedValue(VuhDoFormButtonSizeButtonTextureComboBox, 15); VUHDO_panelSizeOnSelectionChanged(this) end
+                UIDropDownMenu_AddButton(info);
+
+                info = {}
+                info.text = "" .. VUHDO_TEXTURE_16;
+                info.value = 16;
+                info.owner = this:GetParent();
+                info.func = function() UIDropDownMenu_SetSelectedValue(VuhDoFormButtonSizeButtonTextureComboBox, 16); VUHDO_panelSizeOnSelectionChanged(this) end
+                UIDropDownMenu_AddButton(info);
+
+                info = {}
+                info.text = "" .. VUHDO_TEXTURE_17;
+                info.value = 17;
+                info.owner = this:GetParent();
+                info.func = function() UIDropDownMenu_SetSelectedValue(VuhDoFormButtonSizeButtonTextureComboBox, 17); VUHDO_panelSizeOnSelectionChanged(this) end
+                UIDropDownMenu_AddButton(info);
+
+                info = {}
+                info.text = "" .. VUHDO_TEXTURE_18;
+                info.value = 18;
+                info.owner = this:GetParent();
+                info.func = function() UIDropDownMenu_SetSelectedValue(VuhDoFormButtonSizeButtonTextureComboBox, 18); VUHDO_panelSizeOnSelectionChanged(this) end
+                UIDropDownMenu_AddButton(info);
+
+              end
+              UIDropDownMenu_Initialize(this, cb_init_fn)
+              </OnLoad>
+
+          <OnHide>CloseDropDownMenus();</OnHide>
+        </Scripts>
+      </Button>
+
+      <Frame name="$parentButtonHeightSlider">
+        <Size>
+          <AbsDimension x="32" y="184" />
+        </Size>
+        <Anchors>
+          <Anchor point="TOPLEFT">
+            <Offset>
+              <AbsDimension x="215" y="-182" />
+            </Offset>
+          </Anchor>
+        </Anchors>
+        <Frames>
+          <Slider name="$parentSlider" enableMouse="true" minValue="10" maxValue="50" defaultValue="0" valueStep="1">
+            <Size>
+              <AbsDimension x="10" y="128" />
+            </Size>
+            <Anchors>
+              <Anchor point="TOP">
+                <Offset>
+                  <AbsDimension x="0" y="-12" />
+                </Offset>
+              </Anchor>
+              <Anchor point="BOTTOM">
+                <Offset>
+                  <AbsDimension x="0" y="12" />
+                </Offset>
+              </Anchor>
+            </Anchors>
+            <Backdrop bgFile="Interface\Buttons\UI-SliderBar-Background" edgeFile="Interface\Buttons\UI-SliderBar-Border" tile="true">
+              <BackgroundInsets>
+                <AbsInset left="6" right="6" top="3" bottom="3" />
+              </BackgroundInsets>
+              <TileSize>
+                <AbsValue val="8" />
+              </TileSize>
+              <EdgeSize>
+                <AbsValue val="8" />
+              </EdgeSize>
+            </Backdrop>
+            <ThumbTexture name="$parentThumb" file="Interface\Buttons\UI-SliderBar-Button-Vertical">
+              <Size>
+                <AbsDimension x="32" y="32" />
+              </Size>
+            </ThumbTexture>
+            <Scripts>
+               <OnValueChanged>VUHDO_buttonSizeButtonHeightOnValueChanged(this)</OnValueChanged>
+               <OnMouseUp>VUHDO_buttonSizeButtonHeightOnMouseUp(this)</OnMouseUp>
+            </Scripts>
+
+          </Slider>
+        </Frames>
+      </Frame>
+
+
+
+      <Frame name="$parentManaBarPanel" inherits="OptionFrameBoxTemplate">
+        <Size>
+          <AbsDimension x="115" y="82" />
+        </Size>
+        <Anchors>
+          <Anchor point="TOPLEFT">
+            <Offset>
+              <AbsDimension x="170" y="-100" />
+            </Offset>
+          </Anchor>
+        </Anchors>
+        <Backdrop bgFile="Interface\Tooltips\UI-Tooltip-Background" edgeFile="Interface\Tooltips\UI-Tooltip-Border" tile="true">
+          <BackgroundInsets>
+            <AbsInset left="5" right="5" top="5" bottom="5" />
+          </BackgroundInsets>
+          <TileSize>
+            <AbsValue val="16" />
+          </TileSize>
+          <EdgeSize>
+            <AbsValue val="16" />
+          </EdgeSize>
+        </Backdrop>
+        <Frames>
+          <Frame name="$parentManaBarHeightSlider">
+            <Size>
+              <AbsDimension x="24" y="80" />
+            </Size>
+            <Anchors>
+              <Anchor point="TOPLEFT">
+                <Offset>
+                  <AbsDimension x="78" y="-5" />
+                </Offset>
+              </Anchor>
+            </Anchors>
+            <Frames>
+              <Slider name="$parentSlider" enableMouse="true" minValue="1" maxValue="20" defaultValue="0" valueStep="1">
+                <Size>
+                  <AbsDimension x="10" y="128" />
+                </Size>
+                <Anchors>
+                  <Anchor point="TOP">
+                    <Offset>
+                      <AbsDimension x="0" y="-12" />
+                    </Offset>
+                  </Anchor>
+                  <Anchor point="BOTTOM">
+                    <Offset>
+                      <AbsDimension x="0" y="12" />
+                    </Offset>
+                  </Anchor>
+                </Anchors>
+                <Backdrop bgFile="Interface\Buttons\UI-SliderBar-Background" edgeFile="Interface\Buttons\UI-SliderBar-Border" tile="true">
+                  <BackgroundInsets>
+                    <AbsInset left="6" right="6" top="3" bottom="3" />
+                  </BackgroundInsets>
+                  <TileSize>
+                    <AbsValue val="8" />
+                  </TileSize>
+                  <EdgeSize>
+                    <AbsValue val="8" />
+                  </EdgeSize>
+                </Backdrop>
+                <ThumbTexture name="$parentThumb" file="Interface\Buttons\UI-SliderBar-Button-Vertical">
+                  <Size>
+                    <AbsDimension x="32" y="32" />
+                  </Size>
+                </ThumbTexture>
+		            <Scripts>
+    	           <OnValueChanged>VUHDO_buttonSizeManaHeightOnValueChanged(this)</OnValueChanged>
+      	         <OnMouseUp>VUHDO_buttonSizeManaHeightOnMouseUp(this)</OnMouseUp>
+        	    </Scripts>
+              </Slider>
+            </Frames>
+          </Frame>
+
+          <Frame name="$parentManaBarLabel">
+            <Size>
+              <AbsDimension x="60" y="18" />
+            </Size>
+            <Anchors>
+              <Anchor point="TOPLEFT">
+                <Offset>
+                  <AbsDimension x="10" y="-3" />
+                </Offset>
+              </Anchor>
+            </Anchors>
+            <Layers>
+              <Layer>
+                <FontString name="$parentLabel" font="Fonts\FRIZQT__.TTF" text="VUHDO_I18N_MANA" justifyH="LEFT">
+                  <Anchors>
+                    <Anchor point="TOPLEFT" />
+                    <Anchor point="BOTTOMRIGHT" />
+                  </Anchors>
+                  <FontHeight>
+                    <AbsValue val="11" />
+                  </FontHeight>
+                  <Color r="1" g="0.82" b="0" />
+                  <Shadow>
+                    <Color r="0" g="0" b="0" />
+                    <Offset>
+                      <AbsDimension x="1" y="-1" />
+                    </Offset>
+                  </Shadow>
+                </FontString>
+              </Layer>
+            </Layers>
+          </Frame>
+
+          <CheckButton name="$parentManaBarCheckButton">
+            <Size>
+              <AbsDimension x="32" y="32" />
+            </Size>
+            <Anchors>
+              <Anchor point="TOPLEFT">
+                <Offset>
+                  <AbsDimension x="5" y="-18" />
+                </Offset>
+              </Anchor>
+            </Anchors>
+            <Layers>
+              <Layer>
+                <FontString name="$parentText" font="Fonts\FRIZQT__.TTF" text="VUHDO_I18N_SHOW">
+                  <Anchors>
+                    <Anchor point="LEFT" relativePoint="RIGHT">
+                      <Offset>
+                        <AbsDimension x="-2" y="0" />
+                      </Offset>
+                    </Anchor>
+                  </Anchors>
+                  <FontHeight>
+                    <AbsValue val="10" />
+                  </FontHeight>
+                  <Color r="1" g="0.82" b="0" />
+                  <Shadow>
+                    <Color r="0" g="0" b="0" />
+                    <Offset>
+                      <AbsDimension x="1" y="-1" />
+                    </Offset>
+                  </Shadow>
+                </FontString>
+              </Layer>
+            </Layers>
+            <NormalTexture file="Interface\Buttons\UI-CheckBox-Up" />
+            <PushedTexture file="Interface\Buttons\UI-CheckBox-Down" />
+            <HighlightTexture file="Interface\Buttons\UI-CheckBox-Highlight" alphaMode="ADD" />
+            <CheckedTexture file="Interface\Buttons\UI-CheckBox-Check" />
+            <DisabledCheckedTexture file="Interface\Buttons\UI-CheckBox-Check-Disabled" />
+		        <Scripts>
+    		      <OnClick>VUHDO_formButtonSizeShowManaOnClick(this)</OnClick>
+        		</Scripts>
+
+          </CheckButton>
+
+          <Frame name="$parentManaBarHeightLabe">
+            <Size>
+              <AbsDimension x="43" y="10" />
+            </Size>
+            <Anchors>
+              <Anchor point="TOPLEFT">
+                <Offset>
+                  <AbsDimension x="76" y="-5" />
+                </Offset>
+              </Anchor>
+            </Anchors>
+            <Layers>
+              <Layer>
+                <FontString name="$parentLabel" font="Fonts\FRIZQT__.TTF" text="VUHDO_I18N_HEIGHT" justifyH="LEFT">
+                  <Anchors>
+                    <Anchor point="TOPLEFT" />
+                    <Anchor point="BOTTOMRIGHT" />
+                  </Anchors>
+                  <FontHeight>
+                    <AbsValue val="8" />
+                  </FontHeight>
+                  <Color r="1" g="0.82" b="0" />
+                  <Shadow>
+                    <Color r="0" g="0" b="0" />
+                    <Offset>
+                      <AbsDimension x="1" y="-1" />
+                    </Offset>
+                  </Shadow>
+                </FontString>
+              </Layer>
+            </Layers>
+          </Frame>
+        </Frames>
+      </Frame>
+      <Frame name="$parentButtonTextureLabel">
+        <Size>
+          <AbsDimension x="98" y="32" />
+        </Size>
+        <Anchors>
+          <Anchor point="TOPLEFT">
+            <Offset>
+              <AbsDimension x="18" y="-12" />
+            </Offset>
+          </Anchor>
+        </Anchors>
+        <Layers>
+          <Layer>
+            <FontString name="$parentLabel" font="Fonts\FRIZQT__.TTF" text="VUHDO_I18N_BAR_TEXTURE" justifyH="LEFT">
+              <Anchors>
+                <Anchor point="TOPLEFT" />
+                <Anchor point="BOTTOMRIGHT" />
+              </Anchors>
+              <FontHeight>
+                <AbsValue val="10" />
+              </FontHeight>
+              <Color r="1" g="0.82" b="0" />
+              <Shadow>
+                <Color r="0" g="0" b="0" />
+                <Offset>
+                  <AbsDimension x="1" y="-1" />
+                </Offset>
+              </Shadow>
+            </FontString>
+          </Layer>
+        </Layers>
+      </Frame>
+
+      <Frame name="$parentButtonWidthSlider">
+        <Size>
+          <AbsDimension x="190" y="42" />
+        </Size>
+        <Anchors>
+          <Anchor point="TOPLEFT">
+            <Offset>
+              <AbsDimension x="23" y="-355" />
+            </Offset>
+          </Anchor>
+        </Anchors>
+        <Frames>
+          <Slider name="$parentSlider" enableMouse="true" minValue="10" maxValue="200" defaultValue="80" valueStep="1" orientation="HORIZONTAL">
+            <Size>
+              <AbsDimension x="128" y="17" />
+            </Size>
+            <Anchors>
+              <Anchor point="LEFT" />
+              <Anchor point="RIGHT" />
+            </Anchors>
+            <Backdrop bgFile="Interface\Buttons\UI-SliderBar-Background" edgeFile="Interface\Buttons\UI-SliderBar-Border" tile="true">
+              <BackgroundInsets>
+                <AbsInset left="3" right="3" top="6" bottom="6" />
+              </BackgroundInsets>
+              <TileSize>
+                <AbsValue val="8" />
+              </TileSize>
+              <EdgeSize>
+                <AbsValue val="8" />
+              </EdgeSize>
+            </Backdrop>
+            <Layers>
+              <Layer>
+                <FontString name="$parentTitle" font="Fonts\FRIZQT__.TTF" text="VUHDO_I18N_BAR_WIDTH">
+                  <Anchors>
+                    <Anchor point="BOTTOM" relativePoint="TOP" />
+                  </Anchors>
+                  <FontHeight>
+                    <AbsValue val="10" />
+                  </FontHeight>
+                  <Color r="1" g="0.82" b="0" />
+                  <Shadow>
+                    <Color r="0" g="0" b="0" />
+                    <Offset>
+                      <AbsDimension x="1" y="-1" />
+                    </Offset>
+                  </Shadow>
+                </FontString>
+              </Layer>
+            </Layers>
+            <ThumbTexture name="$parentThumb" file="Interface\Buttons\UI-SliderBar-Button-Horizontal">
+              <Size>
+                <AbsDimension x="32" y="32" />
+              </Size>
+            </ThumbTexture>
+            <Scripts>
+               <OnValueChanged>VUHDO_buttonSizeButtonWidthOnValueChanged(this)</OnValueChanged>
+               <OnMouseUp>VUHDO_buttonSizeButtonWidthOnMouseUp(this)</OnMouseUp>
+            </Scripts>
+
+          </Slider>
+        </Frames>
+      </Frame>
+
+      <Frame name="$parentBarsPanel" inherits="OptionFrameBoxTemplate">
+        <Size>
+          <AbsDimension x="200" y="95" />
+        </Size>
+        <Anchors>
+          <Anchor point="TOPLEFT">
+            <Offset>
+              <AbsDimension x="18" y="-260" />
+            </Offset>
+          </Anchor>
+        </Anchors>
+        <Backdrop bgFile="Interface\Tooltips\UI-Tooltip-Background" edgeFile="Interface\Tooltips\UI-Tooltip-Border" tile="true">
+          <BackgroundInsets>
+            <AbsInset left="5" right="5" top="5" bottom="5" />
+          </BackgroundInsets>
+          <TileSize>
+            <AbsValue val="16" />
+          </TileSize>
+          <EdgeSize>
+            <AbsValue val="16" />
+          </EdgeSize>
+        </Backdrop>
+        <Frames>
+
+          <Frame name="$parentBarsLabel">
+            <Size>
+              <AbsDimension x="195" y="18" />
+            </Size>
+            <Anchors>
+              <Anchor point="TOPLEFT">
+                <Offset>
+                  <AbsDimension x="10" y="-3" />
+                </Offset>
+              </Anchor>
+            </Anchors>
+            <Layers>
+              <Layer>
+                <FontString name="$parentLabel" font="Fonts\FRIZQT__.TTF" text="VUHDO_I18N_BARS" justifyH="LEFT">
+                  <Anchors>
+                    <Anchor point="TOPLEFT" />
+                    <Anchor point="BOTTOMRIGHT" />
+                  </Anchors>
+                  <FontHeight>
+                    <AbsValue val="11" />
+                  </FontHeight>
+                  <Color r="1" g="0.82" b="0" />
+                  <Shadow>
+                    <Color r="0" g="0" b="0" />
+                    <Offset>
+                      <AbsDimension x="1" y="-1" />
+                    </Offset>
+                  </Shadow>
+                </FontString>
+              </Layer>
+            </Layers>
+          </Frame>
+
+          <Frame name="$parentTextColorTexture" inherits="VuhDoColorTextureTemplate2">
+        <Size>
+          <AbsDimension x="60" y="22" />
+        </Size>
+        <Anchors>
+          <Anchor point="TOPLEFT">
+            <Offset>
+              <AbsDimension x="10" y="-25" />
+            </Offset>
+          </Anchor>
+        </Anchors>
+          </Frame>
+
+          <CheckButton name="$parentClassColorsBarCheckButton">
+            <Size>
+              <AbsDimension x="32" y="32" />
+            </Size>
+            <Anchors>
+              <Anchor point="TOPLEFT">
+                <Offset>
+                  <AbsDimension x="80" y="-20" />
+                </Offset>
+              </Anchor>
+            </Anchors>
+            <Layers>
+              <Layer>
+                <FontString name="$parentText" font="Fonts\FRIZQT__.TTF" text="VUHDO_I18N_CLASS_COLORS">
+                  <Anchors>
+                    <Anchor point="LEFT" relativePoint="RIGHT">
+                      <Offset>
+                        <AbsDimension x="-2" y="0" />
+                      </Offset>
+                    </Anchor>
+                  </Anchors>
+                  <FontHeight>
+                    <AbsValue val="10" />
+                  </FontHeight>
+                  <Color r="1" g="0.82" b="0" />
+                  <Shadow>
+                    <Color r="0" g="0" b="0" />
+                    <Offset>
+                      <AbsDimension x="1" y="-1" />
+                    </Offset>
+                  </Shadow>
+                </FontString>
+              </Layer>
+            </Layers>
+            <NormalTexture file="Interface\Buttons\UI-CheckBox-Up" />
+            <PushedTexture file="Interface\Buttons\UI-CheckBox-Down" />
+            <HighlightTexture file="Interface\Buttons\UI-CheckBox-Highlight" alphaMode="ADD" />
+            <CheckedTexture file="Interface\Buttons\UI-CheckBox-Check" />
+            <DisabledCheckedTexture file="Interface\Buttons\UI-CheckBox-Check-Disabled" />
+		        <Scripts>
+    		      <OnClick>VUHDO_formButtonSizeClassColorsOnClick(this)</OnClick>
+        		</Scripts>
+
+          </CheckButton>
+
+      <Frame name="$parentFontSizeSlider">
+        <Size>
+          <AbsDimension x="175" y="36" />
+        </Size>
+        <Anchors>
+          <Anchor point="TOPLEFT">
+            <Offset>
+              <AbsDimension x="10" y="-55" />
+            </Offset>
+          </Anchor>
+        </Anchors>
+        <Frames>
+          <Slider name="$parentSlider" enableMouse="true" minValue="6" maxValue="20" defaultValue="0" valueStep="1" orientation="HORIZONTAL">
+            <Size>
+              <AbsDimension x="128" y="17" />
+            </Size>
+            <Anchors>
+              <Anchor point="LEFT" />
+              <Anchor point="RIGHT" />
+            </Anchors>
+            <Backdrop bgFile="Interface\Buttons\UI-SliderBar-Background" edgeFile="Interface\Buttons\UI-SliderBar-Border" tile="true">
+              <BackgroundInsets>
+                <AbsInset left="3" right="3" top="6" bottom="6" />
+              </BackgroundInsets>
+              <TileSize>
+                <AbsValue val="8" />
+              </TileSize>
+              <EdgeSize>
+                <AbsValue val="8" />
+              </EdgeSize>
+            </Backdrop>
+            <Layers>
+              <Layer>
+                <FontString name="$parentTitle" font="Fonts\FRIZQT__.TTF" text="VUHDO_I18N_FONT_SIZE">
+                  <Anchors>
+                    <Anchor point="BOTTOM" relativePoint="TOP" />
+                  </Anchors>
+                  <FontHeight>
+                    <AbsValue val="10" />
+                  </FontHeight>
+                  <Color r="1" g="0.82" b="0" />
+                  <Shadow>
+                    <Color r="0" g="0" b="0" />
+                    <Offset>
+                      <AbsDimension x="1" y="-1" />
+                    </Offset>
+                  </Shadow>
+                </FontString>
+              </Layer>
+            </Layers>
+            <ThumbTexture name="$parentThumb" file="Interface\Buttons\UI-SliderBar-Button-Horizontal">
+              <Size>
+                <AbsDimension x="32" y="32" />
+              </Size>
+            </ThumbTexture>
+            <Scripts>
+               <OnValueChanged>VUHDO_buttonSizeFontSizeOnValueChanged(this)</OnValueChanged>
+               <OnMouseUp>VUHDO_buttonSizeFontSizeOnMouseUp(this)</OnMouseUp>
+            </Scripts>
+
+          </Slider>
+        </Frames>
+      </Frame>
+
+
+        </Frames>
+      </Frame>
+
+      <Frame name="$parentHeaderPanel" inherits="OptionFrameBoxTemplate">
+        <Size>
+          <AbsDimension x="155" y="190" />
+        </Size>
+        <Anchors>
+          <Anchor point="TOPLEFT">
+            <Offset>
+              <AbsDimension x="15" y="-67" />
+            </Offset>
+          </Anchor>
+        </Anchors>
+        <Backdrop bgFile="Interface\Tooltips\UI-Tooltip-Background" edgeFile="Interface\Tooltips\UI-Tooltip-Border" tile="true">
+          <BackgroundInsets>
+            <AbsInset left="5" right="5" top="5" bottom="5" />
+          </BackgroundInsets>
+          <TileSize>
+            <AbsValue val="16" />
+          </TileSize>
+          <EdgeSize>
+            <AbsValue val="16" />
+          </EdgeSize>
+        </Backdrop>
+        <Frames>
+
+          <Frame name="$parentHeaderWidthSizeSlider">
+            <Size>
+              <AbsDimension x="125" y="36" />
+            </Size>
+            <Anchors>
+              <Anchor point="TOPLEFT">
+                <Offset>
+                  <AbsDimension x="14" y="-98" />
+                </Offset>
+              </Anchor>
+            </Anchors>
+            <Frames>
+              <Slider name="$parentSlider" enableMouse="true" minValue="0" maxValue="100" defaultValue="0" valueStep="5" orientation="HORIZONTAL">
+                <Size>
+                  <AbsDimension x="128" y="17" />
+                </Size>
+                <Anchors>
+                  <Anchor point="LEFT" />
+                  <Anchor point="RIGHT" />
+                </Anchors>
+                <Backdrop bgFile="Interface\Buttons\UI-SliderBar-Background" edgeFile="Interface\Buttons\UI-SliderBar-Border" tile="true">
+                  <BackgroundInsets>
+                    <AbsInset left="3" right="3" top="6" bottom="6" />
+                  </BackgroundInsets>
+                  <TileSize>
+                    <AbsValue val="8" />
+                  </TileSize>
+                  <EdgeSize>
+                    <AbsValue val="8" />
+                  </EdgeSize>
+                </Backdrop>
+                <Layers>
+                  <Layer>
+                    <FontString name="$parentTitle" font="Fonts\FRIZQT__.TTF" text="VUHDO_I18N_WIDTH">
+                      <Anchors>
+                        <Anchor point="BOTTOM" relativePoint="TOP" />
+                      </Anchors>
+                      <FontHeight>
+                        <AbsValue val="10" />
+                      </FontHeight>
+                      <Color r="1" g="0.82" b="0" />
+                      <Shadow>
+                        <Color r="0" g="0" b="0" />
+                        <Offset>
+                          <AbsDimension x="1" y="-1" />
+                        </Offset>
+                      </Shadow>
+                    </FontString>
+                  </Layer>
+                </Layers>
+                <ThumbTexture name="$parentThumb" file="Interface\Buttons\UI-SliderBar-Button-Horizontal">
+                  <Size>
+                    <AbsDimension x="32" y="32" />
+                  </Size>
+                </ThumbTexture>
+	              <Scripts>
+                  <OnValueChanged>VUHDO_buttonSizeHeaderWidthOnValueChanged(this)</OnValueChanged>
+                  <OnMouseUp>VUHDO_buttonSizeHeaderWidthOnMouseUp(this)</OnMouseUp>
+  	            </Scripts>
+
+              </Slider>
+            </Frames>
+
+          </Frame>
+
+          <Frame name="$parentHeaderFontSizeSlider">
+            <Size>
+              <AbsDimension x="125" y="36" />
+            </Size>
+            <Anchors>
+              <Anchor point="TOPLEFT">
+                <Offset>
+                  <AbsDimension x="14" y="-125" />
+                </Offset>
+              </Anchor>
+            </Anchors>
+            <Frames>
+              <Slider name="$parentSlider" enableMouse="true" minValue="6" maxValue="20" defaultValue="0" valueStep="1" orientation="HORIZONTAL">
+                <Size>
+                  <AbsDimension x="128" y="17" />
+                </Size>
+                <Anchors>
+                  <Anchor point="LEFT" />
+                  <Anchor point="RIGHT" />
+                </Anchors>
+                <Backdrop bgFile="Interface\Buttons\UI-SliderBar-Background" edgeFile="Interface\Buttons\UI-SliderBar-Border" tile="true">
+                  <BackgroundInsets>
+                    <AbsInset left="3" right="3" top="6" bottom="6" />
+                  </BackgroundInsets>
+                  <TileSize>
+                    <AbsValue val="8" />
+                  </TileSize>
+                  <EdgeSize>
+                    <AbsValue val="8" />
+                  </EdgeSize>
+                </Backdrop>
+                <Layers>
+                  <Layer>
+                    <FontString name="$parentTitle" font="Fonts\FRIZQT__.TTF" text="VUHDO_I18N_FONT_SIZE">
+                      <Anchors>
+                        <Anchor point="BOTTOM" relativePoint="TOP" />
+                      </Anchors>
+                      <FontHeight>
+                        <AbsValue val="10" />
+                      </FontHeight>
+                      <Color r="1" g="0.82" b="0" />
+                      <Shadow>
+                        <Color r="0" g="0" b="0" />
+                        <Offset>
+                          <AbsDimension x="1" y="-1" />
+                        </Offset>
+                      </Shadow>
+                    </FontString>
+                  </Layer>
+                </Layers>
+                <ThumbTexture name="$parentThumb" file="Interface\Buttons\UI-SliderBar-Button-Horizontal">
+                  <Size>
+                    <AbsDimension x="32" y="32" />
+                  </Size>
+                </ThumbTexture>
+                <Scripts>
+                   <OnValueChanged>VUHDO_buttonSizeHeaderFontSizeOnValueChanged(this)</OnValueChanged>
+                   <OnMouseUp>VUHDO_buttonSizeHeaderFontSizeOnMouseUp(this)</OnMouseUp>
+                </Scripts>
+
+              </Slider>
+            </Frames>
+          </Frame>
+
+          <Frame name="$parentHeaderTextureSlider">
+            <Size>
+              <AbsDimension x="125" y="36" />
+            </Size>
+            <Anchors>
+              <Anchor point="TOPLEFT">
+                <Offset>
+                  <AbsDimension x="14" y="-152" />
+                </Offset>
+              </Anchor>
+            </Anchors>
+            <Frames>
+              <Slider name="$parentSlider" enableMouse="true" minValue="1" maxValue="18" defaultValue="1" valueStep="1" orientation="HORIZONTAL">
+                <Size>
+                  <AbsDimension x="128" y="17" />
+                </Size>
+                <Anchors>
+                  <Anchor point="LEFT" />
+                  <Anchor point="RIGHT" />
+                </Anchors>
+                <Backdrop bgFile="Interface\Buttons\UI-SliderBar-Background" edgeFile="Interface\Buttons\UI-SliderBar-Border" tile="true">
+                  <BackgroundInsets>
+                    <AbsInset left="3" right="3" top="6" bottom="6" />
+                  </BackgroundInsets>
+                  <TileSize>
+                    <AbsValue val="8" />
+                  </TileSize>
+                  <EdgeSize>
+                    <AbsValue val="8" />
+                  </EdgeSize>
+                </Backdrop>
+                <Layers>
+                  <Layer>
+                    <FontString name="$parentTitle" font="Fonts\FRIZQT__.TTF" text="VUHDO_I18N_TEXTURE">
+                      <Anchors>
+                        <Anchor point="BOTTOM" relativePoint="TOP" />
+                      </Anchors>
+                      <FontHeight>
+                        <AbsValue val="10" />
+                      </FontHeight>
+                      <Color r="1" g="0.82" b="0" />
+                      <Shadow>
+                        <Color r="0" g="0" b="0" />
+                        <Offset>
+                          <AbsDimension x="1" y="-1" />
+                        </Offset>
+                      </Shadow>
+                    </FontString>
+                  </Layer>
+                </Layers>
+                <ThumbTexture name="$parentThumb" file="Interface\Buttons\UI-SliderBar-Button-Horizontal">
+                  <Size>
+                    <AbsDimension x="32" y="32" />
+                  </Size>
+                </ThumbTexture>
+                <Scripts>
+                  <OnValueChanged>VUHDO_buttonSizeHeaderTextureOnValueChanged(this)</OnValueChanged>
+                  <OnMouseUp>VUHDO_buttonSizeHeaderTextureOnMouseUp(this)</OnMouseUp>
+                </Scripts>
+
+              </Slider>
+            </Frames>
+          </Frame>
+
+
+          <Frame name="$parentHeaderHeightSlider">
+            <Size>
+              <AbsDimension x="24" y="100" />
+            </Size>
+            <Anchors>
+              <Anchor point="TOPLEFT">
+                <Offset>
+                  <AbsDimension x="88" y="-7" />
+                </Offset>
+              </Anchor>
+            </Anchors>
+            <Frames>
+              <Slider name="$parentSlider" enableMouse="true" minValue="5" maxValue="30" defaultValue="0" valueStep="1">
+                <Size>
+                  <AbsDimension x="10" y="128" />
+                </Size>
+                <Anchors>
+                  <Anchor point="TOP">
+                    <Offset>
+                      <AbsDimension x="0" y="-12" />
+                    </Offset>
+                  </Anchor>
+                  <Anchor point="BOTTOM">
+                    <Offset>
+                      <AbsDimension x="0" y="12" />
+                    </Offset>
+                  </Anchor>
+                </Anchors>
+                <Backdrop bgFile="Interface\Buttons\UI-SliderBar-Background" edgeFile="Interface\Buttons\UI-SliderBar-Border" tile="true">
+                  <BackgroundInsets>
+                    <AbsInset left="6" right="6" top="3" bottom="3" />
+                  </BackgroundInsets>
+                  <TileSize>
+                    <AbsValue val="8" />
+                  </TileSize>
+                  <EdgeSize>
+                    <AbsValue val="8" />
+                  </EdgeSize>
+                </Backdrop>
+                <ThumbTexture name="$parentThumb" file="Interface\Buttons\UI-SliderBar-Button-Vertical">
+                  <Size>
+                    <AbsDimension x="32" y="32" />
+                  </Size>
+                </ThumbTexture>
+                <Scripts>
+                   <OnValueChanged>VUHDO_buttonSizeHeaderHeightOnValueChanged(this)</OnValueChanged>
+                   <OnMouseUp>VUHDO_buttonSizeHeaderHeightOnMouseUp(this)</OnMouseUp>
+                </Scripts>
+
+              </Slider>
+            </Frames>
+          </Frame>
+
+          <Frame name="$parentHeaderLabel">
+            <Size>
+              <AbsDimension x="75" y="18" />
+            </Size>
+            <Anchors>
+              <Anchor point="TOPLEFT">
+                <Offset>
+                  <AbsDimension x="10" y="-3" />
+                </Offset>
+              </Anchor>
+            </Anchors>
+            <Layers>
+              <Layer>
+                <FontString name="$parentLabel" font="Fonts\FRIZQT__.TTF" text="VUHDO_I18N_HEADERS" justifyH="LEFT">
+                  <Anchors>
+                    <Anchor point="TOPLEFT" />
+                    <Anchor point="BOTTOMRIGHT" />
+                  </Anchors>
+                  <FontHeight>
+                    <AbsValue val="11" />
+                  </FontHeight>
+                  <Color r="1" g="0.82" b="0" />
+                  <Shadow>
+                    <Color r="0" g="0" b="0" />
+                    <Offset>
+                      <AbsDimension x="1" y="-1" />
+                    </Offset>
+                  </Shadow>
+                </FontString>
+              </Layer>
+            </Layers>
+          </Frame>
+
+          <CheckButton name="$parentHeaderCheckButton">
+            <Size>
+              <AbsDimension x="32" y="32" />
+            </Size>
+            <Anchors>
+              <Anchor point="TOPLEFT">
+                <Offset>
+                  <AbsDimension x="5" y="-18" />
+                </Offset>
+              </Anchor>
+            </Anchors>
+            <Layers>
+              <Layer>
+                <FontString name="$parentText" font="Fonts\FRIZQT__.TTF" text="VUHDO_I18N_SHOW">
+                  <Anchors>
+                    <Anchor point="LEFT" relativePoint="RIGHT">
+                      <Offset>
+                        <AbsDimension x="-2" y="0" />
+                      </Offset>
+                    </Anchor>
+                  </Anchors>
+                  <FontHeight>
+                    <AbsValue val="10" />
+                  </FontHeight>
+                  <Color r="1" g="0.82" b="0" />
+                  <Shadow>
+                    <Color r="0" g="0" b="0" />
+                    <Offset>
+                      <AbsDimension x="1" y="-1" />
+                    </Offset>
+                  </Shadow>
+                </FontString>
+              </Layer>
+            </Layers>
+            <NormalTexture file="Interface\Buttons\UI-CheckBox-Up" />
+            <PushedTexture file="Interface\Buttons\UI-CheckBox-Down" />
+            <HighlightTexture file="Interface\Buttons\UI-CheckBox-Highlight" alphaMode="ADD" />
+            <CheckedTexture file="Interface\Buttons\UI-CheckBox-Check" />
+            <DisabledCheckedTexture file="Interface\Buttons\UI-CheckBox-Check-Disabled" />
+						<Scripts>
+              <OnClick>VUHDO_formButtonSizeShowHeadersOnClick(this)</OnClick>
+            </Scripts>
+
+          </CheckButton>
+
+          <CheckButton name="$parentHeaderClassColorsCheckButton">
+            <Size>
+              <AbsDimension x="32" y="32" />
+            </Size>
+            <Anchors>
+              <Anchor point="TOPLEFT">
+                <Offset>
+                  <AbsDimension x="5" y="-67" />
+                </Offset>
+              </Anchor>
+            </Anchors>
+            <Layers>
+              <Layer>
+                <FontString name="$parentText" font="Fonts\FRIZQT__.TTF" text="VUHDO_I18N_CLASS_COL">
+                  <Anchors>
+                    <Anchor point="LEFT" relativePoint="RIGHT">
+                      <Offset>
+                        <AbsDimension x="-2" y="0" />
+                      </Offset>
+                    </Anchor>
+                  </Anchors>
+                  <FontHeight>
+                    <AbsValue val="10" />
+                  </FontHeight>
+                  <Color r="1" g="0.82" b="0" />
+                  <Shadow>
+                    <Color r="0" g="0" b="0" />
+                    <Offset>
+                      <AbsDimension x="1" y="-1" />
+                    </Offset>
+                  </Shadow>
+                </FontString>
+              </Layer>
+            </Layers>
+            <NormalTexture file="Interface\Buttons\UI-CheckBox-Up" />
+            <PushedTexture file="Interface\Buttons\UI-CheckBox-Down" />
+            <HighlightTexture file="Interface\Buttons\UI-CheckBox-Highlight" alphaMode="ADD" />
+            <CheckedTexture file="Interface\Buttons\UI-CheckBox-Check" />
+            <DisabledCheckedTexture file="Interface\Buttons\UI-CheckBox-Check-Disabled" />
+		        <Scripts>
+    		      <OnClick>VUHDO_formButtonSizeHeaderClassColorsOnClick(this)</OnClick>
+        		</Scripts>
+          </CheckButton>
+
+          <Frame name="$parentHeaderSpacingSlider">
+            <Size>
+              <AbsDimension x="37" y="100" />
+            </Size>
+            <Anchors>
+              <Anchor point="TOPLEFT">
+                <Offset>
+                  <AbsDimension x="113" y="-7" />
+                </Offset>
+              </Anchor>
+            </Anchors>
+            <Frames>
+              <Slider name="$parentSlider" enableMouse="true" minValue="0" maxValue="30" defaultValue="0" valueStep="1">
+                <Size>
+                  <AbsDimension x="10" y="128" />
+                </Size>
+                <Anchors>
+                  <Anchor point="TOP">
+                    <Offset>
+                      <AbsDimension x="0" y="-12" />
+                    </Offset>
+                  </Anchor>
+                  <Anchor point="BOTTOM">
+                    <Offset>
+                      <AbsDimension x="0" y="12" />
+                    </Offset>
+                  </Anchor>
+                </Anchors>
+                <Backdrop bgFile="Interface\Buttons\UI-SliderBar-Background" edgeFile="Interface\Buttons\UI-SliderBar-Border" tile="true">
+                  <BackgroundInsets>
+                    <AbsInset left="6" right="6" top="3" bottom="3" />
+                  </BackgroundInsets>
+                  <TileSize>
+                    <AbsValue val="8" />
+                  </TileSize>
+                  <EdgeSize>
+                    <AbsValue val="8" />
+                  </EdgeSize>
+                </Backdrop>
+                <ThumbTexture name="$parentThumb" file="Interface\Buttons\UI-SliderBar-Button-Vertical">
+                  <Size>
+                    <AbsDimension x="32" y="32" />
+                  </Size>
+                </ThumbTexture>
+                <Scripts>
+                   <OnValueChanged>VUHDO_buttonSizeHeaderSpacingOnValueChanged(this)</OnValueChanged>
+                   <OnMouseUp>VUHDO_buttonSizeHeaderSpacingOnMouseUp(this)</OnMouseUp>
+                </Scripts>
+              </Slider>
+            </Frames>
+          </Frame>
+
+          <Frame name="$parentHeaderColorTexture" inherits="VuhDoColorTextureTemplate2">
+            <Size>
+              <AbsDimension x="60" y="22" />
+            </Size>
+            <Anchors>
+              <Anchor point="TOPLEFT">
+                <Offset>
+                  <AbsDimension x="10" y="-47" />
+                </Offset>
+              </Anchor>
+            </Anchors>
+          </Frame>
+
+          <Frame name="$parentHeaderHeightLabel">
+            <Size>
+              <AbsDimension x="41" y="10" />
+            </Size>
+            <Anchors>
+              <Anchor point="TOPLEFT">
+                <Offset>
+                  <AbsDimension x="73" y="-7" />
+                </Offset>
+              </Anchor>
+            </Anchors>
+            <Layers>
+              <Layer>
+                <FontString name="$parentLabel" font="Fonts\FRIZQT__.TTF" text="VUHDO_I18N_HEIGHT">
+                  <Anchors>
+                    <Anchor point="TOPLEFT" />
+                    <Anchor point="BOTTOMRIGHT" />
+                  </Anchors>
+                  <FontHeight>
+                    <AbsValue val="8" />
+                  </FontHeight>
+                  <Color r="1" g="0.82" b="0" />
+                  <Shadow>
+                    <Color r="0" g="0" b="0" />
+                    <Offset>
+                      <AbsDimension x="1" y="-1" />
+                    </Offset>
+                  </Shadow>
+                </FontString>
+              </Layer>
+            </Layers>
+          </Frame>
+
+          <Frame name="$parentHeaderSpacingLabel">
+            <Size>
+              <AbsDimension x="49" y="10" />
+            </Size>
+            <Anchors>
+              <Anchor point="TOPLEFT">
+                <Offset>
+                  <AbsDimension x="107" y="-7" />
+                </Offset>
+              </Anchor>
+            </Anchors>
+            <Layers>
+              <Layer>
+                <FontString name="$parentLabel" font="Fonts\FRIZQT__.TTF" text="VUHDO_I18N_SPACING">
+                  <Anchors>
+                    <Anchor point="TOPLEFT" />
+                    <Anchor point="BOTTOMRIGHT" />
+                  </Anchors>
+                  <FontHeight>
+                    <AbsValue val="8" />
+                  </FontHeight>
+                  <Color r="1" g="0.82" b="0" />
+                  <Shadow>
+                    <Color r="0" g="0" b="0" />
+                    <Offset>
+                      <AbsDimension x="1" y="-1" />
+                    </Offset>
+                  </Shadow>
+                </FontString>
+              </Layer>
+            </Layers>
+          </Frame>
+        </Frames>
+      </Frame>
+    </Frames>
+    <Scripts>
+      <OnShow>VUHDO_formButtonSizeOnShow(this)</OnShow>
+      <OnMouseDown>VuhDoButtonSizeOnMouseDown(this,arg1)</OnMouseDown>
+      <OnMouseUp>VuhDoButtonSizeOnMouseUp(this,arg1)</OnMouseUp>
+
+    </Scripts>
+
+  </Frame>
+</Ui>

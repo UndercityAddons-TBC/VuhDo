@@ -1,0 +1,2049 @@
+<Ui xmlns="http://www.blizzard.com/wow/ui/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"     xsi:schemaLocation="http://www.blizzard.com/wow/ui/
+    ..\FrameXML\UI.xsd">
+  <Script file="VuhDoToolbox.lua" />
+  <Script file="VuhDoPanel.lua" />
+  <Script file="VuhDoPanelConfig.lua" />
+  <Script file="VuhDoPanelConfigEventHandler.lua" />
+  <Script file="VuhDoActionEventHandler.lua" />
+
+  <Button name="VuhDoButtonSecureTemplate" virtual="true" inherits="SecureUnitButtonTemplate">
+    <Size>
+      <AbsDimension x="95" y="18" />
+    </Size>
+    <Scripts>
+      <OnLoad>this:RegisterForClicks("LeftButtonDown", "MiddleButtonDown", "RightButtonDown", "Button4Down", "Button5Down");
+	          this:SetScript("PreClick", VuhDoActionPreClick);
+			  		this:SetScript("PostClick", VuhDoActionPostClick)
+			</OnLoad>
+      <OnEnter>VuhDoActionOnEnter(this);</OnEnter>
+      <OnLeave>VuhDoActionOnLeave(this);</OnLeave>
+    </Scripts>
+    <Frames>
+      <StatusBar name="$parentBar1" toplevel="true" inherits="VuhDoStatusBar">
+        <Anchors>
+          <Anchor point="TOPLEFT" relativePoint="TOPLEFT">
+            <Offset>
+              <AbsDimension x="0" y="0"/>
+            </Offset>
+          </Anchor>
+          <Anchor point="TOPRIGHT" relativePoint="TOPRIGHT">
+            <Offset>
+              <AbsDimension x="0" y="0"/>
+            </Offset>
+          </Anchor>
+        </Anchors>
+        <Layers>
+          <Layer level="OVERLAY">
+            <Texture name="$parentIcon1">
+              <Size> <AbsDimension x="16" y="16"/> </Size>
+              <Anchors>
+                <Anchor point="RIGHT" relativePoint="RIGHT">
+                  <Offset> <AbsDimension x="-1" y="0"/> </Offset>
+                </Anchor>
+              </Anchors>
+            </Texture>
+            <Texture name="$parentIcon2">
+              <Size> <AbsDimension x="16" y="16"/> </Size>
+              <Anchors>
+                <Anchor point="RIGHT" relativePoint="RIGHT">
+                  <Offset> <AbsDimension x="-18" y="0"/> </Offset>
+                </Anchor>
+              </Anchors>
+            </Texture>
+            <Texture name="$parentIcon3">
+              <Size> <AbsDimension x="16" y="16"/> </Size>
+              <Anchors>
+                <Anchor point="RIGHT" relativePoint="RIGHT">
+                  <Offset> <AbsDimension x="-35" y="0"/> </Offset>
+                </Anchor>
+              </Anchors>
+            </Texture>
+            </Layer>
+				</Layers>
+      </StatusBar>
+
+      <StatusBar name="$parentBar2" hidden="true" inherits="VuhDoStatusBar">
+        <Anchors>
+          <Anchor point="BOTTOMLEFT" relativePoint="BOTTOMLEFT">
+            <Offset>
+              <AbsDimension x="0" y="0"/>
+            </Offset>
+          </Anchor>
+        </Anchors>
+      </StatusBar>
+
+      <StatusBar name="$parentBar3" frameStrata="BACKGROUND" hidden="true" inherits="VuhDoStatusBar">
+        <Anchors>
+          <Anchor point="TOPLEFT" relativePoint="TOPLEFT">
+            <Offset>
+              <AbsDimension x="0" y="0"/>
+            </Offset>
+          </Anchor>
+          <Anchor point="TOPRIGHT" relativePoint="TOPRIGHT">
+            <Offset>
+              <AbsDimension x="0" y="0"/>
+            </Offset>
+          </Anchor>
+        </Anchors>
+      </StatusBar>
+
+      <StatusBar name="$parentBar4" hidden="true" inherits="VuhDoStatusBar">
+        <Anchors>
+          <Anchor point="TOPLEFT" relativePoint="BOTTOMLEFT">
+            <Offset>
+              <AbsDimension x="0" y="0"/>
+            </Offset>
+          </Anchor>
+          <Anchor point="TOPRIGHT" relativePoint="BOTTOMRIGHT">
+            <Offset>
+              <AbsDimension x="0" y="0"/>
+            </Offset>
+          </Anchor>
+        </Anchors>
+      </StatusBar>
+
+       <Button name="$parentTarget" inherits="SecureUnitButtonTemplate">
+			    <Size>
+      			<AbsDimension x="30" y="18" />
+			    </Size>
+        	<Anchors>
+          	<Anchor point="TOPLEFT" relativePoint="TOPLEFT">
+            	<Offset>
+              	<AbsDimension x="0" y="0"/>
+            	</Offset>
+          	</Anchor>
+          	<Anchor point="TOPRIGHT" relativePoint="TOPRIGHT">
+            	<Offset>
+              	<AbsDimension x="0" y="0"/>
+            	</Offset>
+          	</Anchor>
+        	</Anchors>
+
+		   		<Scripts>
+      			<OnLoad>this:RegisterForClicks("LeftButtonDown", "MiddleButtonDown", "RightButtonDown", "Button4Down", "Button5Down");
+						</OnLoad>
+			    </Scripts>
+
+				<Frames>
+      	<StatusBar name="$parentBar5" hidden="true" inherits="VuhDoStatusBar">
+        	<Anchors>
+          	<Anchor point="TOPLEFT" relativePoint="TOPLEFT">
+            	<Offset>
+              	<AbsDimension x="0" y="0"/>
+            	</Offset>
+          	</Anchor>
+          	<Anchor point="TOPRIGHT" relativePoint="TOPRIGHT">
+            	<Offset>
+              	<AbsDimension x="0" y="0"/>
+            	</Offset>
+          	</Anchor>
+        	</Anchors>
+
+        	<Frames>
+          	<Frame name="$parentTarget">
+  	      		<Size>
+	  	        		<AbsDimension x="20" y="20" />
+	      	  	</Size>
+  	      		<Anchors>
+    	      		<Anchor point="CENTER">
+      	      		<Offset>
+        	      		<AbsDimension x="0" y="0" />
+          	  		</Offset>
+          			</Anchor>
+	        		</Anchors>
+  	      		<Layers>
+    	      		<Layer>
+      	      		<Texture name="$parentTexture" setAllPoints="true" file="interface\targetingframe\ui-raidtargetingicons">
+        	      		<TexCoords left="0" right="1" top="0" bottom="1" />
+          	  		</Texture>
+
+          				<FontString name="$parentText" font="Fonts\FRIZQT__.TTF">
+						        <Anchors>
+    									<Anchor point="BOTTOM" relativePoint="BOTTOM">
+					        	    <Offset>
+          				  		  <AbsDimension x="0" y="1" />
+            						</Offset>
+						          </Anchor>
+        						</Anchors>
+
+            				<FontHeight>
+              				<AbsValue val="9" />
+            				</FontHeight>
+          				</FontString>
+
+          			</Layer>
+        			</Layers>
+	      	  </Frame>
+
+				</Frames>
+      </StatusBar>
+      </Frames>
+		  </Button>
+       <StatusBar name="$parentBar6" frameStrata="LOW" inherits="VuhDoStatusBar">
+        <Anchors>
+          <Anchor point="TOPLEFT" relativePoint="TOPLEFT">
+            <Offset>
+              <AbsDimension x="0" y="0"/>
+            </Offset>
+          </Anchor>
+          <Anchor point="TOPRIGHT" relativePoint="TOPRIGHT">
+            <Offset>
+              <AbsDimension x="0" y="0"/>
+            </Offset>
+          </Anchor>
+        </Anchors>
+      </StatusBar>
+    </Frames>
+
+  </Button>
+
+
+   <Button name="VuhDoButtonTemplateHeader" virtual="true" inherits="SecureUnitButtonTemplate">
+    <Size>
+      <AbsDimension x="80" y="18" />
+    </Size>
+    <Scripts>
+      <OnMouseDown>VUHDO_actionChildOnMouseDown(this)</OnMouseDown>
+      <OnMouseUp>VUHDO_actionChildOnMouseUp(this)</OnMouseUp>
+    </Scripts>
+    <Frames>
+      <StatusBar name="$parentBar" inherits="VuhDoStatusBar">
+        <Anchors>
+          <Anchor point="TOPLEFT" relativePoint="TOPLEFT">
+            <Offset>
+              <AbsDimension x="0" y="0"/>
+            </Offset>
+          </Anchor>
+          <Anchor point="TOPRIGHT" relativePoint="BOTTOMRIGHT">
+            <Offset>
+              <AbsDimension x="0" y="0"/>
+            </Offset>
+          </Anchor>
+        </Anchors>
+      </StatusBar>
+    </Frames>
+  </Button>
+
+
+
+      <Frame name="VuhDoGroupOrderPanelTemplate" movable="true" enableMouse="true" hidden="true" virtual="true">
+        <Size>
+          <AbsDimension x="80" y="100" />
+        </Size>
+
+        <Backdrop bgFile="Interface\Tooltips\UI-Tooltip-Background" edgeFile="Interface\Tooltips\UI-Tooltip-Border" tile="true">
+          <BackgroundInsets>
+            <AbsInset left="5" right="5" top="5" bottom="5" />
+          </BackgroundInsets>
+          <TileSize>
+            <AbsValue val="16" />
+          </TileSize>
+          <EdgeSize>
+            <AbsValue val="16" />
+          </EdgeSize>
+        </Backdrop>
+        <Frames>
+          <Frame name="$parentInsertTextureLeft" hidden="true">
+            <Size>
+              <AbsDimension x="5" y="80" />
+            </Size>
+            <Anchors>
+              <Anchor point="TOPLEFT">
+                <Offset>
+                  <AbsDimension x="-5" y="-10" />
+                </Offset>
+              </Anchor>
+            </Anchors>
+            <Layers>
+              <Layer>
+                <Texture name="$parentTexture" setAllPoints="true" file="interface\buttons\bluegrad64">
+                  <TexCoords left="0" right="1" top="0" bottom="1" />
+                </Texture>
+              </Layer>
+            </Layers>
+          </Frame>
+          <Button name="$parentChooseButton" text="VUHDO_I18N_CHOOSE">
+            <Size>
+              <AbsDimension x="56" y="22" />
+            </Size>
+            <Anchors>
+              <Anchor point="TOPLEFT">
+                <Offset>
+                  <AbsDimension x="12" y="-46" />
+                </Offset>
+              </Anchor>
+            </Anchors>
+            <Scripts>
+              <OnClick>VUHDO_panelSetupChooseGroupOnClick(this)</OnClick>
+            </Scripts>
+            <NormalTexture file="Interface\Buttons\UI-Panel-Button-Up">
+              <TexCoords left="0" right="0.625" top="0" bottom="0.6875" />
+            </NormalTexture>
+            <PushedTexture file="Interface\Buttons\UI-Panel-Button-Down">
+              <TexCoords left="0" right="0.625" top="0" bottom="0.6875" />
+            </PushedTexture>
+            <HighlightTexture file="Interface\Buttons\UI-Panel-Button-Highlight" alphaMode="ADD">
+              <TexCoords left="0" right="0.625" top="0" bottom="0.6875" />
+            </HighlightTexture>
+            <ButtonText name="$parentText">
+              <FontHeight>
+                <AbsValue val="10" />
+              </FontHeight>
+            </ButtonText>
+            <NormalFont inherits="GameFontNormal" font="Fonts\FRIZQT__.TTF">
+              <FontHeight>
+                <AbsValue val="11" />
+              </FontHeight>
+              <Color r="1" g="0.82" b="0" />
+              <Shadow>
+                <Color r="0" g="0" b="0" />
+                <Offset>
+                  <AbsDimension x="1" y="-1" />
+                </Offset>
+              </Shadow>
+            </NormalFont>
+          </Button>
+          <Frame name="$parentDragLabel1">
+            <Size>
+              <AbsDimension x="80" y="20" />
+            </Size>
+            <Anchors>
+              <Anchor point="TOPLEFT">
+                <Offset>
+                  <AbsDimension x="0" y="-8" />
+                </Offset>
+              </Anchor>
+            </Anchors>
+            <Layers>
+              <Layer>
+                <FontString name="$parentLabel" font="Fonts\FRIZQT__.TTF" text="VUHDO_I18N_DRAG">
+                  <Anchors>
+                    <Anchor point="TOPLEFT" />
+                    <Anchor point="BOTTOMRIGHT" />
+                  </Anchors>
+                  <FontHeight>
+                    <AbsValue val="11" />
+                  </FontHeight>
+                  <Color r="1" g="0.82" b="0" />
+                  <Shadow>
+                    <Color r="0" g="0" b="0" />
+                    <Offset>
+                      <AbsDimension x="1" y="-1" />
+                    </Offset>
+                  </Shadow>
+                </FontString>
+              </Layer>
+            </Layers>
+          </Frame>
+          <Frame name="$parentRemoveLabel">
+            <Size>
+              <AbsDimension x="44" y="16" />
+            </Size>
+            <Anchors>
+              <Anchor point="TOPLEFT">
+                <Offset>
+                  <AbsDimension x="5" y="-78" />
+                </Offset>
+              </Anchor>
+            </Anchors>
+            <Layers>
+              <Layer>
+                <FontString name="$parentLabel" font="Fonts\FRIZQT__.TTF" text="VUHDO_I18N_REMOVE" justifyH="RIGHT">
+                  <Anchors>
+                    <Anchor point="TOPLEFT" />
+                    <Anchor point="BOTTOMRIGHT" />
+                  </Anchors>
+                  <FontHeight>
+                    <AbsValue val="8" />
+                  </FontHeight>
+                  <Color r="1" g="0.82" b="0" />
+                  <Shadow>
+                    <Color r="0" g="0" b="0" />
+                    <Offset>
+                      <AbsDimension x="1" y="-1" />
+                    </Offset>
+                  </Shadow>
+                </FontString>
+              </Layer>
+            </Layers>
+          </Frame>
+          <Frame name="$parentRemoveTexture">
+            <Size>
+              <AbsDimension x="24" y="24" />
+            </Size>
+            <Anchors>
+              <Anchor point="TOPLEFT">
+                <Offset>
+                  <AbsDimension x="53" y="-74" />
+                </Offset>
+              </Anchor>
+            </Anchors>
+            <Layers>
+              <Layer>
+                <Texture name="$parentTexture" setAllPoints="true" file="interface\buttons\ui-minusbutton-up">
+                  <TexCoords left="0" right="1" top="0" bottom="1" />
+                </Texture>
+              </Layer>
+            </Layers>
+            <Scripts>
+              <OnMouseDown>VUHDO_panelSetupRemoveGroupOnClick(this)</OnMouseDown>
+            </Scripts>
+          </Frame>
+          <Frame name="$parentDragLabel2">
+            <Size>
+              <AbsDimension x="80" y="20" />
+            </Size>
+            <Anchors>
+              <Anchor point="TOPLEFT">
+                <Offset>
+                  <AbsDimension x="0" y="-22" />
+                </Offset>
+              </Anchor>
+            </Anchors>
+            <Layers>
+              <Layer>
+                <FontString name="$parentLabel" font="Fonts\FRIZQT__.TTF" text="VUHDO_I18N_ME">
+                  <Anchors>
+                    <Anchor point="TOPLEFT" />
+                    <Anchor point="BOTTOMRIGHT" />
+                  </Anchors>
+                  <FontHeight>
+                    <AbsValue val="11" />
+                  </FontHeight>
+                  <Color r="1" g="0.82" b="0" />
+                  <Shadow>
+                    <Color r="0" g="0" b="0" />
+                    <Offset>
+                      <AbsDimension x="1" y="-1" />
+                    </Offset>
+                  </Shadow>
+                </FontString>
+              </Layer>
+            </Layers>
+          </Frame>
+          <Frame name="$parentDragAreaTexture">
+            <Size>
+              <AbsDimension x="70" y="40" />
+            </Size>
+            <Anchors>
+              <Anchor point="TOPLEFT">
+                <Offset>
+                  <AbsDimension x="5" y="-5" />
+                </Offset>
+              </Anchor>
+            </Anchors>
+            <Layers>
+              <Layer>
+                <Texture name="$parentTexture" setAllPoints="true" file="interface\buttons\ui-panel-minimizebutton-highlight">
+                  <TexCoords left="0" right="1" top="0" bottom="1" />
+                </Texture>
+              </Layer>
+            </Layers>
+            <Scripts>
+              <OnMouseDown>VUHDO_panelSetupGroupDragOnMouseDown(this)</OnMouseDown>
+              <OnMouseUp>VUHDO_panelSetupGroupDragOnMouseUp(this)</OnMouseUp>
+              <OnDragStart>VUHDO_panelSetupOnDragStart(this)</OnDragStart>
+              <OnDragStop>VUHDO_panelSetupOnDragStop(this)</OnDragStop>
+            </Scripts>
+          </Frame>
+          <Frame name="$parentInsertTextureRight" hidden="true">
+            <Size>
+              <AbsDimension x="5" y="80" />
+            </Size>
+            <Anchors>
+              <Anchor point="TOPLEFT">
+                <Offset>
+                  <AbsDimension x="80" y="-10" />
+                </Offset>
+              </Anchor>
+            </Anchors>
+            <Layers>
+              <Layer>
+                <Texture name="$parentTexture" setAllPoints="true" file="interface\buttons\bluegrad64">
+                  <TexCoords left="0" right="1" top="0" bottom="1" />
+                </Texture>
+              </Layer>
+            </Layers>
+          </Frame>
+        </Frames>
+        <Scripts>
+          <OnShow>VUHDO_PanelSetupGroupOrderOnShow(this)</OnShow>
+        </Scripts>
+      </Frame>
+
+      <Frame name="VuhDoGroupSelectPanelTemplate" hidden="true" virtual="true">
+        <Size>
+          <AbsDimension x="80" y="100" />
+        </Size>
+        <Backdrop bgFile="Interface\Tooltips\UI-Tooltip-Background" edgeFile="Interface\Tooltips\UI-Tooltip-Border" tile="true">
+          <BackgroundInsets>
+            <AbsInset left="5" right="5" top="5" bottom="5" />
+          </BackgroundInsets>
+          <TileSize>
+            <AbsValue val="16" />
+          </TileSize>
+          <EdgeSize>
+            <AbsValue val="16" />
+          </EdgeSize>
+        </Backdrop>
+        <Frames>
+
+          <Frame name="$parentTypeLabel">
+            <Size>
+              <AbsDimension x="63" y="18" />
+            </Size>
+            <Anchors>
+              <Anchor point="TOPLEFT">
+                <Offset>
+                  <AbsDimension x="7" y="1" />
+                </Offset>
+              </Anchor>
+            </Anchors>
+            <Layers>
+              <Layer>
+                <FontString name="$parentLabel" font="Fonts\FRIZQT__.TTF" text="VUHDO_I18N_TYPE" justifyH="LEFT">
+                  <Anchors>
+                    <Anchor point="TOPLEFT" />
+                    <Anchor point="BOTTOMRIGHT" />
+                  </Anchors>
+                  <FontHeight>
+                    <AbsValue val="8" />
+                  </FontHeight>
+                  <Color r="1" g="0.82" b="0" />
+                  <Shadow>
+                    <Color r="0" g="0" b="0" />
+                    <Offset>
+                      <AbsDimension x="1" y="-1" />
+                    </Offset>
+                  </Shadow>
+                </FontString>
+              </Layer>
+            </Layers>
+          </Frame>
+
+          <Frame name="$parentValueLabel">
+            <Size>
+              <AbsDimension x="63" y="18" />
+            </Size>
+            <Anchors>
+              <Anchor point="TOPLEFT">
+                <Offset>
+                  <AbsDimension x="7" y="-33" />
+                </Offset>
+              </Anchor>
+            </Anchors>
+            <Layers>
+              <Layer>
+                <FontString name="$parentLabel" font="Fonts\FRIZQT__.TTF" text="VUHDO_I18N_VALUE" justifyH="LEFT">
+                  <Anchors>
+                    <Anchor point="TOPLEFT" />
+                    <Anchor point="BOTTOMRIGHT" />
+                  </Anchors>
+                  <FontHeight>
+                    <AbsValue val="8" />
+                  </FontHeight>
+                  <Color r="1" g="0.82" b="0" />
+                  <Shadow>
+                    <Color r="0" g="0" b="0" />
+                    <Offset>
+                      <AbsDimension x="1" y="-1" />
+                    </Offset>
+                  </Shadow>
+                </FontString>
+              </Layer>
+            </Layers>
+          </Frame>
+
+
+          <Button name="$parentTypeComboBox">
+            <Size>
+              <AbsDimension x="105" y="42" />
+            </Size>
+            <Anchors>
+              <Anchor point="TOPLEFT">
+                <Offset>
+                  <AbsDimension x="-12" y="-11" />
+                </Offset>
+              </Anchor>
+            </Anchors>
+            <Layers>
+              <Layer>
+                <Texture name="$parentLeft" file="Interface\Glues\CharacterCreate\CharacterCreate-LabelFrame">
+                  <Size>
+                    <AbsDimension x="25" y="64" />
+                  </Size>
+                  <Anchors>
+                    <Anchor point="TOPLEFT">
+                      <Offset>
+                        <AbsDimension x="0" y="17" />
+                      </Offset>
+                    </Anchor>
+                  </Anchors>
+                  <TexCoords left="0" right="0.1953125" top="0" bottom="1" />
+                </Texture>
+                <Texture name="$parentMiddle" file="Interface\Glues\CharacterCreate\CharacterCreate-LabelFrame">
+                  <Size>
+                    <AbsDimension x="55" y="64" />
+                  </Size>
+                  <Anchors>
+                    <Anchor point="LEFT" relativeTo="$parentLeft" relativePoint="RIGHT" />
+                  </Anchors>
+                  <TexCoords left="0.1953125" right="0.8046875" top="0" bottom="1" />
+                </Texture>
+                <Texture name="$parentRight" file="Interface\Glues\CharacterCreate\CharacterCreate-LabelFrame">
+                  <Size>
+                    <AbsDimension x="25" y="64" />
+                  </Size>
+                  <Anchors>
+                    <Anchor point="LEFT" relativeTo="$parentMiddle" relativePoint="RIGHT" />
+                  </Anchors>
+                  <TexCoords left="0.8046875" right="1" top="0" bottom="1" />
+                </Texture>
+                <FontString name="$parentText" font="Fonts\FRIZQT__.TTF" text="VUHDO_I18N_TYPE" justifyH="RIGHT">
+                  <Size>
+                    <AbsDimension x="80" y="10" />
+                  </Size>
+                  <Anchors>
+                    <Anchor point="RIGHT" relativeTo="$parentRight">
+                      <Offset>
+                        <AbsDimension x="-43" y="2" />
+                      </Offset>
+                    </Anchor>
+                  </Anchors>
+                  <FontHeight>
+                    <AbsValue val="10" />
+                  </FontHeight>
+                  <Color r="1" g="1" b="1" />
+                  <Shadow>
+                    <Color r="0" g="0" b="0" />
+                    <Offset>
+                      <AbsDimension x="1" y="-1" />
+                    </Offset>
+                  </Shadow>
+                </FontString>
+              </Layer>
+            </Layers>
+            <Frames>
+              <Button name="$parentButton">
+                <Size>
+                  <AbsDimension x="24" y="24" />
+                </Size>
+                <Anchors>
+                  <Anchor point="TOPRIGHT" relativeTo="$parentRight">
+                    <Offset>
+                      <AbsDimension x="-16" y="-18" />
+                    </Offset>
+                  </Anchor>
+                </Anchors>
+                <Scripts>
+                  <OnClick>
+									ToggleDropDownMenu();
+									PlaySound("igMainMenuOptionCheckBoxOn");
+									</OnClick>
+                </Scripts>
+                <NormalTexture name="$parentNormalTexture" file="Interface\ChatFrame\UI-ChatIcon-ScrollDown-Up">
+                  <Size>
+                    <AbsDimension x="24" y="24" />
+                  </Size>
+                  <Anchors>
+                    <Anchor point="RIGHT" />
+                  </Anchors>
+                </NormalTexture>
+                <PushedTexture name="$parentPushedTexture" file="Interface\ChatFrame\UI-ChatIcon-ScrollDown-Down">
+                  <Size>
+                    <AbsDimension x="24" y="24" />
+                  </Size>
+                  <Anchors>
+                    <Anchor point="RIGHT" />
+                  </Anchors>
+                </PushedTexture>
+                <DisabledTexture name="$parentDisabledTexture" file="Interface\ChatFrame\UI-ChatIcon-ScrollDown-Disabled">
+                  <Size>
+                    <AbsDimension x="24" y="24" />
+                  </Size>
+                  <Anchors>
+                    <Anchor point="RIGHT" />
+                  </Anchors>
+                </DisabledTexture>
+                <HighlightTexture name="$parentHighlightTexture" file="Interface\Buttons\UI-Common-MouseHilight" alphaMode="ADD">
+                  <Size>
+                    <AbsDimension x="24" y="24" />
+                  </Size>
+                  <Anchors>
+                    <Anchor point="RIGHT" />
+                  </Anchors>
+                </HighlightTexture>
+              </Button>
+            </Frames>
+            <Scripts>
+              <OnLoad>
+              local cb_init_fn = function()
+                local info
+                info = {}
+                info.text = "" .. VUHDO_I18N_CLASS;
+                info.value = 1
+                info.owner = this:GetParent();
+                info.func = function() VUHDO_groupSelectTypeOnSelectionChanged(this) end
+                UIDropDownMenu_AddButton(info);
+                info = {}
+                info.text = "" .. VUHDO_I18N_GROUP;
+                info.value = 2
+                info.owner = this:GetParent();
+                info.func = function() VUHDO_groupSelectTypeOnSelectionChanged(this) end
+                UIDropDownMenu_AddButton(info);
+                info = {}
+                info.text = "" .. VUHDO_I18N_SPECIAL;
+                info.value = 3
+                info.owner = this:GetParent();
+                info.func = function() VUHDO_groupSelectTypeOnSelectionChanged(this) end
+                UIDropDownMenu_AddButton(info);
+              end
+              UIDropDownMenu_Initialize(this, cb_init_fn)
+              </OnLoad>
+              <OnHide>CloseDropDownMenus();</OnHide>
+              <OnShow>VUHDO_groupSelectTypeComboOnShow(this)</OnShow>
+            </Scripts>
+          </Button>
+
+
+          <Button name="$parentValueComboBox">
+            <Size>
+              <AbsDimension x="105" y="32" />
+            </Size>
+            <Anchors>
+              <Anchor point="TOPLEFT">
+                <Offset>
+                  <AbsDimension x="-12" y="-45" />
+                </Offset>
+              </Anchor>
+            </Anchors>
+            <Layers>
+              <Layer>
+                <Texture name="$parentLeft" file="Interface\Glues\CharacterCreate\CharacterCreate-LabelFrame">
+                  <Size>
+                    <AbsDimension x="25" y="64" />
+                  </Size>
+                  <Anchors>
+                    <Anchor point="TOPLEFT">
+                      <Offset>
+                        <AbsDimension x="0" y="17" />
+                      </Offset>
+                    </Anchor>
+                  </Anchors>
+                  <TexCoords left="0" right="0.1953125" top="0" bottom="1" />
+                </Texture>
+                <Texture name="$parentMiddle" file="Interface\Glues\CharacterCreate\CharacterCreate-LabelFrame">
+                  <Size>
+                    <AbsDimension x="55" y="64" />
+                  </Size>
+                  <Anchors>
+                    <Anchor point="LEFT" relativeTo="$parentLeft" relativePoint="RIGHT" />
+                  </Anchors>
+                  <TexCoords left="0.1953125" right="0.8046875" top="0" bottom="1" />
+                </Texture>
+                <Texture name="$parentRight" file="Interface\Glues\CharacterCreate\CharacterCreate-LabelFrame">
+                  <Size>
+                    <AbsDimension x="25" y="64" />
+                  </Size>
+                  <Anchors>
+                    <Anchor point="LEFT" relativeTo="$parentMiddle" relativePoint="RIGHT" />
+                  </Anchors>
+                  <TexCoords left="0.8046875" right="1" top="0" bottom="1" />
+                </Texture>
+                <FontString name="$parentText" font="Fonts\FRIZQT__.TTF" text="VUHDO_I18N_VALUE" justifyH="RIGHT">
+                  <Size>
+                    <AbsDimension x="80" y="10" />
+                  </Size>
+                  <Anchors>
+                    <Anchor point="RIGHT" relativeTo="$parentRight">
+                      <Offset>
+                        <AbsDimension x="-43" y="2" />
+                      </Offset>
+                    </Anchor>
+                  </Anchors>
+                  <FontHeight>
+                    <AbsValue val="10" />
+                  </FontHeight>
+                  <Color r="1" g="1" b="1" />
+                  <Shadow>
+                    <Color r="0" g="0" b="0" />
+                    <Offset>
+                      <AbsDimension x="1" y="-1" />
+                    </Offset>
+                  </Shadow>
+                </FontString>
+              </Layer>
+            </Layers>
+            <Frames>
+              <Button name="$parentButton">
+                <Size>
+                  <AbsDimension x="24" y="24" />
+                </Size>
+                <Anchors>
+                  <Anchor point="TOPRIGHT" relativeTo="$parentRight">
+                    <Offset>
+                      <AbsDimension x="-16" y="-18" />
+                    </Offset>
+                  </Anchor>
+                </Anchors>
+                <Scripts>
+                  <OnClick>
+										ToggleDropDownMenu();
+										PlaySound("igMainMenuOptionCheckBoxOn");
+								</OnClick>
+                </Scripts>
+                <NormalTexture name="$parentNormalTexture" file="Interface\ChatFrame\UI-ChatIcon-ScrollDown-Up">
+                  <Size>
+                    <AbsDimension x="24" y="24" />
+                  </Size>
+                  <Anchors>
+                    <Anchor point="RIGHT" />
+                  </Anchors>
+                </NormalTexture>
+                <PushedTexture name="$parentPushedTexture" file="Interface\ChatFrame\UI-ChatIcon-ScrollDown-Down">
+                  <Size>
+                    <AbsDimension x="24" y="24" />
+                  </Size>
+                  <Anchors>
+                    <Anchor point="RIGHT" />
+                  </Anchors>
+                </PushedTexture>
+                <DisabledTexture name="$parentDisabledTexture" file="Interface\ChatFrame\UI-ChatIcon-ScrollDown-Disabled">
+                  <Size>
+                    <AbsDimension x="24" y="24" />
+                  </Size>
+                  <Anchors>
+                    <Anchor point="RIGHT" />
+                  </Anchors>
+                </DisabledTexture>
+                <HighlightTexture name="$parentHighlightTexture" file="Interface\Buttons\UI-Common-MouseHilight" alphaMode="ADD">
+                  <Size>
+                    <AbsDimension x="24" y="24" />
+                  </Size>
+                  <Anchors>
+                    <Anchor point="RIGHT" />
+                  </Anchors>
+                </HighlightTexture>
+                <Scripts>
+                  <OnMouseDown>VUHDO_configGroupSelectButtonOnMouseDown(this)</OnMouseDown>
+                </Scripts>
+              </Button>
+            </Frames>
+            <Scripts>
+              <OnHide>CloseDropDownMenus();</OnHide>
+            </Scripts>
+          </Button>
+          <Button name="$parentOkayButton" text="VUHDO_I18N_OKAY">
+            <Size>
+              <AbsDimension x="60" y="20" />
+            </Size>
+            <Anchors>
+              <Anchor point="TOPLEFT">
+                <Offset>
+                  <AbsDimension x="10" y="-74" />
+                </Offset>
+              </Anchor>
+            </Anchors>
+            <Scripts>
+              <OnClick>VUHDO_groupSelectOkayOnClick(this)</OnClick>
+            </Scripts>
+            <NormalTexture file="Interface\Buttons\UI-Panel-Button-Up">
+              <TexCoords left="0" right="0.625" top="0" bottom="0.6875" />
+            </NormalTexture>
+            <PushedTexture file="Interface\Buttons\UI-Panel-Button-Down">
+              <TexCoords left="0" right="0.625" top="0" bottom="0.6875" />
+            </PushedTexture>
+            <DisabledTexture file="Interface\Buttons\UI-Panel-Button-Disabled">
+              <TexCoords left="0" right="0.625" top="0" bottom="0.6875" />
+            </DisabledTexture>
+            <HighlightTexture file="Interface\Buttons\UI-Panel-Button-Highlight" alphaMode="ADD">
+              <TexCoords left="0" right="0.625" top="0" bottom="0.6875" />
+            </HighlightTexture>
+            <ButtonText name="$parentText">
+              <FontHeight>
+                <AbsValue val="10" />
+              </FontHeight>
+            </ButtonText>
+            <NormalFont inherits="GameFontNormal" font="Fonts\FRIZQT__.TTF">
+              <FontHeight>
+                <AbsValue val="12" />
+              </FontHeight>
+              <Color r="1" g="0.82" b="0" />
+              <Shadow>
+                <Color r="0" g="0" b="0" />
+                <Offset>
+                  <AbsDimension x="1" y="-1" />
+                </Offset>
+              </Shadow>
+            </NormalFont>
+            <HighlightFont inherits="GameFontHighlight" font="Fonts\FRIZQT__.TTF">
+              <FontHeight>
+                <AbsValue val="12" />
+              </FontHeight>
+              <Color r="1" g="1" b="1" />
+              <Shadow>
+                <Color r="0" g="0" b="0" />
+                <Offset>
+                  <AbsDimension x="1" y="-1" />
+                </Offset>
+              </Shadow>
+            </HighlightFont>
+            <DisabledFont inherits="GameFontDisable" font="Fonts\FRIZQT__.TTF">
+              <FontHeight>
+                <AbsValue val="12" />
+              </FontHeight>
+              <Color r="0.5" g="0.5" b="0.5" />
+              <Shadow>
+                <Color r="0" g="0" b="0" />
+                <Offset>
+                  <AbsDimension x="1" y="-1" />
+                </Offset>
+              </Shadow>
+            </DisabledFont>
+          </Button>
+        </Frames>
+        <Scripts>
+          <OnShow>VUHDO_PanelSetupGroupSelectOnShow(this)</OnShow>
+        </Scripts>
+
+      </Frame>
+
+      <Frame name="VuhDoPanelDesignPanelTemplate" virtual="true">
+        <Size>
+          <AbsDimension x="110" y="145" />
+        </Size>
+        <Anchors>
+          <Anchor point="TOPLEFT">
+            <Offset>
+              <AbsDimension x="344" y="-17" />
+            </Offset>
+          </Anchor>
+        </Anchors>
+        <Backdrop bgFile="Interface\Tooltips\UI-Tooltip-Background" edgeFile="Interface\Tooltips\UI-Tooltip-Border" tile="true">
+          <BackgroundInsets>
+            <AbsInset left="5" right="5" top="5" bottom="5" />
+          </BackgroundInsets>
+          <TileSize>
+            <AbsValue val="16" />
+          </TileSize>
+          <EdgeSize>
+            <AbsValue val="16" />
+          </EdgeSize>
+        </Backdrop>
+        <Frames>
+          <Frame name="$parentUnextendTexture">
+            <Size>
+              <AbsDimension x="26" y="26" />
+            </Size>
+            <Anchors>
+              <Anchor point="TOPRIGHT">
+                <Offset>
+                  <AbsDimension x="-2" y="-2" />
+                </Offset>
+              </Anchor>
+            </Anchors>
+            <Layers>
+              <Layer>
+                <Texture name="$parentTexture" setAllPoints="true" file="interface\chatframe\ui-chaticon-scrollup-up">
+                  <TexCoords left="0" right="1" top="0" bottom="1" />
+                </Texture>
+              </Layer>
+            </Layers>
+            <Scripts>
+              <OnMouseDown>VUHDO_unextendTextureOnClick(this)</OnMouseDown>
+            </Scripts>
+          </Frame>
+
+
+          <Frame name="$parentNumColumnsLabel">
+            <Size>
+              <AbsDimension x="94" y="11" />
+            </Size>
+            <Anchors>
+              <Anchor point="TOPLEFT">
+                <Offset>
+                  <AbsDimension x="7" y="-59" />
+                </Offset>
+              </Anchor>
+            </Anchors>
+            <Layers>
+              <Layer>
+                <FontString name="$parentLabel" font="Fonts\FRIZQT__.TTF" text="" justifyH="LEFT">
+                  <Anchors>
+                    <Anchor point="TOPLEFT" />
+                    <Anchor point="BOTTOMRIGHT" />
+                  </Anchors>
+                  <FontHeight>
+                    <AbsValue val="8" />
+                  </FontHeight>
+                  <Color r="1" g="0.82" b="0" />
+                  <Shadow>
+                    <Color r="0" g="0" b="0" />
+                    <Offset>
+                      <AbsDimension x="1" y="-1" />
+                    </Offset>
+                  </Shadow>
+                </FontString>
+              </Layer>
+            </Layers>
+          </Frame>
+          <Frame name="$parentGrowToLabel">
+            <Size>
+              <AbsDimension x="63" y="18" />
+            </Size>
+            <Anchors>
+              <Anchor point="TOPLEFT">
+                <Offset>
+                  <AbsDimension x="7" y="-21" />
+                </Offset>
+              </Anchor>
+            </Anchors>
+            <Layers>
+              <Layer>
+                <FontString name="$parentLabel" font="Fonts\FRIZQT__.TTF" text="VUHDO_I18N_GROW_TO" justifyH="LEFT">
+                  <Anchors>
+                    <Anchor point="TOPLEFT" />
+                    <Anchor point="BOTTOMRIGHT" />
+                  </Anchors>
+                  <FontHeight>
+                    <AbsValue val="8" />
+                  </FontHeight>
+                  <Color r="1" g="0.82" b="0" />
+                  <Shadow>
+                    <Color r="0" g="0" b="0" />
+                    <Offset>
+                      <AbsDimension x="1" y="-1" />
+                    </Offset>
+                  </Shadow>
+                </FontString>
+              </Layer>
+            </Layers>
+          </Frame>
+          <Frame name="$parentGroupedLabel">
+            <Size>
+              <AbsDimension x="43" y="18" />
+            </Size>
+            <Anchors>
+              <Anchor point="TOPLEFT">
+                <Offset>
+                  <AbsDimension x="62" y="-21" />
+                </Offset>
+              </Anchor>
+            </Anchors>
+            <Layers>
+              <Layer>
+                <FontString name="$parentLabel" font="Fonts\FRIZQT__.TTF" text="VUHDO_I18N_GROUPED" justifyH="RIGHT">
+                  <Anchors>
+                    <Anchor point="TOPLEFT" />
+                    <Anchor point="BOTTOMRIGHT" />
+                  </Anchors>
+                  <FontHeight>
+                    <AbsValue val="8" />
+                  </FontHeight>
+                  <Color r="1" g="0.82" b="0" />
+                  <Shadow>
+                    <Color r="0" g="0" b="0" />
+                    <Offset>
+                      <AbsDimension x="1" y="-1" />
+                    </Offset>
+                  </Shadow>
+                </FontString>
+              </Layer>
+            </Layers>
+          </Frame>
+
+          <CheckButton name="$parentGroupedCheckButton">
+            <Size>
+              <AbsDimension x="32" y="32" />
+            </Size>
+            <Anchors>
+              <Anchor point="TOPLEFT">
+                <Offset>
+                  <AbsDimension x="76" y="-33" />
+                </Offset>
+              </Anchor>
+            </Anchors>
+            <Layers>
+              <Layer>
+                <FontString name="$parentText" font="Fonts\FRIZQT__.TTF" text="">
+                  <Anchors>
+                    <Anchor point="LEFT" relativePoint="RIGHT">
+                      <Offset>
+                        <AbsDimension x="-2" y="0" />
+                      </Offset>
+                    </Anchor>
+                  </Anchors>
+                  <FontHeight>
+                    <AbsValue val="10" />
+                  </FontHeight>
+                  <Color r="1" g="0.82" b="0" />
+                  <Shadow>
+                    <Color r="0" g="0" b="0" />
+                    <Offset>
+                      <AbsDimension x="1" y="-1" />
+                    </Offset>
+                  </Shadow>
+                </FontString>
+              </Layer>
+            </Layers>
+            <Scripts>
+              <OnClick>VUHDO_panelDesignGroupedCheckButtonOnClick(this)</OnClick>
+              <OnShow>VUHDO_panelDesignGroupedCheckButtonOnShow(this)</OnShow>
+            </Scripts>
+            <NormalTexture file="Interface\Buttons\UI-CheckBox-Up" />
+            <PushedTexture file="Interface\Buttons\UI-CheckBox-Down" />
+            <HighlightTexture file="Interface\Buttons\UI-CheckBox-Highlight" alphaMode="ADD" />
+            <CheckedTexture file="Interface\Buttons\UI-CheckBox-Check" />
+            <DisabledCheckedTexture file="Interface\Buttons\UI-CheckBox-Check-Disabled" />
+          </CheckButton>
+
+          <Frame name="$parentShowEmptyLabel">
+            <Size>
+              <AbsDimension x="60" y="18" />
+            </Size>
+            <Anchors>
+              <Anchor point="TOPLEFT">
+                <Offset>
+                  <AbsDimension x="46" y="-76" />
+                </Offset>
+              </Anchor>
+            </Anchors>
+            <Layers>
+              <Layer>
+                <FontString name="$parentLabel" font="Fonts\FRIZQT__.TTF" text="VUHDO_I18N_SHOW_EMPTY" justifyH="RIGHT">
+                  <Anchors>
+                    <Anchor point="TOPLEFT" />
+                    <Anchor point="BOTTOMRIGHT" />
+                  </Anchors>
+                  <FontHeight>
+                    <AbsValue val="8" />
+                  </FontHeight>
+                  <Color r="1" g="0.82" b="0" />
+                  <Shadow>
+                    <Color r="0" g="0" b="0" />
+                    <Offset>
+                      <AbsDimension x="1" y="-1" />
+                    </Offset>
+                  </Shadow>
+                </FontString>
+              </Layer>
+            </Layers>
+          </Frame>
+
+          <CheckButton name="$parentShowEmptyCheckButton">
+            <Size>
+              <AbsDimension x="32" y="32" />
+            </Size>
+            <Anchors>
+              <Anchor point="TOPLEFT">
+                <Offset>
+                  <AbsDimension x="76" y="-88" />
+                </Offset>
+              </Anchor>
+            </Anchors>
+            <Layers>
+              <Layer>
+                <FontString name="$parentText" font="Fonts\FRIZQT__.TTF" text="">
+                  <Anchors>
+                    <Anchor point="LEFT" relativePoint="RIGHT">
+                      <Offset>
+                        <AbsDimension x="-2" y="0" />
+                      </Offset>
+                    </Anchor>
+                  </Anchors>
+                  <FontHeight>
+                    <AbsValue val="10" />
+                  </FontHeight>
+                  <Color r="1" g="0.82" b="0" />
+                  <Shadow>
+                    <Color r="0" g="0" b="0" />
+                    <Offset>
+                      <AbsDimension x="1" y="-1" />
+                    </Offset>
+                  </Shadow>
+                </FontString>
+              </Layer>
+            </Layers>
+            <Scripts>
+              <OnClick>VUHDO_panelDesignShowEmptyOnClick(this)</OnClick>
+              <OnShow>VUHDO_panelDesignShowEmptyOnShow(this)</OnShow>
+            </Scripts>
+            <NormalTexture file="Interface\Buttons\UI-CheckBox-Up" />
+            <PushedTexture file="Interface\Buttons\UI-CheckBox-Down" />
+            <HighlightTexture file="Interface\Buttons\UI-CheckBox-Highlight" alphaMode="ADD" />
+            <CheckedTexture file="Interface\Buttons\UI-CheckBox-Check" />
+            <DisabledCheckedTexture file="Interface\Buttons\UI-CheckBox-Check-Disabled" />
+          </CheckButton>
+
+          <Button name="$parentComponent2">
+            <Size>
+              <AbsDimension x="104" y="32" />
+            </Size>
+            <Anchors>
+              <Anchor point="TOPLEFT">
+                <Offset>
+                  <AbsDimension x="-10" y="-34" />
+                </Offset>
+              </Anchor>
+            </Anchors>
+            <Layers>
+              <Layer>
+                <Texture name="$parentLeft" file="Interface\Glues\CharacterCreate\CharacterCreate-LabelFrame">
+                  <Size>
+                    <AbsDimension x="25" y="64" />
+                  </Size>
+                  <Anchors>
+                    <Anchor point="TOPLEFT">
+                      <Offset>
+                        <AbsDimension x="0" y="17" />
+                      </Offset>
+                    </Anchor>
+                  </Anchors>
+                  <TexCoords left="0" right="0.1953125" top="0" bottom="1" />
+                </Texture>
+                <Texture name="$parentMiddle" file="Interface\Glues\CharacterCreate\CharacterCreate-LabelFrame">
+                  <Size>
+                    <AbsDimension x="54" y="64" />
+                  </Size>
+                  <Anchors>
+                    <Anchor point="LEFT" relativeTo="$parentLeft" relativePoint="RIGHT" />
+                  </Anchors>
+                  <TexCoords left="0.1953125" right="0.8046875" top="0" bottom="1" />
+                </Texture>
+                <Texture name="$parentRight" file="Interface\Glues\CharacterCreate\CharacterCreate-LabelFrame">
+                  <Size>
+                    <AbsDimension x="25" y="64" />
+                  </Size>
+                  <Anchors>
+                    <Anchor point="LEFT" relativeTo="$parentMiddle" relativePoint="RIGHT" />
+                  </Anchors>
+                  <TexCoords left="0.8046875" right="1" top="0" bottom="1" />
+                </Texture>
+                <FontString name="$parentText" font="Fonts\FRIZQT__.TTF" text="VUHDO_I18N_GROW" justifyH="RIGHT">
+                  <Size>
+                    <AbsDimension x="79" y="10" />
+                  </Size>
+                  <Anchors>
+                    <Anchor point="RIGHT" relativeTo="$parentRight">
+                      <Offset>
+                        <AbsDimension x="-43" y="2" />
+                      </Offset>
+                    </Anchor>
+                  </Anchors>
+                  <FontHeight>
+                    <AbsValue val="10" />
+                  </FontHeight>
+                  <Color r="1" g="1" b="1" />
+                  <Shadow>
+                    <Color r="0" g="0" b="0" />
+                    <Offset>
+                      <AbsDimension x="1" y="-1" />
+                    </Offset>
+                  </Shadow>
+                </FontString>
+              </Layer>
+            </Layers>
+            <Frames>
+              <Button name="$parentButton">
+                <Size>
+                  <AbsDimension x="24" y="24" />
+                </Size>
+                <Anchors>
+                  <Anchor point="TOPRIGHT" relativeTo="$parentRight">
+                    <Offset>
+                      <AbsDimension x="-16" y="-18" />
+                    </Offset>
+                  </Anchor>
+                </Anchors>
+                <Scripts>
+                  <OnClick>
+                    ToggleDropDownMenu();
+						        PlaySound("igMainMenuOptionCheckBoxOn");
+        					</OnClick>
+                </Scripts>
+                <NormalTexture name="$parentNormalTexture" file="Interface\ChatFrame\UI-ChatIcon-ScrollDown-Up">
+                  <Size>
+                    <AbsDimension x="24" y="24" />
+                  </Size>
+                  <Anchors>
+                    <Anchor point="RIGHT" />
+                  </Anchors>
+                </NormalTexture>
+                <PushedTexture name="$parentPushedTexture" file="Interface\ChatFrame\UI-ChatIcon-ScrollDown-Down">
+                  <Size>
+                    <AbsDimension x="24" y="24" />
+                  </Size>
+                  <Anchors>
+                    <Anchor point="RIGHT" />
+                  </Anchors>
+                </PushedTexture>
+                <DisabledTexture name="$parentDisabledTexture" file="Interface\ChatFrame\UI-ChatIcon-ScrollDown-Disabled">
+                  <Size>
+                    <AbsDimension x="24" y="24" />
+                  </Size>
+                  <Anchors>
+                    <Anchor point="RIGHT" />
+                  </Anchors>
+                </DisabledTexture>
+                <HighlightTexture name="$parentHighlightTexture" file="Interface\Buttons\UI-Common-MouseHilight" alphaMode="ADD">
+                  <Size>
+                    <AbsDimension x="24" y="24" />
+                  </Size>
+                  <Anchors>
+                    <Anchor point="RIGHT" />
+                  </Anchors>
+                </HighlightTexture>
+              </Button>
+            </Frames>
+            <Scripts>
+              <OnLoad>
+              local cb_init_fn = function()
+                local info
+                info = {}
+                info.text = "" ..VUHDO_I18N_GT_DOWN;
+                info.value = "TOPLEFT";
+                info.owner = this:GetParent();
+                info.func = function() VUHDO_panelDesignGrowSelectionChanged(this) end
+                UIDropDownMenu_AddButton(info);
+                info = {}
+                info.text = "" .. VUHDO_I18N_LT_DOWN;
+                info.value = "TOPRIGHT";
+                info.owner = this:GetParent();
+                info.func = function() VUHDO_panelDesignGrowSelectionChanged(this) end
+                UIDropDownMenu_AddButton(info);
+                info = {}
+                info.text = "" .. VUHDO_I18N_GT_UP;
+                info.value = "BOTTOMLEFT";
+                info.owner = this:GetParent();
+                info.func = function() VUHDO_panelDesignGrowSelectionChanged(this) end
+                UIDropDownMenu_AddButton(info);
+                info = {}
+                info.text = "" .. VUHDO_I18N_LT_UP;
+                info.value = "BOTTOMRIGHT";
+                info.owner = this:GetParent();
+                info.func = function() VUHDO_panelDesignGrowSelectionChanged(this) end
+                UIDropDownMenu_AddButton(info);
+              end
+              UIDropDownMenu_Initialize(this, cb_init_fn)
+              </OnLoad>
+              <OnShow>VUHDO_configGrowToComboOnShow(this)</OnShow>
+              <OnHide>CloseDropDownMenus();</OnHide>
+            </Scripts>
+          </Button>
+          <Frame name="$parentNumColumnsSlider1">
+            <Size>
+              <AbsDimension x="94" y="26" />
+            </Size>
+            <Anchors>
+              <Anchor point="TOPLEFT">
+                <Offset>
+                  <AbsDimension x="8" y="-63" />
+                </Offset>
+              </Anchor>
+            </Anchors>
+            <Frames>
+              <Slider name="$parentSlider" enableMouse="true" minValue="1" maxValue="15" defaultValue="0" valueStep="1" orientation="HORIZONTAL">
+                <Size>
+                  <AbsDimension x="128" y="17" />
+                </Size>
+                <Anchors>
+                  <Anchor point="LEFT" />
+                  <Anchor point="RIGHT" />
+                </Anchors>
+                <Backdrop bgFile="Interface\Buttons\UI-SliderBar-Background" edgeFile="Interface\Buttons\UI-SliderBar-Border" tile="true">
+                  <BackgroundInsets>
+                    <AbsInset left="3" right="3" top="6" bottom="6" />
+                  </BackgroundInsets>
+                  <TileSize>
+                    <AbsValue val="8" />
+                  </TileSize>
+                  <EdgeSize>
+                    <AbsValue val="8" />
+                  </EdgeSize>
+                </Backdrop>
+                <ThumbTexture name="$parentThumb" file="Interface\Buttons\UI-SliderBar-Button-Horizontal">
+                  <Size>
+                    <AbsDimension x="32" y="32" />
+                  </Size>
+                </ThumbTexture>
+                <Scripts>
+                 <OnShow>VUHDO_panelDesignColumnsSliderOnShow(this)</OnShow>
+                 <OnValueChanged>VUHDO_panelDesignColumnsSliderOnValueChanged(this)</OnValueChanged>
+                 <OnMouseUp>VUHDO_panelDesignColumnsSliderOnMouseUp(this)</OnMouseUp>
+               </Scripts>
+              </Slider>
+            </Frames>
+          </Frame>
+          <Frame name="$parentNewGroupTexture">
+            <Size>
+              <AbsDimension x="24" y="24" />
+            </Size>
+            <Anchors>
+              <Anchor point="TOPLEFT">
+                <Offset>
+                  <AbsDimension x="3" y="-3" />
+                </Offset>
+              </Anchor>
+            </Anchors>
+            <Layers>
+              <Layer>
+                <Texture name="$parentTexture" setAllPoints="true" file="interface\buttons\ui-plusbutton-up">
+                  <TexCoords left="0" right="1" top="0" bottom="1" />
+                </Texture>
+              </Layer>
+            </Layers>
+            <Scripts>
+              <OnMouseDown>VUHDO_panelDesignAddModelOnClick(this)</OnMouseDown>
+            </Scripts>
+          </Frame>
+
+
+          <Frame name="$parentNewGroupLabel">
+            <Size>
+              <AbsDimension x="70" y="21" />
+            </Size>
+            <Anchors>
+              <Anchor point="TOPLEFT">
+                <Offset>
+                  <AbsDimension x="26" y="-6" />
+                </Offset>
+              </Anchor>
+            </Anchors>
+            <Layers>
+              <Layer>
+                <FontString name="$parentLabel" font="Fonts\FRIZQT__.TTF" text="VUHDO_I18N_ADD_MODEL" justifyH="LEFT">
+                  <Anchors>
+                    <Anchor point="TOPLEFT" />
+                    <Anchor point="BOTTOMRIGHT" />
+                  </Anchors>
+                  <FontHeight>
+                    <AbsValue val="8" />
+                  </FontHeight>
+                  <Color r="1" g="0.82" b="0" />
+                  <Shadow>
+                    <Color r="0" g="0" b="0" />
+                    <Offset>
+                      <AbsDimension x="1" y="-1" />
+                    </Offset>
+                  </Shadow>
+                </FontString>
+              </Layer>
+            </Layers>
+          </Frame>
+          <Frame name="$parentDeleteLabel">
+            <Size>
+              <AbsDimension x="54" y="24" />
+            </Size>
+            <Anchors>
+              <Anchor point="TOPLEFT">
+                <Offset>
+                  <AbsDimension x="26" y="-120" />
+                </Offset>
+              </Anchor>
+            </Anchors>
+            <Layers>
+              <Layer>
+                <FontString name="$parentLabel" font="Fonts\FRIZQT__.TTF" text="VUHDO_I18N_CLEAR" justifyH="RIGHT">
+                  <Anchors>
+                    <Anchor point="TOPLEFT" />
+                    <Anchor point="BOTTOMRIGHT" />
+                  </Anchors>
+                  <FontHeight>
+                    <AbsValue val="8" />
+                  </FontHeight>
+                  <Color r="1" g="0.82" b="0" />
+                  <Shadow>
+                    <Color r="0" g="0" b="0" />
+                    <Offset>
+                      <AbsDimension x="1" y="-1" />
+                    </Offset>
+                  </Shadow>
+                </FontString>
+              </Layer>
+            </Layers>
+          </Frame>
+          <Frame name="$parentDeleteTexture">
+            <Size>
+              <AbsDimension x="24" y="24" />
+            </Size>
+            <Anchors>
+              <Anchor point="TOPLEFT">
+                <Offset>
+                  <AbsDimension x="83" y="-118" />
+                </Offset>
+              </Anchor>
+            </Anchors>
+            <Layers>
+              <Layer>
+                <Texture name="$parentTexture" setAllPoints="true" file="interface\buttons\ui-minusbutton-up">
+                  <TexCoords left="0" right="1" top="0" bottom="1" />
+                </Texture>
+              </Layer>
+            </Layers>
+            <Scripts>
+              <OnMouseDown>VUHDO_panelDesignDeleteOnClick(this)</OnMouseDown>
+            </Scripts>
+          </Frame>
+
+          <Frame name="$parentSortByLabel">
+            <Size>
+              <AbsDimension x="65" y="18" />
+            </Size>
+            <Anchors>
+              <Anchor point="TOPLEFT">
+                <Offset>
+                  <AbsDimension x="7" y="-78" />
+                </Offset>
+              </Anchor>
+            </Anchors>
+            <Layers>
+              <Layer>
+                <FontString name="$parentLabel" font="Fonts\FRIZQT__.TTF" text="VUHDO_I18N_SORT_BY" justifyH="LEFT">
+                  <Anchors>
+                    <Anchor point="TOPLEFT" />
+                    <Anchor point="BOTTOMRIGHT" />
+                  </Anchors>
+                  <FontHeight>
+                    <AbsValue val="8" />
+                  </FontHeight>
+                  <Color r="1" g="0.82" b="0" />
+                  <Shadow>
+                    <Color r="0" g="0" b="0" />
+                    <Offset>
+                      <AbsDimension x="1" y="-1" />
+                    </Offset>
+                  </Shadow>
+                </FontString>
+              </Layer>
+            </Layers>
+          </Frame>
+
+          <Button name="$parentSortByComboBox">
+            <Size>
+              <AbsDimension x="104" y="32" />
+            </Size>
+            <Anchors>
+              <Anchor point="TOPLEFT">
+                <Offset>
+                  <AbsDimension x="-10" y="-90" />
+                </Offset>
+              </Anchor>
+            </Anchors>
+            <Layers>
+              <Layer>
+                <Texture name="$parentLeft" file="Interface\Glues\CharacterCreate\CharacterCreate-LabelFrame">
+                  <Size>
+                    <AbsDimension x="25" y="64" />
+                  </Size>
+                  <Anchors>
+                    <Anchor point="TOPLEFT">
+                      <Offset>
+                        <AbsDimension x="0" y="17" />
+                      </Offset>
+                    </Anchor>
+                  </Anchors>
+                  <TexCoords left="0" right="0.1953125" top="0" bottom="1" />
+                </Texture>
+                <Texture name="$parentMiddle" file="Interface\Glues\CharacterCreate\CharacterCreate-LabelFrame">
+                  <Size>
+                    <AbsDimension x="53" y="64" />
+                  </Size>
+                  <Anchors>
+                    <Anchor point="LEFT" relativeTo="$parentLeft" relativePoint="RIGHT" />
+                  </Anchors>
+                  <TexCoords left="0.1953125" right="0.8046875" top="0" bottom="1" />
+                </Texture>
+                <Texture name="$parentRight" file="Interface\Glues\CharacterCreate\CharacterCreate-LabelFrame">
+                  <Size>
+                    <AbsDimension x="25" y="64" />
+                  </Size>
+                  <Anchors>
+                    <Anchor point="LEFT" relativeTo="$parentMiddle" relativePoint="RIGHT" />
+                  </Anchors>
+                  <TexCoords left="0.8046875" right="1" top="0" bottom="1" />
+                </Texture>
+                <FontString name="$parentText" font="Fonts\FRIZQT__.TTF" text="VUHDO_I18N_SORT_BY" justifyH="RIGHT">
+                  <Size>
+                    <AbsDimension x="100" y="10" />
+                  </Size>
+                  <Anchors>
+                    <Anchor point="RIGHT" relativeTo="$parentRight">
+                      <Offset>
+                        <AbsDimension x="-43" y="2" />
+                      </Offset>
+                    </Anchor>
+                  </Anchors>
+                  <FontHeight>
+                    <AbsValue val="10" />
+                  </FontHeight>
+                  <Color r="1" g="1" b="1" />
+                  <Shadow>
+                    <Color r="0" g="0" b="0" />
+                    <Offset>
+                      <AbsDimension x="1" y="-1" />
+                    </Offset>
+                  </Shadow>
+                </FontString>
+              </Layer>
+            </Layers>
+            <Frames>
+              <Button name="$parentButton">
+                <Size>
+                  <AbsDimension x="24" y="24" />
+                </Size>
+                <Anchors>
+                  <Anchor point="TOPRIGHT" relativeTo="$parentRight">
+                    <Offset>
+                      <AbsDimension x="-16" y="-18" />
+                    </Offset>
+                  </Anchor>
+                </Anchors>
+                <Scripts>
+                  <OnClick>
+										ToggleDropDownMenu();
+										PlaySound("igMainMenuOptionCheckBoxOn");
+ 									</OnClick>
+                </Scripts>
+                <NormalTexture name="$parentNormalTexture" file="Interface\ChatFrame\UI-ChatIcon-ScrollDown-Up">
+                  <Size>
+                    <AbsDimension x="24" y="24" />
+                  </Size>
+                  <Anchors>
+                    <Anchor point="RIGHT" />
+                  </Anchors>
+                </NormalTexture>
+                <PushedTexture name="$parentPushedTexture" file="Interface\ChatFrame\UI-ChatIcon-ScrollDown-Down">
+                  <Size>
+                    <AbsDimension x="24" y="24" />
+                  </Size>
+                  <Anchors>
+                    <Anchor point="RIGHT" />
+                  </Anchors>
+                </PushedTexture>
+                <DisabledTexture name="$parentDisabledTexture" file="Interface\ChatFrame\UI-ChatIcon-ScrollDown-Disabled">
+                  <Size>
+                    <AbsDimension x="24" y="24" />
+                  </Size>
+                  <Anchors>
+                    <Anchor point="RIGHT" />
+                  </Anchors>
+                </DisabledTexture>
+                <HighlightTexture name="$parentHighlightTexture" file="Interface\Buttons\UI-Common-MouseHilight" alphaMode="ADD">
+                  <Size>
+                    <AbsDimension x="24" y="24" />
+                  </Size>
+                  <Anchors>
+                    <Anchor point="RIGHT" />
+                  </Anchors>
+                </HighlightTexture>
+              </Button>
+            </Frames>
+            <Scripts>
+              <OnLoad>
+              local cb_init_fn = function()
+                local info
+                info = {}
+                info.text = "" .. VUHDO_I18N_NAME;
+                info.value = 1
+                info.owner = this:GetParent();
+                info.func = function() VUHDO_panelDesignSortBySelectionChanged(this) end
+                UIDropDownMenu_AddButton(info);
+                info = {}
+                info.value = 2
+                info.owner = this:GetParent();
+                info.text = "" .. VUHDO_I18N_MAX_HP;
+                info.func = function() VUHDO_panelDesignSortBySelectionChanged(this) end
+                UIDropDownMenu_AddButton(info);
+                info = {}
+                info.value = 0
+                info.owner = this:GetParent();
+                info.text = "" .. VUHDO_I18N_UNIT_ID;
+                info.func = function() VUHDO_panelDesignSortBySelectionChanged(this) end
+                UIDropDownMenu_AddButton(info);
+              end
+              UIDropDownMenu_Initialize(this, cb_init_fn)
+              </OnLoad>
+              <OnShow>VUHDO_panelDesignSortByOnShow(this)</OnShow>
+              <OnHide>CloseDropDownMenus();</OnHide>
+            </Scripts>
+          </Button>
+        </Frames>
+        <Scripts>
+          <OnShow>VUHDO_designPanelOnShow(this)</OnShow>
+          <OnMouseDown>VUHDO_actionChildOnMouseDown(this)</OnMouseDown>
+          <OnMouseUp>VUHDO_actionChildOnMouseUp(this)</OnMouseUp>
+        </Scripts>
+      </Frame>
+
+
+  <Frame name="VuhDoActionTemplate" toplevel="true" parent="UIParent" movable="true" enableMouse="true"
+      enableKeyboard="true" virtual="true" hidden="true" inherits="SecureFrameTemplate">
+    <Size>
+      <AbsDimension x="350" y="350"/>
+    </Size>
+    <Anchors>
+      <Anchor point="RIGHT">
+        <Offset>
+          <AbsDimension x="0" y="0"/>
+        </Offset>
+      </Anchor>
+    </Anchors>
+    <Backdrop tile="true"
+      bgFile="Interface\Tooltips\UI-Tooltip-Background"
+      edgeFile="Interface\Tooltips\UI-Tooltip-Border">
+      <EdgeSize>
+        <AbsValue val="8"/>
+      </EdgeSize>
+      <TileSize>
+        <AbsValue val="8"/>
+      </TileSize>
+      <BackgroundInsets>
+        <AbsInset left="1" right="1" top="1" bottom="1"/>
+      </BackgroundInsets>
+    </Backdrop>
+    <Frames>
+
+      <Frame name="$parentDoneTexture">
+        <Size>
+          <AbsDimension x="26" y="26" />
+        </Size>
+        <Anchors>
+          <Anchor point="TOPLEFT">
+            <Offset>
+              <AbsDimension x="-20" y="21" />
+            </Offset>
+          </Anchor>
+        </Anchors>
+        <Layers>
+          <Layer>
+            <Texture name="$parentTexture" setAllPoints="true" file="interface\buttons\ui-panel-minimizebutton-up">
+              <TexCoords left="0" right="1" top="0" bottom="1" />
+            </Texture>
+          </Layer>
+        </Layers>
+        <Scripts>
+          <OnMouseDown>VUHDO_panelConfigDoneOnClick(this)</OnMouseDown>
+        </Scripts>
+      </Frame>
+
+          <Button name="$parentMiscButton" hidden="true" text="VUHDO_I18N_MISC">
+            <Size>
+              <AbsDimension x="45" y="20" />
+            </Size>
+            <Anchors>
+              <Anchor point="TOPLEFT">
+                <Offset>
+                  <AbsDimension x="2" y="18" />
+                </Offset>
+              </Anchor>
+            </Anchors>
+            <Scripts>
+              <OnClick>VUHDO_panelDesignMiscOnClick(this)</OnClick>
+            </Scripts>
+            <NormalTexture file="Interface\Buttons\UI-Panel-Button-Up">
+              <TexCoords left="0" right="0.625" top="0" bottom="0.6875" />
+            </NormalTexture>
+            <PushedTexture file="Interface\Buttons\UI-Panel-Button-Down">
+              <TexCoords left="0" right="0.625" top="0" bottom="0.6875" />
+            </PushedTexture>
+            <DisabledTexture file="Interface\Buttons\UI-Panel-Button-Disabled">
+              <TexCoords left="0" right="0.625" top="0" bottom="0.6875" />
+            </DisabledTexture>
+            <HighlightTexture file="Interface\Buttons\UI-Panel-Button-Highlight" alphaMode="ADD">
+              <TexCoords left="0" right="0.625" top="0" bottom="0.6875" />
+            </HighlightTexture>
+            <ButtonText name="$parentText">
+              <FontHeight>
+                <AbsValue val="10" />
+              </FontHeight>
+            </ButtonText>
+            <NormalFont inherits="GameFontNormal" font="Fonts\FRIZQT__.TTF">
+              <FontHeight>
+                <AbsValue val="12" />
+              </FontHeight>
+              <Color r="1" g="0.82" b="0" />
+              <Shadow>
+                <Color r="0" g="0" b="0" />
+                <Offset>
+                  <AbsDimension x="1" y="-1" />
+                </Offset>
+              </Shadow>
+            </NormalFont>
+            <HighlightFont inherits="GameFontHighlight" font="Fonts\FRIZQT__.TTF">
+              <FontHeight>
+                <AbsValue val="12" />
+              </FontHeight>
+              <Color r="1" g="1" b="1" />
+              <Shadow>
+                <Color r="0" g="0" b="0" />
+                <Offset>
+                  <AbsDimension x="1" y="-1" />
+                </Offset>
+              </Shadow>
+            </HighlightFont>
+            <DisabledFont inherits="GameFontDisable" font="Fonts\FRIZQT__.TTF">
+              <FontHeight>
+                <AbsValue val="12" />
+              </FontHeight>
+              <Color r="0.5" g="0.5" b="0.5" />
+              <Shadow>
+                <Color r="0" g="0" b="0" />
+                <Offset>
+                  <AbsDimension x="1" y="-1" />
+                </Offset>
+              </Shadow>
+            </DisabledFont>
+          </Button>
+
+    <Frame name="$parentGroupNoLabel">
+      <Size>
+        <AbsDimension x="66" y="20" />
+      </Size>
+      <Anchors>
+        <Anchor point="TOPLEFT">
+          <Offset>
+            <AbsDimension x="45" y="20" />
+          </Offset>
+        </Anchor>
+      </Anchors>
+      <Layers>
+        <Layer>
+          <FontString name="$parentLabel" font="Fonts\FRIZQT__.TTF" text="OLOLOW">
+            <Anchors>
+              <Anchor point="TOPLEFT" />
+              <Anchor point="BOTTOMRIGHT" />
+            </Anchors>
+            <FontHeight>
+              <AbsValue val="12" />
+            </FontHeight>
+            <Color r="0" g="1" b="0" />
+            <Shadow>
+              <Color r="0" g="0" b="0" />
+              <Offset>
+                <AbsDimension x="1" y="-1" />
+              </Offset>
+            </Shadow>
+          </FontString>
+        </Layer>
+      </Layers>
+      <Scripts>
+        <OnMouseDown>VUHDO_actionChildOnMouseDown(this)</OnMouseDown>
+        <OnMouseUp>VUHDO_actionChildOnMouseUp(this)</OnMouseUp>
+      </Scripts>
+    </Frame>
+
+      <Frame name="$parentExtendTexture" hidden="true">
+        <Size>
+          <AbsDimension x="26" y="26" />
+        </Size>
+        <Anchors>
+          <Anchor point="TOPLEFT">
+            <Offset>
+              <AbsDimension x="-20" y="0" />
+            </Offset>
+          </Anchor>
+        </Anchors>
+        <Layers>
+          <Layer>
+            <Texture name="$parentTexture" setAllPoints="true" file="interface\chatframe\ui-chaticon-scrollend-up">
+              <TexCoords left="0" right="1" top="0" bottom="1" />
+            </Texture>
+          </Layer>
+        </Layers>
+        <Scripts>
+          <OnMouseDown>VUHDO_extendTextureOnClick(this)</OnMouseDown>
+        </Scripts>
+      </Frame>
+
+      <Frame name="$parentTooltipTexture" hidden="true">
+        <Size>
+          <AbsDimension x="26" y="26" />
+        </Size>
+        <Anchors>
+          <Anchor point="TOPLEFT">
+            <Offset>
+              <AbsDimension x="-20" y="-22" />
+            </Offset>
+          </Anchor>
+        </Anchors>
+        <Layers>
+          <Layer>
+            <Texture name="$parentTexture" setAllPoints="true" file="interface\tutorialframe\tutorialframe-questionmark">
+              <TexCoords left="0" right="1" top="0" bottom="1" />
+            </Texture>
+          </Layer>
+        </Layers>
+        <Scripts>
+          <OnMouseDown>VUHDO_tooltipTextureOnClick(this)</OnMouseDown>
+        </Scripts>
+      </Frame>
+
+      <Frame name="$parentDesignPanel" inherits="VuhDoPanelDesignPanelTemplate"/>
+
+      <Frame name="$parentGroupOrderPanel1" inherits="VuhDoGroupOrderPanelTemplate"/>
+      <Frame name="$parentGroupOrderPanel2" inherits="VuhDoGroupOrderPanelTemplate"/>
+      <Frame name="$parentGroupOrderPanel3" inherits="VuhDoGroupOrderPanelTemplate"/>
+      <Frame name="$parentGroupOrderPanel4" inherits="VuhDoGroupOrderPanelTemplate"/>
+      <Frame name="$parentGroupOrderPanel5" inherits="VuhDoGroupOrderPanelTemplate"/>
+      <Frame name="$parentGroupOrderPanel6" inherits="VuhDoGroupOrderPanelTemplate"/>
+      <Frame name="$parentGroupOrderPanel7" inherits="VuhDoGroupOrderPanelTemplate"/>
+      <Frame name="$parentGroupOrderPanel8" inherits="VuhDoGroupOrderPanelTemplate"/>
+      <Frame name="$parentGroupOrderPanel9" inherits="VuhDoGroupOrderPanelTemplate"/>
+      <Frame name="$parentGroupOrderPanel10" inherits="VuhDoGroupOrderPanelTemplate"/>
+      <Frame name="$parentGroupOrderPanel11" inherits="VuhDoGroupOrderPanelTemplate"/>
+      <Frame name="$parentGroupOrderPanel12" inherits="VuhDoGroupOrderPanelTemplate"/>
+      <Frame name="$parentGroupOrderPanel13" inherits="VuhDoGroupOrderPanelTemplate"/>
+      <Frame name="$parentGroupOrderPanel14" inherits="VuhDoGroupOrderPanelTemplate"/>
+      <Frame name="$parentGroupOrderPanel15" inherits="VuhDoGroupOrderPanelTemplate"/>
+
+      <Frame name="$parentGroupSelectPanel1" inherits="VuhDoGroupSelectPanelTemplate"/>
+      <Frame name="$parentGroupSelectPanel2" inherits="VuhDoGroupSelectPanelTemplate"/>
+      <Frame name="$parentGroupSelectPanel3" inherits="VuhDoGroupSelectPanelTemplate"/>
+      <Frame name="$parentGroupSelectPanel4" inherits="VuhDoGroupSelectPanelTemplate"/>
+      <Frame name="$parentGroupSelectPanel5" inherits="VuhDoGroupSelectPanelTemplate"/>
+      <Frame name="$parentGroupSelectPanel6" inherits="VuhDoGroupSelectPanelTemplate"/>
+      <Frame name="$parentGroupSelectPanel7" inherits="VuhDoGroupSelectPanelTemplate"/>
+      <Frame name="$parentGroupSelectPanel8" inherits="VuhDoGroupSelectPanelTemplate"/>
+      <Frame name="$parentGroupSelectPanel9" inherits="VuhDoGroupSelectPanelTemplate"/>
+      <Frame name="$parentGroupSelectPanel10" inherits="VuhDoGroupSelectPanelTemplate"/>
+      <Frame name="$parentGroupSelectPanel11" inherits="VuhDoGroupSelectPanelTemplate"/>
+      <Frame name="$parentGroupSelectPanel12" inherits="VuhDoGroupSelectPanelTemplate"/>
+      <Frame name="$parentGroupSelectPanel13" inherits="VuhDoGroupSelectPanelTemplate"/>
+      <Frame name="$parentGroupSelectPanel14" inherits="VuhDoGroupSelectPanelTemplate"/>
+      <Frame name="$parentGroupSelectPanel15" inherits="VuhDoGroupSelectPanelTemplate"/>
+
+      <Button name="$parentHealUnit1" inherits="VuhDoButtonSecureTemplate" text="Unit not set"/>
+      <Button name="$parentHealUnit2" inherits="VuhDoButtonSecureTemplate" text="Unit not set"/>
+      <Button name="$parentHealUnit3" inherits="VuhDoButtonSecureTemplate" text="Unit not set"/>
+      <Button name="$parentHealUnit4" inherits="VuhDoButtonSecureTemplate" text="Unit not set"/>
+      <Button name="$parentHealUnit5" inherits="VuhDoButtonSecureTemplate" text="Unit not set"/>
+      <Button name="$parentHealUnit6" inherits="VuhDoButtonSecureTemplate" text="Unit not set"/>
+      <Button name="$parentHealUnit7" inherits="VuhDoButtonSecureTemplate" text="Unit not set"/>
+      <Button name="$parentHealUnit8" inherits="VuhDoButtonSecureTemplate" text="Unit not set"/>
+      <Button name="$parentHealUnit9" inherits="VuhDoButtonSecureTemplate" text="Unit not set"/>
+      <Button name="$parentHealUnit10" inherits="VuhDoButtonSecureTemplate" text="Unit not set"/>
+      <Button name="$parentHealUnit11" inherits="VuhDoButtonSecureTemplate" text="Unit not set"/>
+      <Button name="$parentHealUnit12" inherits="VuhDoButtonSecureTemplate" text="Unit not set"/>
+      <Button name="$parentHealUnit13" inherits="VuhDoButtonSecureTemplate" text="Unit not set"/>
+      <Button name="$parentHealUnit14" inherits="VuhDoButtonSecureTemplate" text="Unit not set"/>
+      <Button name="$parentHealUnit15" inherits="VuhDoButtonSecureTemplate" text="Unit not set"/>
+      <Button name="$parentHealUnit16" inherits="VuhDoButtonSecureTemplate" text="Unit not set"/>
+      <Button name="$parentHealUnit17" inherits="VuhDoButtonSecureTemplate" text="Unit not set"/>
+      <Button name="$parentHealUnit18" inherits="VuhDoButtonSecureTemplate" text="Unit not set"/>
+      <Button name="$parentHealUnit19" inherits="VuhDoButtonSecureTemplate" text="Unit not set"/>
+      <Button name="$parentHealUnit20" inherits="VuhDoButtonSecureTemplate" text="Unit not set"/>
+      <Button name="$parentHealUnit21" inherits="VuhDoButtonSecureTemplate" text="Unit not set"/>
+      <Button name="$parentHealUnit22" inherits="VuhDoButtonSecureTemplate" text="Unit not set"/>
+      <Button name="$parentHealUnit23" inherits="VuhDoButtonSecureTemplate" text="Unit not set"/>
+      <Button name="$parentHealUnit24" inherits="VuhDoButtonSecureTemplate" text="Unit not set"/>
+      <Button name="$parentHealUnit25" inherits="VuhDoButtonSecureTemplate" text="Unit not set"/>
+      <Button name="$parentHealUnit26" inherits="VuhDoButtonSecureTemplate" text="Unit not set"/>
+      <Button name="$parentHealUnit27" inherits="VuhDoButtonSecureTemplate" text="Unit not set"/>
+      <Button name="$parentHealUnit28" inherits="VuhDoButtonSecureTemplate" text="Unit not set"/>
+      <Button name="$parentHealUnit29" inherits="VuhDoButtonSecureTemplate" text="Unit not set"/>
+      <Button name="$parentHealUnit30" inherits="VuhDoButtonSecureTemplate" text="Unit not set"/>
+      <Button name="$parentHealUnit31" inherits="VuhDoButtonSecureTemplate" text="Unit not set"/>
+      <Button name="$parentHealUnit32" inherits="VuhDoButtonSecureTemplate" text="Unit not set"/>
+      <Button name="$parentHealUnit33" inherits="VuhDoButtonSecureTemplate" text="Unit not set"/>
+      <Button name="$parentHealUnit34" inherits="VuhDoButtonSecureTemplate" text="Unit not set"/>
+      <Button name="$parentHealUnit35" inherits="VuhDoButtonSecureTemplate" text="Unit not set"/>
+      <Button name="$parentHealUnit36" inherits="VuhDoButtonSecureTemplate" text="Unit not set"/>
+      <Button name="$parentHealUnit37" inherits="VuhDoButtonSecureTemplate" text="Unit not set"/>
+      <Button name="$parentHealUnit38" inherits="VuhDoButtonSecureTemplate" text="Unit not set"/>
+      <Button name="$parentHealUnit39" inherits="VuhDoButtonSecureTemplate" text="Unit not set"/>
+      <Button name="$parentHealUnit40" inherits="VuhDoButtonSecureTemplate" text="Unit not set"/>
+      <Button name="$parentHealUnit41" inherits="VuhDoButtonSecureTemplate" text="Unit not set"/>
+      <Button name="$parentHealUnit42" inherits="VuhDoButtonSecureTemplate" text="Unit not set"/>
+      <Button name="$parentHealUnit43" inherits="VuhDoButtonSecureTemplate" text="Unit not set"/>
+      <Button name="$parentHealUnit44" inherits="VuhDoButtonSecureTemplate" text="Unit not set"/>
+      <Button name="$parentHealUnit45" inherits="VuhDoButtonSecureTemplate" text="Unit not set"/>
+	    <Button name="$parentHealUnit46" inherits="VuhDoButtonSecureTemplate" text="Unit not set"/>
+	    <Button name="$parentHealUnit47" inherits="VuhDoButtonSecureTemplate" text="Unit not set"/>
+	    <Button name="$parentHealUnit48" inherits="VuhDoButtonSecureTemplate" text="Unit not set"/>
+	    <Button name="$parentHealUnit49" inherits="VuhDoButtonSecureTemplate" text="Unit not set"/>
+	    <Button name="$parentHealUnit50" inherits="VuhDoButtonSecureTemplate" text="Unit not set"/>
+	    <Button name="$parentHealUnit51" inherits="VuhDoButtonSecureTemplate" text="Unit not set"/>
+
+      <Button name="$parentHeader1" inherits="VuhDoButtonTemplateHeader"/>
+      <Button name="$parentHeader2" inherits="VuhDoButtonTemplateHeader" text="Unit not set"/>
+      <Button name="$parentHeader3" inherits="VuhDoButtonTemplateHeader" text="Unit not set"/>
+      <Button name="$parentHeader4" inherits="VuhDoButtonTemplateHeader" text="Unit not set"/>
+      <Button name="$parentHeader5" inherits="VuhDoButtonTemplateHeader" text="Unit not set"/>
+      <Button name="$parentHeader6" inherits="VuhDoButtonTemplateHeader" text="Unit not set"/>
+      <Button name="$parentHeader7" inherits="VuhDoButtonTemplateHeader" text="Unit not set"/>
+      <Button name="$parentHeader8" inherits="VuhDoButtonTemplateHeader" text="Unit not set"/>
+      <Button name="$parentHeader9" inherits="VuhDoButtonTemplateHeader" text="Unit not set"/>
+      <Button name="$parentHeader10" inherits="VuhDoButtonTemplateHeader" text="Unit not set"/>
+      <Button name="$parentHeader11" inherits="VuhDoButtonTemplateHeader" text="Unit not set"/>
+      <Button name="$parentHeader12" inherits="VuhDoButtonTemplateHeader" text="Unit not set"/>
+      <Button name="$parentHeader13" inherits="VuhDoButtonTemplateHeader" text="Unit not set"/>
+      <Button name="$parentHeader14" inherits="VuhDoButtonTemplateHeader" text="Unit not set"/>
+      <Button name="$parentHeader15" inherits="VuhDoButtonTemplateHeader" text="Unit not set"/>
+    </Frames>
+    <Scripts>
+      <OnShow>
+        VuhDoActionOnShow(this);
+      </OnShow>
+      <OnHide>
+        VuhDoActionOnHide(this);
+      </OnHide>
+      <OnMouseDown>
+        VuhDoActionOnMouseDown(this,arg1);
+      </OnMouseDown>
+   </Scripts>
+  </Frame>
+
+  <Frame name="VuhDoAction1" hidden="true" inherits="VuhDoActionTemplate">
+  </Frame>
+  <Frame name="VuhDoAction2" hidden="true" inherits="VuhDoActionTemplate">
+  </Frame>
+  <Frame name="VuhDoAction3" hidden="true" inherits="VuhDoActionTemplate">
+  </Frame>
+  <Frame name="VuhDoAction4" hidden="true" inherits="VuhDoActionTemplate">
+  </Frame>
+  <Frame name="VuhDoAction5" hidden="true" inherits="VuhDoActionTemplate">
+  </Frame>
+  <Frame name="VuhDoAction6" hidden="true" inherits="VuhDoActionTemplate">
+  </Frame>
+  <Frame name="VuhDoAction7" hidden="true" inherits="VuhDoActionTemplate">
+  </Frame>
+  <Frame name="VuhDoAction8" hidden="true" inherits="VuhDoActionTemplate">
+  </Frame>
+  <Frame name="VuhDoAction9" hidden="true" inherits="VuhDoActionTemplate">
+  </Frame>
+  <Frame name="VuhDoAction10" hidden="true" inherits="VuhDoActionTemplate">
+  </Frame>
+
+
+  <Frame name="VuhdoActionAlias" toplevel="true" parent="UIParent" movable="true" enableMouse="true" hidden="true">
+    <Size>
+      <AbsDimension x="350" y="350"/>
+    </Size>
+    <Anchors>
+      <Anchor point="RIGHT">
+        <Offset>
+          <AbsDimension x="0" y="0"/>
+        </Offset>
+      </Anchor>
+    </Anchors>
+    <Backdrop tile="true"
+      bgFile="Interface\Tooltips\UI-Tooltip-Background"
+      edgeFile="Interface\Tooltips\UI-Tooltip-Border">
+      <EdgeSize>
+        <AbsValue val="8"/>
+      </EdgeSize>
+      <TileSize>
+        <AbsValue val="8"/>
+      </TileSize>
+      <BackgroundInsets>
+        <AbsInset left="1" right="1" top="1" bottom="1"/>
+      </BackgroundInsets>
+    </Backdrop>
+    <Scripts>
+      <OnUpdate>
+        VuhDoActionOnUpdate(this,arg1);
+      </OnUpdate>
+   </Scripts>
+  </Frame>
+
+</Ui>

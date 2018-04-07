@@ -1,0 +1,35 @@
+
+--------------------------------------------------------------
+seit Version r20080915_01 (1.0 RC2):
+
+Bugfixes:
+-- Offensive Buffs mit Cooldown ("Schattengeist") können nun per klick gewirkt werden
+-- Buffs mit explizitem Einzelziel (z.B. "Erdschild") verlieren ihr Ziel bei Kampfeintritt nicht mehr gelegentlich
+
+Features:
+-- In den Zauberspruchnamen kann man jetzt "tell" eintragen, um denjenigen anzuflüstern
+-- Schlachtzugssymbole und deren Namen werden jetzt gemeinsam angezeigt.
+-- Das Verschieben von Heil-Fenstern erzeugt jetzt weniger "einfrieren" zu Beginn (Leeres Fenster zum Verschieben).
+-- In den Buff-Optionen kann jetzt gewählt werden, ab wievielen Spielern ohne Buff der Gruppenbuff eingesetzt werden soll.
+
+--------------------------------------------------------------
+seit Version r20080831_01
+
+Features:
+-- Buff-Kontrolle (Anzeige + Click-Buff)) hinzugefügt. ("/vd buf" oder über Minimap)
+-- Übernommene Spieler können jetzt korrekt gereinigt werden
+-- Es kann eine Maus-/Tastenkombination zum Aufruf des Spieler-Kontextmenüs zugeordnet werden
+   (In den Spruch-Zuordnungen "Menu" als Spruchnamen eintragen).
+-- Zauber, die auf ein einzelnes Ziel wirken können im Spieler-Kontextmenü direkt zugeordnet werden.
+   (Sprüche wie "Furchtzauberschutz" oder "Erdschild")
+-- Auto-Korrektur bei der Eingabe von Spruchnamen mit Spruchrang hinzugefügt.
+-- Anleitung aktualisiert
+
+
+Bugfixes:
+-- Texturnamen ins Englische übersetzt
+-- Fehler behoben, der beim Smart-Cast "Reinigen" einen Fehler verursachte
+-- Fehler behoben, der bei der Spruchvorhersage, Gebet der Heilung einen Fehler verursachte
+-- Kompatibilitätswarunungen beim ersten Start unterdrückt.
+-- Chat-Spam bei Fehlern in der Event-Bearbeitung unterdrückt.
+-- Kohärenz bei während eines Kampfes den Raid verlassenden Gruppenmitgliedern erhöht.
